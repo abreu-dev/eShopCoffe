@@ -5,7 +5,7 @@ namespace eShopCoffe.API.Scope.Extensions
 {
     public static class ControllersServiceCollectionExtensions
     {
-        public static void AddIdentityControllers(this IServiceCollection services)
+        public static void AddEShopCoffeControllers(this IServiceCollection services)
         {
             services.AddControllers(options =>
             {

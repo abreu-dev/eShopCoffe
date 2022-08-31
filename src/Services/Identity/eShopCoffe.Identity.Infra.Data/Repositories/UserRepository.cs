@@ -1,8 +1,8 @@
-﻿using eShopCoffe.Core.Domain.Repositories;
+﻿using eShopCoffe.Core.Data;
+using eShopCoffe.Core.Domain.Repositories;
 using eShopCoffe.Identity.Domain.Entities;
 using eShopCoffe.Identity.Domain.Repositories;
 using eShopCoffe.Identity.Infra.Data.Adapters.Interfaces;
-using eShopCoffe.Identity.Infra.Data.Context;
 using eShopCoffe.Identity.Infra.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +10,7 @@ namespace eShopCoffe.Identity.Infra.Data.Repositories
 {
     public class UserRepository : Repository<UserDomain, UserData>, IUserRepository
     {
-        public UserRepository(IIdentityContext context, IUserDataAdapter adapter) : base(context, adapter)
+        public UserRepository(IBaseContext context, IUserDataAdapter adapter) : base(context, adapter)
         {
         }
 

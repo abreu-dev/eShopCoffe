@@ -4,7 +4,7 @@ namespace eShopCoffe.API.Scope.Extensions
 {
     public static class SwaggerServiceCollectionExtensions
     {
-        public static void AddIdentitySwagger(this IServiceCollection services)
+        public static void AddEShopCoffeSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(options =>
             {

@@ -1,24 +1,24 @@
 ﻿using eShopCoffe.Core.Data.Entities;
 using eShopCoffe.Core.Security.Interfaces;
+using eShopCoffe.Identity.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Reflection;
 
-namespace eShopCoffe.Identity.Infra.Data.Context
+namespace eShopCoffe.Context.Context
 {
-    public class IdentityContext : DbContext, IIdentityContext
+    public class EShopCoffeContext : DbContext, IEShopCoffeContext
     {
         protected readonly ISessionAccessor _sessionAccessor;
 
-        public IdentityContext(DbContextOptions<IdentityContext> options,
-                               ISessionAccessor sessionAccessor) : base(options)
+        public EShopCoffeContext(DbContextOptions<EShopCoffeContext> options,
+                                 ISessionAccessor sessionAccessor) : base(options)
         {
             _sessionAccessor = sessionAccessor;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDataBootStrapper).Assembly);
         }
 
         public bool IsAvailable()

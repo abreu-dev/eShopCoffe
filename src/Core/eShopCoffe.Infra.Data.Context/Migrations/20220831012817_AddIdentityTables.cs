@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace Identity.Infra.Data.Migrations
+namespace eShopCoffe.Infra.Data.Context.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class AddIdentityTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

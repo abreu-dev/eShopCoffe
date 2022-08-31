@@ -1,20 +1,20 @@
-﻿using eShopCoffe.Identity.Application.Services.Interfaces;
-using eShopCoffe.Identity.Infra.Data.Context;
+﻿using eShopCoffe.Core.Data;
+using eShopCoffe.Identity.Application.Services.Interfaces;
 
 namespace eShopCoffe.Identity.Application.Services
 {
     public class HealthService : IHealthService
     {
-        private readonly IIdentityContext _identityContext;
+        private readonly IBaseContext _context;
 
-        public HealthService(IIdentityContext identityContext)
+        public HealthService(IBaseContext context)
         {
-            _identityContext = identityContext;
+            _context = context;
         }
 
         public bool IsHealthy()
         {
-            return _identityContext.IsAvailable();
+            return _context.IsAvailable();
         }
     }
 }

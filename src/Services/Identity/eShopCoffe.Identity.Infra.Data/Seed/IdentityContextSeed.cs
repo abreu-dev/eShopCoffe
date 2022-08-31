@@ -1,5 +1,5 @@
-﻿using eShopCoffe.Core.Domain.Repositories;
-using eShopCoffe.Identity.Infra.Data.Context;
+﻿using eShopCoffe.Core.Data;
+using eShopCoffe.Core.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace eShopCoffe.Identity.Infra.Data.Seed
@@ -10,7 +10,7 @@ namespace eShopCoffe.Identity.Infra.Data.Seed
         {
             using (var scope = services.CreateScope())
             {
-                var context = scope.ServiceProvider.GetRequiredService<IIdentityContext>();
+                var context = scope.ServiceProvider.GetRequiredService<IBaseContext>();
 
                 UserSeed.SeedData(new Repository(context));
             }

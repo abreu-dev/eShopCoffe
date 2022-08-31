@@ -1,10 +1,10 @@
-﻿using eShopCoffe.Core.Data.Pagination;
+﻿using eShopCoffe.Core.Data;
+using eShopCoffe.Core.Data.Pagination;
 using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Extensions;
 using eShopCoffe.Core.Messaging.Handlers.Interfaces;
 using eShopCoffe.Identity.Application.Contracts.UserContracts;
 using eShopCoffe.Identity.Application.Queries.UserQueries;
-using eShopCoffe.Identity.Infra.Data.Context;
 using eShopCoffe.Identity.Infra.Data.Entities;
 
 namespace eShopCoffe.Identity.Application.Queries.Handlers
@@ -12,9 +12,9 @@ namespace eShopCoffe.Identity.Application.Queries.Handlers
     public class UserQueryHandler :
         IQueryHandler<PagedUsersQuery, IPagedList<UserDto>>
     {
-        private readonly IIdentityContext _context;
+        private readonly IBaseContext _context;
 
-        public UserQueryHandler(IIdentityContext context)
+        public UserQueryHandler(IBaseContext context)
         {
             _context = context;
         }

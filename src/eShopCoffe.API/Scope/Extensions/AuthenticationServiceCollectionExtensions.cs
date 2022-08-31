@@ -7,7 +7,7 @@ namespace eShopCoffe.API.Scope.Extensions
 {
     public static class AuthenticationServiceCollectionExtensions
     {
-        public static void AddIdentityAuthentication(this IServiceCollection services, IConfiguration configuration)
+        public static void AddEShopCoffeAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             var appSettingsSection = configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);

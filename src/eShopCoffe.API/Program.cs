@@ -6,12 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddIdentityControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddIdentitySwagger();
-builder.Services.AddIdentityAuthentication(builder.Configuration);
+builder.Services.AddEShopCoffeControllers();
+builder.Services.AddEShopCoffeSwagger();
+builder.Services.AddEShopCoffeAuthentication(builder.Configuration);
 
-IdentityApiBootStrapper.ConfigureServices(builder.Services, builder.Configuration);
+EShopCoffeApiBootStrapper.ConfigureServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 

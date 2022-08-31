@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace eShopCoffe.Core
 {
-    public static class FrameworkCoreBootStrapper
+    public static class EShopCoffeCoreBootStrapper
     {
         public static void ConfigureServices(IServiceCollection services)
         {
