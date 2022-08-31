@@ -1,8 +1,10 @@
-﻿using eShopCoffe.Identity.Application.Services.Interfaces;
+﻿using eShopCoffe.API.Scope.Handlers;
+using eShopCoffe.Identity.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShopCoffe.API.Controllers
 {
+    [IgnoreAuthenticationTokenFilter]
     public class HealthController : BaseController
     {
         private readonly IHealthService _healthService;

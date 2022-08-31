@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\eShopCoffe.Infra.Data.Context\eShopCoffe.Context.csproj" />
+    <ProjectReference Include="..\Core\eShopCoffe.Context\eShopCoffe.Context.csproj" />
     <ProjectReference Include="..\Services\Identity\eShopCoffe.Identity.Application\eShopCoffe.Identity.Application.csproj" />
   </ItemGroup>
 
