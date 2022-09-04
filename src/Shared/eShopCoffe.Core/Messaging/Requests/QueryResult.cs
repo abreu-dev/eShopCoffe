@@ -2,7 +2,7 @@
 
 namespace eShopCoffe.Core.Messaging.Requests
 {
-    public class QueryResult : IQueryResult
+    public abstract class QueryResult : IQueryResult
     {
     }
 }

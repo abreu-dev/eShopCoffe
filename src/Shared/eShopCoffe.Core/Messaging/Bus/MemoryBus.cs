@@ -5,17 +5,17 @@ using eShopCoffe.Core.Messaging.Requests.Interfaces;
 
 namespace eShopCoffe.Core.Messaging.Bus
 {
-    public class Bus : IBus
+    public class MemoryBus : IBus
     {
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IEventDispatcher _eventDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
         private readonly INotificationHandler _notificationHandler;
 
-        public Bus(ICommandDispatcher commandDispatcher,
-                   IEventDispatcher eventDispatcher,
-                   IQueryDispatcher queryDispatcher,
-                   INotificationHandler notificationHandler)
+        public MemoryBus(ICommandDispatcher commandDispatcher,
+                         IEventDispatcher eventDispatcher,
+                         IQueryDispatcher queryDispatcher,
+                         INotificationHandler notificationHandler)
         {
             _commandDispatcher = commandDispatcher;
             _eventDispatcher = eventDispatcher;

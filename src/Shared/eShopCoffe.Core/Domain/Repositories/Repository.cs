@@ -1,5 +1,5 @@
 ﻿using eShopCoffe.Core.Data;
-using eShopCoffe.Core.Data.Adapters;
+using eShopCoffe.Core.Data.Adapters.Interfaces;
 using eShopCoffe.Core.Data.Entities;
 using eShopCoffe.Core.Domain.Entities;
 using eShopCoffe.Core.Domain.Repositories.Interfaces;
