@@ -25,7 +25,7 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpPost]
-        [Route("api/login")]
+        [Route("identity/login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var result = _authenticationService.Authenticate(loginDto.Login, loginDto.Password);
