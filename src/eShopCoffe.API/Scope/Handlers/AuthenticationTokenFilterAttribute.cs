@@ -35,6 +35,9 @@ namespace eShopCoffe.API.Scope.Handlers
                     _sessionAccessor.Authenticate(authenticatedUser);
                     return;
                 }
+
+                context.Result = new ForbidResult();
+                return;
             }
 
             context.Result = new UnauthorizedObjectResult(null);
