@@ -1,4 +1,5 @@
-﻿using eShopCoffe.Core.Data.Entities;
+﻿using eShopCoffe.Catalog.Infra.Data;
+using eShopCoffe.Core.Data.Entities;
 using eShopCoffe.Core.Security.Interfaces;
 using eShopCoffe.Identity.Infra.Data;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace eShopCoffe.Context.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDataBootStrapper).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDataBootStrapper).Assembly);
         }
 
         public bool IsAvailable()
