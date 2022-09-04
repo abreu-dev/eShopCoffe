@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eShopCoffe.API.Controllers.Catalog
 {
-    public class ProductsController : BaseController
+    public class ProductsController : CatalogController
     {
         private readonly IBus _bus;
 
@@ -19,7 +19,8 @@ namespace eShopCoffe.API.Controllers.Catalog
         }
 
         [HttpGet]
-        [Route("catalog/products")]
+        [Route("products")]
+        [IgnoreAuthenticationTokenFilter]
         public async Task<IActionResult> Get([FromQuery] ProductParameters parameters)
         {
             var query = new PagedProductsQuery(parameters);
@@ -27,7 +28,7 @@ namespace eShopCoffe.API.Controllers.Catalog
         }
 
         [HttpPost]
-        [Route("catalog/products")]
+        [Route("products")]
         [AdminAuthenticationTokenFilter]
         public async Task<IActionResult> Post([FromBody] ProductCreationDto creationDto)
         {
@@ -37,7 +38,7 @@ namespace eShopCoffe.API.Controllers.Catalog
         }
 
         [HttpPut]
-        [Route("catalog/products/{id}")]
+        [Route("products/{id}")]
         [AdminAuthenticationTokenFilter]
         public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] ProductCreationDto creationDto)
         {
@@ -47,7 +48,7 @@ namespace eShopCoffe.API.Controllers.Catalog
         }
 
         [HttpDelete]
-        [Route("catalog/products/{id}")]
+        [Route("products/{id}")]
         [AdminAuthenticationTokenFilter]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {

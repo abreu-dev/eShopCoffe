@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace eShopCoffe.API.Controllers.Identity
 {
     [AdminAuthenticationTokenFilter]
-    public class UsersController : BaseController
+    public class UsersController : IdentityController
     {
         private readonly IBus _bus;
 
@@ -20,7 +20,7 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpGet]
-        [Route("identity/users")]
+        [Route("users")]
         public async Task<IActionResult> Get([FromQuery] UserParameters parameters)
         {
             var query = new PagedUsersQuery(parameters);
@@ -28,7 +28,7 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpPost]
-        [Route("identity/users")]
+        [Route("users")]
         public async Task<IActionResult> Post([FromBody] UserCreationDto creationDto)
         {
             var command = new AddUserCommand(creationDto.Login, creationDto.Password);
@@ -37,7 +37,7 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpPut]
-        [Route("identity/users/{id}")]
+        [Route("users/{id}")]
         public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] UserCreationDto creationDto)
         {
             var command = new UpdateUserCommand(id, creationDto.Login, creationDto.Password);
@@ -46,7 +46,7 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpDelete]
-        [Route("identity/users/{id}")]
+        [Route("users/{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var command = new RemoveUserCommand(id);

@@ -15,7 +15,7 @@ namespace eShopCoffe.API.Controllers
         }
 
         [HttpGet]
-        [Route("api/health")]
+        [Route("health")]
         public IActionResult Get()
         {
             if (_healthService.IsHealthy())

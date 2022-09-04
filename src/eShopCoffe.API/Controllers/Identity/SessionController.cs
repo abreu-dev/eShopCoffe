@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace eShopCoffe.API.Controllers.Identity
 {
     [IgnoreAuthenticationTokenFilter]
-    public class SessionController : BaseController
+    public class SessionController : IdentityController
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly ITokenService _tokenService;
@@ -25,7 +25,7 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpPost]
-        [Route("identity/login")]
+        [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var result = _authenticationService.Authenticate(loginDto.Login, loginDto.Password);
@@ -48,7 +48,7 @@ namespace eShopCoffe.API.Controllers.Identity
                 return Ok(loginResult);
             }
 
-            return BadRequest(new BadRequestResponse("api/login")
+            return BadRequest(new BadRequestResponse("login")
             {
                 Errors = new List<BadRequestResponseError>()
                 {
