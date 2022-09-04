@@ -15,14 +15,14 @@ namespace eShopCoffe.Identity.Domain
             EventHandlers(services);
         }
 
-        public static void CommandHandlers(IServiceCollection services)
+        private static void CommandHandlers(IServiceCollection services)
         {
             services.AddScoped<ICommandHandler<AddUserCommand>, UserCommandHandler>();
             services.AddScoped<ICommandHandler<UpdateUserCommand>, UserCommandHandler>();
             services.AddScoped<ICommandHandler<RemoveUserCommand>, UserCommandHandler>();
         }
 
-        public static void EventHandlers(IServiceCollection services)
+        private static void EventHandlers(IServiceCollection services)
         {
             services.AddScoped<IEventHandler<UserLoggedInEvent>, UserEventHandler>();
         }

@@ -14,12 +14,12 @@ namespace eShopCoffe.Identity.Infra.Data
             Repositories(services);
         }
 
-        public static void Adapters(IServiceCollection services)
+        private static void Adapters(IServiceCollection services)
         {
             services.AddScoped<IUserDataAdapter, UserDataAdapter>();
         }
 
-        public static void Repositories(IServiceCollection services)
+        private static void Repositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
         }

@@ -17,12 +17,12 @@ namespace eShopCoffe.Identity.Application
             Services(services);
         }
 
-        public static void Queries(IServiceCollection services)
+        private static void Queries(IServiceCollection services)
         {
             services.AddScoped<IQueryHandler<PagedUsersQuery, IPagedList<UserDto>>, UserQueryHandler>();
         }
 
-        public static void Services(IServiceCollection services)
+        private static void Services(IServiceCollection services)
         {
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<ITokenService, TokenService>();
