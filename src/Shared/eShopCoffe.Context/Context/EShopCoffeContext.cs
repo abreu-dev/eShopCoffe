@@ -9,7 +9,7 @@ namespace eShopCoffe.Context.Context
 {
     public class EShopCoffeContext : DbContext, IEShopCoffeContext
     {
-        protected readonly ISessionAccessor _sessionAccessor;
+        private readonly ISessionAccessor _sessionAccessor;
 
         public EShopCoffeContext(DbContextOptions<EShopCoffeContext> options,
                                  ISessionAccessor sessionAccessor) : base(options)

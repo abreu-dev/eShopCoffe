@@ -39,6 +39,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Core", "src\Shar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Context", "src\Shared\eShopCoffe.Context\eShopCoffe.Context.csproj", "{A4536418-4FF3-42CC-9B69-56899E01E2C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{4807F4F3-6373-482F-9521-5FA5C9C945FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Core.Tests", "tests\Shared\eShopCoffe.Core.Tests\eShopCoffe.Core.Tests.csproj", "{F25AB303-C17A-45C0-9AF2-5769527E8DF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,10 @@ Global
 		{A4536418-4FF3-42CC-9B69-56899E01E2C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4536418-4FF3-42CC-9B69-56899E01E2C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4536418-4FF3-42CC-9B69-56899E01E2C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F25AB303-C17A-45C0-9AF2-5769527E8DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25AB303-C17A-45C0-9AF2-5769527E8DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25AB303-C17A-45C0-9AF2-5769527E8DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25AB303-C17A-45C0-9AF2-5769527E8DF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +110,8 @@ Global
 		{D70851D5-8AC9-4DED-A2A4-23A56D89F62C} = {19A87DB4-9B69-4016-A153-E5506C7F72A6}
 		{DFA53C4E-A8A7-48EC-8D03-0D4A5A6267E5} = {60558C01-1FDB-45FC-A103-8C5D62A45CEA}
 		{A4536418-4FF3-42CC-9B69-56899E01E2C7} = {60558C01-1FDB-45FC-A103-8C5D62A45CEA}
+		{4807F4F3-6373-482F-9521-5FA5C9C945FA} = {A8B48220-9BD0-4AE0-8150-B4C6575331E7}
+		{F25AB303-C17A-45C0-9AF2-5769527E8DF7} = {4807F4F3-6373-482F-9521-5FA5C9C945FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC42A90-A343-46A4-8CA0-00A7004F1437}
