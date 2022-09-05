@@ -19,7 +19,7 @@ namespace eShopCoffe.Catalog.Domain.Commands.ProductCommands
             QuantityAvailable = quantityAvailable;
         }
 
-        public override CommandValidator<UpdateProductCommand> GetValidator()
+        protected override CommandValidator<UpdateProductCommand> GetValidator()
         {
             return new UpdateProductCommandValidator();
         }

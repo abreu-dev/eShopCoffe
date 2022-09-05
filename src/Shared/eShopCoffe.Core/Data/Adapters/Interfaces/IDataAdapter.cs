@@ -1,7 +1,7 @@
 ﻿using eShopCoffe.Core.Data.Entities;
 using eShopCoffe.Core.Domain.Entities;
 
-namespace eShopCoffe.Core.Data.Adapters
+namespace eShopCoffe.Core.Data.Adapters.Interfaces
 {
     public interface IDataAdapter<TEntityDomain, TEntityData>
         where TEntityDomain : EntityDomain

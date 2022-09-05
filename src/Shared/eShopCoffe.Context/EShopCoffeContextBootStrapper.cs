@@ -13,7 +13,7 @@ namespace eShopCoffe.Context
             Context(services, configuration);
         }
 
-        public static void Context(IServiceCollection services, IConfiguration configuration)
+        private static void Context(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<EShopCoffeContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));

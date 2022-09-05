@@ -1,4 +1,5 @@
-﻿using eShopCoffe.Core.Data.Entities;
+﻿using eShopCoffe.Core.Data.Adapters.Interfaces;
+using eShopCoffe.Core.Data.Entities;
 using eShopCoffe.Core.Domain.Entities;
 
 namespace eShopCoffe.Core.Data.Adapters
