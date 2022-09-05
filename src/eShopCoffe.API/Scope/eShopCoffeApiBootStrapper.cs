@@ -11,17 +11,17 @@ namespace eShopCoffe.API.Scope
 {
     public static class EShopCoffeApiBootStrapper
     {
-        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureServices(IServiceCollection services)
         {
-            Shared(services, configuration);
+            Shared(services);
             Identity(services);
             Catalog(services);
         }
 
-        private static void Shared(IServiceCollection services, IConfiguration configuration)
+        private static void Shared(IServiceCollection services)
         {
             EShopCoffeCoreBootStrapper.ConfigureServices(services);
-            EShopCoffeContextBootStrapper.ConfigureServices(services, configuration);
+            EShopCoffeContextBootStrapper.ConfigureServices(services);
         }
 
         private static void Identity(IServiceCollection services)

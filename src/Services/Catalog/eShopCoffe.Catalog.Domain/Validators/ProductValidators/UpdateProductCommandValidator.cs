@@ -18,7 +18,7 @@ namespace eShopCoffe.Catalog.Domain.Validators.ProductValidators
                 .NotEmpty();
 
             RuleFor(x => x.QuantityAvailable)
-                .NotEmpty();
+                .GreaterThanOrEqualTo(0);
         }
     }
 }

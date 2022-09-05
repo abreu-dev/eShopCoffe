@@ -1,15 +1,20 @@
-﻿{
+{
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
     "eShopCoffe.API": {
       "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": false,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5003",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASE_SERVER": "localhost",
+        "DATABASE_NAME": "eShopCoffe",
+        "DATABASE_USER": "sa",
+        "DATABASE_PASSWORD": "sa@123",
+        "JWT_SECRET": "fa35c0bf-4f74-40d4-b9aa-9e294f2b607e",
+        "JWT_EXPIRES": "24"
+      },
+      "applicationUrl": "http://localhost:5003",
+      "dotnetRunMessages": true
     }
   }
 }

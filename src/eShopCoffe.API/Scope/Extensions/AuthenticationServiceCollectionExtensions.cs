@@ -1,4 +1,5 @@
 ﻿using eShopCoffe.Core.Security;
+using eShopCoffe.Core.Security.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -7,11 +8,11 @@ namespace eShopCoffe.API.Scope.Extensions
 {
     public static class AuthenticationServiceCollectionExtensions
     {
-        public static void AddEShopCoffeAuthentication(this IServiceCollection services, IConfiguration configuration)
+        public static void AddEShopCoffeAuthentication(this IServiceCollection services)
         {
-            var appSettingsSection = configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-            var appSettings = appSettingsSection.Get<AppSettings>();
+            services.AddSingleton<IJwtSettings, JwtSettings>();
+
+            var jwtSettings = new JwtSettings();
 
             services.AddAuthentication(x =>
             {
@@ -24,7 +25,7 @@ namespace eShopCoffe.API.Scope.Extensions
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(appSettings.Secret)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };

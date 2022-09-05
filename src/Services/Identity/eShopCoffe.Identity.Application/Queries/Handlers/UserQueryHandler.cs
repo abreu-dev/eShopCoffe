@@ -23,7 +23,7 @@ namespace eShopCoffe.Identity.Application.Queries.Handlers
         {
             var source = _context.Query<UserData>();
 
-            source = string.IsNullOrEmpty(query.Parameters.Order) ? source.OrderBy(p => p.Login) : source.Order(query.Parameters.Order);
+            source = source.OrderBy(p => p.Login);
 
             var totalItems = source.Count();
 

@@ -1,6 +1,6 @@
 using eShopCoffe.API.Scope;
 using eShopCoffe.API.Scope.Extensions;
-using eShopCoffe.Identity.Infra.Data.Seed;
+using eShopCoffe.Context.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddEShopCoffeControllers();
 builder.Services.AddEShopCoffeSwagger();
-builder.Services.AddEShopCoffeAuthentication(builder.Configuration);
+builder.Services.AddEShopCoffeAuthentication();
 
-EShopCoffeApiBootStrapper.ConfigureServices(builder.Services, builder.Configuration);
+EShopCoffeApiBootStrapper.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
@@ -22,6 +22,7 @@ app.MapControllers();
 app.UseIdentityAuthentication();
 app.UseIdentitySwagger();
 
+app.Services.InitializeDatabase();
 app.Services.SeedData();
 
 app.Run();

@@ -43,7 +43,7 @@ namespace eShopCoffe.API.Scope.Handlers
             context.Result = new UnauthorizedObjectResult(null);
         }
 
-        private bool HasFilter(AuthorizationFilterContext context, Type tokenFilter)
+        private static bool HasFilter(AuthorizationFilterContext context, Type tokenFilter)
         {
             return context.ActionDescriptor.FilterDescriptors.Any(x => x.Filter.GetType() == tokenFilter);
         }

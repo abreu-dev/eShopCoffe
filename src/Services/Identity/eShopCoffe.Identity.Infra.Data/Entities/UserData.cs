@@ -6,10 +6,10 @@ namespace eShopCoffe.Identity.Infra.Data.Entities
     {
         public static string TableName => "User";
 
-        public string Login { get; set; }
+        public string Login { get; set; } = string.Empty;
         public static int LoginMaxLength => 100;
 
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
         public static int PasswordMaxLength => 100;
 
         public bool IsAdmin { get; set; }

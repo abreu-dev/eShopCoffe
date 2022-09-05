@@ -3,7 +3,6 @@ using eShopCoffe.Core.Security.Interfaces;
 using eShopCoffe.Identity.Application.Services.Interfaces;
 using eShopCoffe.Identity.Domain.Entities;
 using eShopCoffe.Identity.Domain.Repositories;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -14,26 +13,26 @@ namespace eShopCoffe.Identity.Application.Services
     public class TokenService : ITokenService
     {
         private readonly IUserRepository _userRepository;
-        private readonly AppSettings _appSettings;
+        private readonly IJwtSettings _jwtSettings;
 
         public TokenService(IUserRepository userRepository,
-                            IOptions<AppSettings> appSettings)
+                            IJwtSettings jwtSettings)
         {
-            _appSettings = appSettings.Value;
+            _jwtSettings = jwtSettings;
             _userRepository = userRepository;
         }
 
         public string GenerateAuthenticationToken(UserDomain user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("Id", user.Id.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(_appSettings.Expires),
+                Expires = DateTime.UtcNow.AddHours(_jwtSettings.Expires),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -47,7 +46,7 @@ namespace eShopCoffe.Identity.Application.Services
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,

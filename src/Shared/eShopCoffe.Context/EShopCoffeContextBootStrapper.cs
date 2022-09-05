@@ -1,22 +1,20 @@
 ﻿using eShopCoffe.Context.Context;
 using eShopCoffe.Core.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace eShopCoffe.Context
 {
     public static class EShopCoffeContextBootStrapper
     {
-        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureServices(IServiceCollection services)
         {
-            Context(services, configuration);
+            Context(services);
         }
 
-        public static void Context(IServiceCollection services, IConfiguration configuration)
+        private static void Context(IServiceCollection services)
         {
-            services.AddDbContext<EShopCoffeContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<EShopCoffeContext>(options => options.UseSqlServer(EShopCoffeContext.CreateSqlServerConnectionString()));
 
             services.AddScoped<IEShopCoffeContext, EShopCoffeContext>();
             services.AddScoped<IBaseContext, EShopCoffeContext>();

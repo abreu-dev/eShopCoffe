@@ -15,7 +15,7 @@ namespace eShopCoffe.Identity.Domain.Commands.UserCommands
             Password = password;
         }
 
-        public override CommandValidator<AddUserCommand> GetValidator()
+        protected override CommandValidator<AddUserCommand> GetValidator()
         {
             return new AddUserCommandValidator();
         }

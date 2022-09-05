@@ -23,29 +23,29 @@ namespace eShopCoffe.Core
             Repositories(services);
         }
 
-        public static void Bus(IServiceCollection services)
+        private static void Bus(IServiceCollection services)
         {
-            services.AddScoped<IBus, Bus>();
+            services.AddScoped<IBus, MemoryBus>();
         }
 
-        public static void Dispatchers(IServiceCollection services)
+        private static void Dispatchers(IServiceCollection services)
         {
             services.AddScoped<ICommandDispatcher, CommandDispatcher>();
             services.AddScoped<IQueryDispatcher, QueryDispatcher>();
             services.AddScoped<IEventDispatcher, EventDispatcher>();
         }
 
-        public static void Notifications(IServiceCollection services)
+        private static void Notifications(IServiceCollection services)
         {
             services.AddScoped<INotificationHandler, NotificationHandler>();
         }
 
-        public static void Session(IServiceCollection services)
+        private static void Session(IServiceCollection services)
         {
             services.AddScoped<ISessionAccessor, SessionAccessor>();
         }
 
-        public static void Repositories(IServiceCollection services)
+        private static void Repositories(IServiceCollection services)
         {
             services.AddScoped<IRepository, Repository>();
         }

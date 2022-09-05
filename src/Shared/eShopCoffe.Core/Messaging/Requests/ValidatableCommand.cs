@@ -19,6 +19,6 @@ namespace eShopCoffe.Core.Messaging.Requests
             return ValidationResult.IsValid;
         }
 
-        public abstract CommandValidator<TCommandValidator> GetValidator();
+        protected abstract CommandValidator<TCommandValidator> GetValidator();
     }
 }

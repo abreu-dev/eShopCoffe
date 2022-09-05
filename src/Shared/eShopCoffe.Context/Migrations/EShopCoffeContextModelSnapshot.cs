@@ -8,7 +8,7 @@ using eShopCoffe.Context.Context;
 
 #nullable disable
 
-namespace eShopCoffe.Infra.Data.Context.Migrations
+namespace eShopCoffe.Context.Migrations
 {
     [DbContext(typeof(EShopCoffeContext))]
     partial class EShopCoffeContextModelSnapshot : ModelSnapshot
