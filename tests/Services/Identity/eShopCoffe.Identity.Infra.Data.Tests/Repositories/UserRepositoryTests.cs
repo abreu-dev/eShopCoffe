@@ -31,6 +31,8 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
 
             // Assert
             _context.DidNotReceive().UpdateData(Arg.Any<UserData>());
+            _context.Received(1).GetDbSet<UserData>();
+            _context.DidNotReceive().GetDbEntry(Arg.Any<UserData>());
         }
 
         [Fact]
@@ -59,7 +61,8 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
             // Assert
             _context.Received(1).UpdateData(Arg.Any<UserData>());
             _context.Received(1).UpdateData(userData);
-            _context.Received(1).GetDbSet<UserData>();
+            _context.Received(2).GetDbSet<UserData>();
+            _context.DidNotReceive().GetDbEntry(Arg.Any<UserData>());
         }
 
         [Fact]
@@ -91,6 +94,7 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
             _context.Received(1).UpdateData(Arg.Any<UserData>());
             _context.Received(1).UpdateData(userData);
             _context.Received(2).GetDbSet<UserData>();
+            _context.Received(1).GetDbEntry(userData);
         }
 
         [Fact]
