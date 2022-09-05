@@ -16,7 +16,7 @@ namespace eShopCoffe.Context
         private static void Context(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<EShopCoffeContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IEShopCoffeContext, EShopCoffeContext>();
             services.AddScoped<IBaseContext, EShopCoffeContext>();
