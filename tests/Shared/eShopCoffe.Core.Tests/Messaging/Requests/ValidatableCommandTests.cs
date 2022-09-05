@@ -30,7 +30,7 @@ namespace eShopCoffe.Core.Tests.Messaging.Requests
 
         internal sealed class ConcreteCommand : ValidatableCommand<ConcreteCommand>
         {
-            public override CommandValidator<ConcreteCommand> GetValidator()
+            protected override CommandValidator<ConcreteCommand> GetValidator()
             {
                 return new ConcreteCommandValidator();
             }

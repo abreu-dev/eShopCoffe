@@ -13,7 +13,7 @@ namespace eShopCoffe.Identity.Domain.Commands.UserCommands
             Id = id;
         }
 
-        public override CommandValidator<RemoveUserCommand> GetValidator()
+        protected override CommandValidator<RemoveUserCommand> GetValidator()
         {
             return new RemoveUserCommandValidator();
         }
