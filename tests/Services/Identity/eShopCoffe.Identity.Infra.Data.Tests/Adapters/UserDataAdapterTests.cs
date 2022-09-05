@@ -37,6 +37,8 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Adapters
 
             // Assert
             data.Should().NotBeNull();
+            if (data == null) return;
+
             data.Id.Should().Be(domain.Id);
             data.Login.Should().Be(domain.Login);
             data.Password.Should().Be(domain.Password);
@@ -73,6 +75,8 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Adapters
 
             // Assert
             domain.Should().NotBeNull();
+            if (domain == null) return;
+
             domain.Id.Should().Be(data.Id);
             domain.Login.Should().Be(data.Login);
             domain.Password.Should().Be(data.Password);

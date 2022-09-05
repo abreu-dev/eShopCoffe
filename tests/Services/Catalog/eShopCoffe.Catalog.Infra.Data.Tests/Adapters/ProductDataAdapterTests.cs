@@ -37,6 +37,8 @@ namespace eShopCoffe.Catalog.Infra.Data.Tests.Adapters
 
             // Assert
             data.Should().NotBeNull();
+            if (data == null) return;
+
             data.Id.Should().Be(domain.Id);
             data.Name.Should().Be(domain.Name);
             data.Description.Should().Be(domain.Description);
@@ -73,6 +75,8 @@ namespace eShopCoffe.Catalog.Infra.Data.Tests.Adapters
 
             // Assert
             domain.Should().NotBeNull();
+            if (domain == null) return;
+
             domain.Id.Should().Be(data.Id);
             domain.Name.Should().Be(data.Name);
             domain.Description.Should().Be(data.Description);

@@ -2,7 +2,7 @@
 {
     public class AppSettings
     {
-        public string Secret { get; set; }
+        public string Secret { get; set; } = string.Empty;
         public int Expires { get; set; }
     }
 }
