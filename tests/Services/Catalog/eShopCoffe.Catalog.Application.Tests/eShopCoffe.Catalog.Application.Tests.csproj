@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\Services\Catalog\eShopCoffe.Catalog.Application\eShopCoffe.Catalog.Application.csproj" />
     <ProjectReference Include="..\..\..\Shared\eShopCoffe.Core.Tests\eShopCoffe.Core.Tests.csproj" />
   </ItemGroup>
 
