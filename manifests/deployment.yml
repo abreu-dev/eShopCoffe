@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "eshopcoffe-a7b0"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "eshopcoffe-a7b0"
+  template:
+    metadata:
+      labels:
+        app: "eshopcoffe-a7b0"
+    spec:
+      containers:
+        - name: "eshopcoffe-a7b0"
+          image: "eshopcoffe.azurecr.io/eshopcoffe"
+          ports:
+          - containerPort: 80
