@@ -52,7 +52,7 @@ namespace eShopCoffe.API.Controllers.Identity
             {
                 Errors = new List<BadRequestResponseError>()
                 {
-                    new BadRequestResponseError(result.ErrorCode, result.ErrorMessage)
+                    new BadRequestResponseError(result.ErrorCode ?? "", result.ErrorMessage ?? "")
                 }
             });
         }
