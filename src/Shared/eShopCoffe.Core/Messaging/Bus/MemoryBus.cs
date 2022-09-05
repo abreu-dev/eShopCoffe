@@ -26,13 +26,13 @@ namespace eShopCoffe.Core.Messaging.Bus
         public Task Command<TCommand>(TCommand command, CancellationToken cancellationToken = default)
             where TCommand : ICommand
         {
-            return _commandDispatcher.Dispatch(command);
+            return _commandDispatcher.Dispatch(command, cancellationToken);
         }
 
         public Task Event<TEvent>(TEvent @event, CancellationToken cancellationToken = default)
             where TEvent : IEvent
         {
-            return _eventDispatcher.Dispatch(@event);
+            return _eventDispatcher.Dispatch(@event, cancellationToken);
         }
 
         public Task Notification<TNotification>(TNotification notification, CancellationToken cancellationToken = default)
@@ -45,7 +45,7 @@ namespace eShopCoffe.Core.Messaging.Bus
             where TQuery : IQuery<TResult>
             where TResult : IQueryResult
         {
-            return _queryDispatcher.Dispatch<TQuery, TResult>(query);
+            return _queryDispatcher.Dispatch<TQuery, TResult>(query, cancellationToken);
         }
     }
 }
