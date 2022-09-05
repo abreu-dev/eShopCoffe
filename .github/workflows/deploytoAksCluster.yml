@@ -1,0 +1,50 @@
+on: [push]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: eshopcoffe.azurecr.io
+        username: ${{ secrets.acr_eshopcoffe_username }}
+        password: ${{ secrets.acr_eshopcoffe_password }}
+    
+    - name: Build and push image to ACR
+      id: build-image
+      run: |
+        docker build "$GITHUB_WORKSPACE/src/eShopCoffe.API" -f  "src/eShopCoffe.API/Dockerfile" -t eshopcoffe.azurecr.io/eshopcoffe:${{ github.sha }} --label dockerfile-path=src/eShopCoffe.API/Dockerfile
+        docker push eshopcoffe.azurecr.io/eshopcoffe:${{ github.sha }}
+    
+    - uses: azure/k8s-set-context@v1
+      with:
+         kubeconfig: ${{ secrets.aks_eshopcoffe_kubeConfig }}
+      id: login
+    
+    - name: Create namespace
+      run: |
+        namespacePresent=`kubectl get namespace | grep eshopcoffe945c | wc -l`
+        if [ $namespacePresent -eq 0 ]
+        then
+            echo `kubectl create namespace eshopcoffe945c`
+        fi
+
+    - uses: azure/k8s-create-secret@v1
+      with:
+        namespace: eshopcoffe945c
+        container-registry-url: eshopcoffe.azurecr.io
+        container-registry-username: ${{ secrets.acr_eshopcoffe_username }}
+        container-registry-password: ${{ secrets.acr_eshopcoffe_password }}
+        secret-name: eshopcoffedockerauth
+       
+    - uses: azure/k8s-deploy@v1.2
+      with:
+        namespace: eshopcoffe945c
+        manifests: |
+          manifests/deployment.yml
+          manifests/service.yml
+        images: |
+          eshopcoffe.azurecr.io/eshopcoffe:${{ github.sha }}
+        imagepullsecrets: |
+          eshopcoffedockerauth
