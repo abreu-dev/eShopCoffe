@@ -20,6 +20,80 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
         }
 
         [Fact]
+        public void Update_WhenAdapterReturnsNull_ShouldNotUpdate()
+        {
+            // Arrange
+            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            _adapter.Transform(userDomain).ReturnsNull();
+
+            // Act
+            _userRepository.Update(userDomain);
+
+            // Assert
+            _context.DidNotReceive().UpdateData(Arg.Any<UserData>());
+        }
+
+        [Fact]
+        public void Update_WhenExistingDataIsNull_ShouldUpdate()
+        {
+            // Arrange
+            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            var userData = new UserData()
+            {
+                Id = userDomain.Id
+            };
+            _adapter.Transform(userDomain).Returns(userData);
+
+            var mockDbSet = new List<UserData>()
+            {
+                new UserData()
+                {
+                    Id = Guid.NewGuid()
+                }
+            }.AsQueryable().BuildMockDbSet();
+            _context.GetDbSet<UserData>().Returns(mockDbSet);
+
+            // Act
+            _userRepository.Update(userDomain);
+
+            // Assert
+            _context.Received(1).UpdateData(Arg.Any<UserData>());
+            _context.Received(1).UpdateData(userData);
+            _context.Received(1).GetDbSet<UserData>();
+        }
+
+        [Fact]
+        public void Update_WhenEntryIsNull_ShouldUpdate()
+        {
+            // Arrange
+            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            var userData = new UserData()
+            {
+                Id = userDomain.Id
+            };
+            _adapter.Transform(userDomain).Returns(userData);
+
+            var mockDbSet = new List<UserData>()
+            {
+                new UserData()
+                {
+                    Id = Guid.NewGuid()
+                },
+                userData
+            }.AsQueryable().BuildMockDbSet();
+            _context.GetDbSet<UserData>().Returns(mockDbSet);
+            _context.GetDbEntry(userData).ReturnsNull();
+
+            // Act
+            _userRepository.Update(userDomain);
+
+            // Assert
+            _context.Received(1).UpdateData(Arg.Any<UserData>());
+            _context.Received(1).UpdateData(userData);
+            _context.Received(2).GetDbSet<UserData>();
+        }
+
+        [Fact]
         public void GetByLoginAndPassword_WhenFound_ShouldReturnDomain()
         {
             // Arrange
