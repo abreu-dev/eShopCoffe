@@ -1,4 +1,7 @@
-﻿using eShopCoffe.Catalog.Application;
+﻿using eShopCoffe.Basket.Application;
+using eShopCoffe.Basket.Domain;
+using eShopCoffe.Basket.Infra.Data;
+using eShopCoffe.Catalog.Application;
 using eShopCoffe.Catalog.Domain;
 using eShopCoffe.Catalog.Infra.Data;
 using eShopCoffe.Context;
@@ -16,6 +19,7 @@ namespace eShopCoffe.API.Scope
             Shared(services);
             Identity(services);
             Catalog(services);
+            Basket(services);
         }
 
         private static void Shared(IServiceCollection services)
@@ -36,6 +40,13 @@ namespace eShopCoffe.API.Scope
             CatalogDomainBootStrapper.ConfigureServices(services);
             CatalogDataBootStrapper.ConfigureServices(services);
             CatalogApplicationBootStrapper.ConfigureServices(services);
+        }
+
+        private static void Basket(IServiceCollection services)
+        {
+            BasketDomainBootStrapper.ConfigureServices(services);
+            BasketDataBootStrapper.ConfigureServices(services);
+            BasketApplicationBootStrapper.ConfigureServices(services);
         }
     }
 }

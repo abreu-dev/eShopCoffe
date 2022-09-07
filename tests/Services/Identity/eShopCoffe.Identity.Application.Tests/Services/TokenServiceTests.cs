@@ -1,5 +1,4 @@
-﻿using eShopCoffe.Core.Security;
-using eShopCoffe.Core.Security.Interfaces;
+﻿using eShopCoffe.Core.Security.Interfaces;
 using eShopCoffe.Identity.Application.Services;
 using eShopCoffe.Identity.Domain.Entities;
 using eShopCoffe.Identity.Domain.Repositories;

@@ -1,5 +1,4 @@
 global using FluentAssertions;
-global using MockQueryable.NSubstitute;
+global using FluentValidation.TestHelper;
 global using NSubstitute;
-global using NSubstitute.ReturnsExtensions;
 global using Xunit;
