@@ -1,6 +1,9 @@
-name: Deploy
+name: Deploy to AKS
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 env:
   DATABASE_SERVER: ${{ secrets.DATABASE_SERVER }}
