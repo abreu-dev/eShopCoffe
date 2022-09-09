@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eShopCoffe.Identity.Domain\eShopCoffe.Identity.Domain.csproj" />
+    <ProjectReference Include="..\eShopCoffe.Identity.Infra.Data\eShopCoffe.Identity.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>
