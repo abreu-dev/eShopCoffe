@@ -47,7 +47,7 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Seed
             // Assert
             repository.Received(1).Query<UserData>();
             repository.Received(1).Add(Arg.Any<UserData>());
-            repository.Received(1).Add(Arg.Is<UserData>(x => x.Login == UserSeed.AdministratorLogin 
+            repository.Received(1).Add(Arg.Is<UserData>(x => x.Login == UserSeed.AdministratorLogin
                 && x.Password == UserSeed.AdministratorPassword && x.IsAdmin));
             repository.UnitOfWork.Received(1).Complete();
         }

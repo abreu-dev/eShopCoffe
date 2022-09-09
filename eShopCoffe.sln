@@ -47,11 +47,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{28
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{C843F57F-D5F8-4316-A449-F14C1220958B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Identity.Domain.Tests", "tests\Services\Identity\eShopCoffe.Identity.Domain.Tests\eShopCoffe.Identity.Domain.Tests.csproj", "{D5FA979C-1DB6-4865-8462-29F91C161B62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Identity.Domain.Tests", "tests\Services\Identity\eShopCoffe.Identity.Domain.Tests\eShopCoffe.Identity.Domain.Tests.csproj", "{D5FA979C-1DB6-4865-8462-29F91C161B62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Identity.Infra.Data.Tests", "tests\Services\Identity\eShopCoffe.Identity.Infra.Data.Tests\eShopCoffe.Identity.Infra.Data.Tests.csproj", "{39B88654-616D-42E0-B4B9-0C2F98D49043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Identity.Infra.Data.Tests", "tests\Services\Identity\eShopCoffe.Identity.Infra.Data.Tests\eShopCoffe.Identity.Infra.Data.Tests.csproj", "{39B88654-616D-42E0-B4B9-0C2F98D49043}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Identity.Application.Tests", "tests\Services\Identity\eShopCoffe.Identity.Application.Tests\eShopCoffe.Identity.Application.Tests.csproj", "{ED48F480-EEC0-4B92-AECF-5FACE8D524C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Identity.Application.Tests", "tests\Services\Identity\eShopCoffe.Identity.Application.Tests\eShopCoffe.Identity.Application.Tests.csproj", "{ED48F480-EEC0-4B92-AECF-5FACE8D524C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{636D9B31-9345-43E3-A25E-DA4095F1C158}"
 EndProject
@@ -61,11 +61,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{0E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{CB471F84-EF4D-4045-8C61-135E14821B70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Catalog.Application.Tests", "tests\Services\Catalog\eShopCoffe.Catalog.Application.Tests\eShopCoffe.Catalog.Application.Tests.csproj", "{7DB41F57-1F7C-44A3-869E-44099C4C7E9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Catalog.Application.Tests", "tests\Services\Catalog\eShopCoffe.Catalog.Application.Tests\eShopCoffe.Catalog.Application.Tests.csproj", "{7DB41F57-1F7C-44A3-869E-44099C4C7E9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Catalog.Domain.Tests", "tests\Services\Catalog\eShopCoffe.Catalog.Domain.Tests\eShopCoffe.Catalog.Domain.Tests.csproj", "{9477CDEC-51AC-48E0-8BF5-8AD7AEEE0DD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Catalog.Domain.Tests", "tests\Services\Catalog\eShopCoffe.Catalog.Domain.Tests\eShopCoffe.Catalog.Domain.Tests.csproj", "{9477CDEC-51AC-48E0-8BF5-8AD7AEEE0DD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Catalog.Infra.Data.Tests", "tests\Services\Catalog\eShopCoffe.Catalog.Infra.Data.Tests\eShopCoffe.Catalog.Infra.Data.Tests.csproj", "{243B6B6E-926D-4444-8370-162DB6D760BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Catalog.Infra.Data.Tests", "tests\Services\Catalog\eShopCoffe.Catalog.Infra.Data.Tests\eShopCoffe.Catalog.Infra.Data.Tests.csproj", "{243B6B6E-926D-4444-8370-162DB6D760BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Domain", "src\Services\Basket\eShopCoffe.Basket.Domain\eShopCoffe.Basket.Domain.csproj", "{1EBA85BB-49C7-44A8-AF25-65D69DE5FCA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Application", "src\Services\Basket\eShopCoffe.Basket.Application\eShopCoffe.Basket.Application.csproj", "{A4900D06-CB29-4901-9A7A-60D5018FFE21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Infra.Data", "src\Services\Basket\eShopCoffe.Basket.Infra.Data\eShopCoffe.Basket.Infra.Data.csproj", "{B075938C-C797-4770-8E0C-3AAC64CEA8D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Application.Tests", "tests\Services\Basket\eShopCoffe.Basket.Application.Tests\eShopCoffe.Basket.Application.Tests.csproj", "{54FCE8E9-E524-4130-8862-AF2169E0A66E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Domain.Tests", "tests\Services\Basket\eShopCoffe.Basket.Domain.Tests\eShopCoffe.Basket.Domain.Tests.csproj", "{7621E11D-017C-432C-BA39-A526368A70D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Infra.Data.Tests", "tests\Services\Basket\eShopCoffe.Basket.Infra.Data.Tests\eShopCoffe.Basket.Infra.Data.Tests.csproj", "{00D87077-E881-44A4-A014-453E926866C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +149,30 @@ Global
 		{243B6B6E-926D-4444-8370-162DB6D760BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{243B6B6E-926D-4444-8370-162DB6D760BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{243B6B6E-926D-4444-8370-162DB6D760BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EBA85BB-49C7-44A8-AF25-65D69DE5FCA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EBA85BB-49C7-44A8-AF25-65D69DE5FCA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EBA85BB-49C7-44A8-AF25-65D69DE5FCA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EBA85BB-49C7-44A8-AF25-65D69DE5FCA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4900D06-CB29-4901-9A7A-60D5018FFE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4900D06-CB29-4901-9A7A-60D5018FFE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4900D06-CB29-4901-9A7A-60D5018FFE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4900D06-CB29-4901-9A7A-60D5018FFE21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B075938C-C797-4770-8E0C-3AAC64CEA8D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B075938C-C797-4770-8E0C-3AAC64CEA8D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B075938C-C797-4770-8E0C-3AAC64CEA8D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B075938C-C797-4770-8E0C-3AAC64CEA8D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54FCE8E9-E524-4130-8862-AF2169E0A66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54FCE8E9-E524-4130-8862-AF2169E0A66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54FCE8E9-E524-4130-8862-AF2169E0A66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54FCE8E9-E524-4130-8862-AF2169E0A66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7621E11D-017C-432C-BA39-A526368A70D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7621E11D-017C-432C-BA39-A526368A70D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7621E11D-017C-432C-BA39-A526368A70D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7621E11D-017C-432C-BA39-A526368A70D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D87077-E881-44A4-A014-453E926866C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D87077-E881-44A4-A014-453E926866C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D87077-E881-44A4-A014-453E926866C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D87077-E881-44A4-A014-453E926866C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -172,6 +208,12 @@ Global
 		{7DB41F57-1F7C-44A3-869E-44099C4C7E9D} = {636D9B31-9345-43E3-A25E-DA4095F1C158}
 		{9477CDEC-51AC-48E0-8BF5-8AD7AEEE0DD7} = {636D9B31-9345-43E3-A25E-DA4095F1C158}
 		{243B6B6E-926D-4444-8370-162DB6D760BD} = {636D9B31-9345-43E3-A25E-DA4095F1C158}
+		{1EBA85BB-49C7-44A8-AF25-65D69DE5FCA2} = {2E6F5707-C153-415C-A110-23E1C4B15795}
+		{A4900D06-CB29-4901-9A7A-60D5018FFE21} = {2E6F5707-C153-415C-A110-23E1C4B15795}
+		{B075938C-C797-4770-8E0C-3AAC64CEA8D6} = {2E6F5707-C153-415C-A110-23E1C4B15795}
+		{54FCE8E9-E524-4130-8862-AF2169E0A66E} = {E5CA07E8-BA7C-406A-8136-E152C6466A21}
+		{7621E11D-017C-432C-BA39-A526368A70D0} = {E5CA07E8-BA7C-406A-8136-E152C6466A21}
+		{00D87077-E881-44A4-A014-453E926866C5} = {E5CA07E8-BA7C-406A-8136-E152C6466A21}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC42A90-A343-46A4-8CA0-00A7004F1437}

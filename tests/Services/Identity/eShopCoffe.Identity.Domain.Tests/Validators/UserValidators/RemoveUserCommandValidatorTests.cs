@@ -1,6 +1,5 @@
 ﻿using eShopCoffe.Identity.Domain.Commands.UserCommands;
 using eShopCoffe.Identity.Domain.Validators.UserValidators;
-using FluentValidation.TestHelper;
 
 namespace eShopCoffe.Identity.Domain.Tests.Validators.UserValidators
 {

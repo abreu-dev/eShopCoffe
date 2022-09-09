@@ -18,7 +18,7 @@ namespace eShopCoffe.Core.Tests.Utils
             var propertyInfo = typeof(TObject).GetProperty(property, bindingFlags);
             if (propertyInfo != null)
             {
-                propertyInfo.SetValue(instance, value);
+                propertyInfo.SetValue(instance, value, null);
             }
         }
 
