@@ -1,6 +1,5 @@
 ﻿using eShopCoffe.Catalog.Domain.Commands.ProductCommands;
 using eShopCoffe.Catalog.Domain.Validators.ProductValidators;
-using FluentValidation.TestHelper;
 
 namespace eShopCoffe.Catalog.Domain.Tests.Validators.ProductValidators
 {

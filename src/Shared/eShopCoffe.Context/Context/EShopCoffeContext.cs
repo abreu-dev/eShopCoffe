@@ -1,4 +1,5 @@
-﻿using eShopCoffe.Catalog.Infra.Data;
+﻿using eShopCoffe.Basket.Infra.Data;
+using eShopCoffe.Catalog.Infra.Data;
 using eShopCoffe.Core.Data.Entities;
 using eShopCoffe.Core.Security.Interfaces;
 using eShopCoffe.Identity.Infra.Data;
@@ -21,6 +22,7 @@ namespace eShopCoffe.Context.Context
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDataBootStrapper).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDataBootStrapper).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BasketDataBootStrapper).Assembly);
         }
 
         public bool IsAvailable()
@@ -79,6 +81,11 @@ namespace eShopCoffe.Context.Context
 
         public void Complete()
         {
+            foreach (var entry in ChangeTracker.Entries())
+            {
+                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: { entry.State.ToString()}");
+            }
+
             SaveChanges();
         }
 

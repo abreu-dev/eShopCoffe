@@ -14,7 +14,7 @@ namespace eShopCoffe.Core.Security
 
             if (string.IsNullOrEmpty(secret))
             {
-                 throw new ArgumentNullException(secret);
+                throw new ArgumentNullException(secret);
             }
 
             if (string.IsNullOrEmpty(expires))

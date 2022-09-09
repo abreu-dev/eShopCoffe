@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Services\Basket\eShopCoffe.Basket.Application\eShopCoffe.Basket.Application.csproj" />
     <ProjectReference Include="..\Services\Catalog\eShopCoffe.Catalog.Application\eShopCoffe.Catalog.Application.csproj" />
     <ProjectReference Include="..\Services\Identity\eShopCoffe.Identity.Application\eShopCoffe.Identity.Application.csproj" />
     <ProjectReference Include="..\Shared\eShopCoffe.Context\eShopCoffe.Context.csproj" />
