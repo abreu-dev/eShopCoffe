@@ -54,7 +54,7 @@ class _LoginFormState extends State<LoginForm> {
           const SizedBox(height: 10.0),
           ElevatedButton(
             onPressed: onLoginButtonPressed,
-            child: const Text("Login"),
+            child: const Text('Login'),
           ),
           Container(
               child: null

@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:mobile/repositories/user_repository.dart';
 
+import '../../repositories/user_repository.dart';
 import '../../services/session_api.dart';
 
 part 'authentication_event.dart';
@@ -19,16 +17,15 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   }
 
   void _loggedInEventHandler(LoggedInEvent event, Emitter<AuthenticationState> emit) async {
-    try {
-      final String token = await sessionApi.login(event.username, event.password);
-      await userRepository.persistToken(token);
-      emit(AuthenticationAuthenticatedState());
-    } catch(error) {
-      log(error.toString());
-    }
+    emit(AuthenticationLoadingState());
+    final String token = await sessionApi.login(event.username, event.password);
+    await userRepository.persistToken(token);
+    emit(AuthenticationAuthenticatedState());
   }
 
-  void _loggedOutEventHandler(LoggedOutEvent event, Emitter<AuthenticationState> emit) {
+  void _loggedOutEventHandler(LoggedOutEvent event, Emitter<AuthenticationState> emit) async {
+    emit(AuthenticationLoadingState());
+    await userRepository.deleteToken();
     emit(AuthenticationUnauthenticatedState());
   }
 }

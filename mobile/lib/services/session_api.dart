@@ -1,12 +1,12 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
+
+import '../config/app_config.dart';
 
 class SessionApi {
   final Dio _dio = Dio();
 
   Future<String> login(String username, String password) async {
-    const String url = 'http://10.0.2.2:5003/identity/login';
+    const String url = '${AppConfig.apiUrlIdentity}/login';
     final Map<String, String> data = {
       'login': username,
       'password': password

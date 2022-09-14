@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/blocs/authentication/authentication_bloc.dart';
+
+import 'blocs/authentication/authentication_bloc.dart';
 
 import 'pages/login_page.dart';
 import 'pages/home_page.dart';
+import 'pages/splash_page.dart';
+import 'pages/loading_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,11 +31,14 @@ class MyApp extends StatelessWidget {
               return const LoginPage();
             }
 
-            return const Center(child: CircularProgressIndicator());
+            if (state is AuthenticationLoadingState) {
+              return const LoadingPage();
+            }
+
+            return const SplashPage();
           }
         )
       )
     );
   }
 }
-
