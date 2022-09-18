@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SnackBarService {
-
   final BuildContext context;
 
   SnackBarService({required this.context});
 
   void success(String message) {
     var snackBar = SnackBar(
-        content: Text(message),
-        backgroundColor: Colors.green,
+      content: Text(message),
+      backgroundColor: Colors.green,
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

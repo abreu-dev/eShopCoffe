@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'routes/router.gr.dart';
+import 'package:eshopcoffe/routes/router.gr.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser()
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser()
     );
   }
 }
