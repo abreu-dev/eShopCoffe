@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:eshopcoffe/routes/router.gr.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:eshopcoffe/screens/home_screen.dart';
+import 'package:eshopcoffe/blocs/authentication_cubit.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
-
-  final _appRouter = AppRouter();
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser()
+    return MultiBlocProvider(
+      providers:  [
+        BlocProvider<AuthenticationCubit>(
+            create: (BuildContext context) => AuthenticationCubit()
+        ),
+      ],
+      child: MaterialApp(
+          title: "eShopCof",
+          theme: ThemeData(
+          splashColor: Colors.orange,
+            primarySwatch: Colors.orange,
+            appBarTheme: AppBarTheme(elevation: 16.0),
+          ),
+          home: HomeScreen(),
+      ),
     );
   }
 }

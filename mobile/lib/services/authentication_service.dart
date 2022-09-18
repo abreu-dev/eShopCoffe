@@ -1,8 +1,7 @@
 import 'package:dio/dio.dart';
-
-import 'package:eshopcoffe/shared/exceptions/bad_request_exception.dart';
-import 'package:eshopcoffe/shared/models/bad_request_response_model.dart';
-import 'package:eshopcoffe/shared/services/app_dio.dart';
+import 'package:eshopcoffe/services/app_dio.dart';
+import 'package:eshopcoffe/exceptions/bad_request_exception.dart';
+import 'package:eshopcoffe/models/bad_request_response_model.dart';
 
 class AuthenticationService {
   final Dio _dio = AppDio.getInstance();
