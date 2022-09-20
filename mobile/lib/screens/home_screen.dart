@@ -1,3 +1,4 @@
+import 'package:eshopcoffe/widgets/app_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eshopcoffe/blocs/authentication_cubit.dart';
@@ -31,9 +32,7 @@ class HomeScreen extends StatelessWidget {
       buildWhen: (previous, current) => previous != current && current != null,
       builder: (BuildContext context, AuthenticatedUserModel? user) {
         return Scaffold(
-          appBar: AppBar(
-            title: const Text('eShopCoffee')
-          ),
+          appBar: appBarWidget(context),
           body: Container(
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 25.0),
             child: Column(
