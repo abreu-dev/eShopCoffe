@@ -1,10 +1,10 @@
-import 'package:eshopcoffe/screens/basket_screen.dart';
-import 'package:eshopcoffe/screens/home_screen.dart';
-import 'package:eshopcoffe/screens/home_screen1.dart';
-import 'package:eshopcoffe/widgets/app_bar_widget.dart';
-import 'package:eshopcoffe/widgets/drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:eshopcoffe/screens/basket_screen.dart';
+import 'package:eshopcoffe/screens/home_screen.dart';
+import 'package:eshopcoffe/widgets/app_bar_widget.dart';
+import 'package:eshopcoffe/widgets/drawer_widget.dart';
 
 void main() => runApp(const MyApp());
 
@@ -25,13 +25,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-int currentIndex = 0;
-
-void navigateToScreens(int index) {
-  currentIndex = index;
-  print('main: $currentIndex');
-}
-
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -40,11 +33,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
+  int selectedIndex = 0;
   final List<Widget> tabs = [
     const HomeScreen(),
     const BasketScreen()
   ];
-  int selectedIndex = 0;
 
   void onItemTapped(int index) {
     setState(() {
@@ -76,7 +69,7 @@ class MyHomePageState extends State<MyHomePage> {
               )
             ],
             currentIndex: selectedIndex,
-            selectedItemColor: const Color(0xFFAA292E),
+            selectedItemColor: Colors.red,
             onTap: onItemTapped,
           )
         )

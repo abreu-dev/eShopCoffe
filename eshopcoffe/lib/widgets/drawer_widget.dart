@@ -1,6 +1,7 @@
 import 'package:eshopcoffe/components/sign_in_page.dart';
 import 'package:eshopcoffe/main.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key});
@@ -24,6 +25,12 @@ class DrawerWidgetState extends State<DrawerWidget> {
               text: 'Home',
               onTap: () =>
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()))
+            ),
+            _createDrawerItem(
+                icon: FontAwesomeIcons.user,
+                text: 'Sign In',
+                onTap: () =>
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()))
             )
           ],
         )

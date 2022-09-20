@@ -1,15 +1,16 @@
-import 'package:eshopcoffe/components/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:eshopcoffe/components/sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  SignInPageState createState() => SignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Roboto-Light.ttf';
@@ -178,7 +179,7 @@ class _SignInPageState extends State<SignInPage> {
                       onTap: () => {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SingUpPage()),
+                          MaterialPageRoute(builder: (context) => const SingUpPage()),
                         )
                       },
                       child: Text(

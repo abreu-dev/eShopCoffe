@@ -1,7 +1,7 @@
-import 'package:eshopcoffe/widgets/search_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../components/product_list_page.dart';
+import 'package:eshopcoffe/components/product_list_page.dart';
+import 'package:eshopcoffe/widgets/search_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,10 +29,10 @@ class HomeScreenState extends State<HomeScreen> {
                 labelColor: Colors.black,
                 tabs: [
                   Tab(
-                    text: 'Products'
+                    text: 'Products 1'
                   ),
                   Tab(
-                    text: 'Products'
+                    text: 'Products 2'
                   )
                 ]
             ),

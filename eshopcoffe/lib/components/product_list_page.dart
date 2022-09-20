@@ -1,7 +1,8 @@
+import 'package:eshopcoffe/widgets/product_grid_widget.dart';
 import 'package:flutter/material.dart';
-import '../models/product_model.dart';
-import '../widgets/circular_progress_widget.dart';
-import '../widgets/grid_tiles_category_widget.dart';
+
+import 'package:eshopcoffe/models/product_model.dart';
+import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
 
 class ProductListPage extends StatefulWidget {
   final String slug;
@@ -21,7 +22,7 @@ class ProductListPageState extends State<ProductListPage> {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
-            return CircularProgressWidget();
+            return const CircularProgressWidget();
           default:
             if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
@@ -43,7 +44,7 @@ Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
     childAspectRatio: 8.0 / 9.0,
     children: List<Widget>.generate(values.length, (index) {
       return GridTile(
-        child: GridTilesProductWidget(values[index].name, values[index].imageUrl, values[index].slug)
+        child: ProductGridWidget(values[index].name, values[index].imageUrl, values[index].slug)
         );
     }),
   );
