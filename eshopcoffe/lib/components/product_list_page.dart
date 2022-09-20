@@ -41,10 +41,10 @@ Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
   return GridView.count(
     crossAxisCount: 2,
     padding: const EdgeInsets.all(1.0),
-    childAspectRatio: 8.0 / 9.0,
+    childAspectRatio: 8.0 / 12.0,
     children: List<Widget>.generate(values.length, (index) {
       return GridTile(
-        child: ProductGridWidget(values[index].name, values[index].imageUrl, values[index].slug)
+        child: ProductGridWidget(values[index].name, values[index].imageUrl, values[index].slug, values[index].price)
         );
     }),
   );
@@ -52,11 +52,11 @@ Widget createListView(BuildContext context, AsyncSnapshot snapshot) {
 
 Future<List<ProductModel>> getProductList(String slug) async {
   return <ProductModel>[
-    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg'),
-    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg'),
-    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg'),
-    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg'),
-    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg'),
-    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg')
+    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg', '10.00'),
+    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg', '10.00'),
+    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg', '10.00'),
+    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg', '10.00'),
+    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg', '10.00'),
+    ProductModel('tester', '??', 'https://www.casasbahia-imagens.com.br/html/conteudo-produto/73/10442841/aspirador-agua-po-electrolux-acqua-power-aqp20_.jpg', '10.00')
   ];
 }
