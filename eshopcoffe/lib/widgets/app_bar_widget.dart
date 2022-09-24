@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:eshopcoffe/components/sign_in_page.dart';
+import 'package:eshopcoffe/services/health_service.dart';
+import 'package:eshopcoffe/utils/snack_bar_helper.dart';
 
 AppBar appBarWidget(context) {
+  final HealthService healthService = HealthService();
+
+  onHealthButtonPressed() async {
+    await healthService.health().then((response) async {
+      SnackBarHelper.success(context, 'Health OK! ${response.statusCode}');
+    },
+    onError: (error) {
+      SnackBarHelper.failure(context, 'Health NOK! ${error.toString()}');
+    });
+  }
+
   return AppBar(
     elevation: 0.0,
     centerTitle: true,
@@ -25,6 +37,11 @@ AppBar appBarWidget(context) {
         icon: const Icon(FontAwesomeIcons.user),
         color: const Color(0xFF323232),
       ),
+      IconButton(
+        onPressed: onHealthButtonPressed,
+        icon: const Icon(FontAwesomeIcons.heartPulse),
+        color: const Color(0xFF323232),
+      )
     ],
   );
 }

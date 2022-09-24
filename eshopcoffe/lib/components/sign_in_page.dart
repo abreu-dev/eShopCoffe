@@ -1,3 +1,8 @@
+import 'package:eshopcoffe/main.dart';
+import 'package:eshopcoffe/models/authenticated_user/authenticated_user_model.dart';
+import 'package:eshopcoffe/screens/home_screen.dart';
+import 'package:eshopcoffe/services/session_service.dart';
+import 'package:eshopcoffe/utils/snack_bar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,8 +16,24 @@ class SignInPage extends StatefulWidget {
 }
 
 class SignInPageState extends State<SignInPage> {
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final SessionService _sessionService = SessionService();
+
   @override
   Widget build(BuildContext context) {
+    onSignInButtonPressed() async {
+      await _sessionService.login(_usernameController.text, _passwordController.text).then((response) async {
+        var model = AuthenticatedUserModel.fromJson(response.data);
+        print(model);
+
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+      },
+      onError: (error) {
+        SnackBarHelper.failure(context, error.toString());
+      });
+    }
+
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
     double defaultIconSize = 17;
@@ -53,6 +74,7 @@ class SignInPageState extends State<SignInPage> {
                     height: 15,
                   ),
                   TextField(
+                    controller: _usernameController,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(
@@ -80,6 +102,7 @@ class SignInPageState extends State<SignInPage> {
                     height: 15,
                   ),
                   TextField(
+                    controller: _passwordController,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(
@@ -135,7 +158,7 @@ class SignInPageState extends State<SignInPage> {
                     ),
                     child: MaterialButton(
                       padding: const EdgeInsets.all(17.0),
-                      onPressed: () {},
+                      onPressed: () async => onSignInButtonPressed(),
                       color: const Color(0xFFBC1F26),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
