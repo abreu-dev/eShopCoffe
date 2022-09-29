@@ -9,6 +9,6 @@ class ServiceException implements Exception {
 
   @override
   String toString() {
-    return '$statusCode';
+    return "Request to API failed with status code '$statusCode'";
   }
 }

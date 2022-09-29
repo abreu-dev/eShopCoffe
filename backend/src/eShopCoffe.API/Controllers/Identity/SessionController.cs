@@ -38,7 +38,7 @@ namespace eShopCoffe.API.Controllers.Identity
                     User = new LoginResultUserDto()
                     {
                         Id = result.Item.Id,
-                        Login = result.Item.Login,
+                        Username = result.Item.Login,
                         IsAdmin = result.Item.IsAdmin
                     }
                 };

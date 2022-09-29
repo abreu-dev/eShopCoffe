@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:eshopcoffe/components/product_list_page.dart';
 import 'package:eshopcoffe/widgets/search_widget.dart';
 
+import '../widgets/circular_progress_widget.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -29,10 +31,10 @@ class HomeScreenState extends State<HomeScreen> {
                 labelColor: Colors.black,
                 tabs: [
                   Tab(
-                    text: 'Products 1'
+                    text: 'Products'
                   ),
                   Tab(
-                    text: 'Products 2'
+                    text: 'Nothing'
                   )
                 ]
             ),
@@ -52,7 +54,7 @@ class HomeScreenState extends State<HomeScreen> {
                 ),
                 Container(
                   color: Colors.white24,
-                  child: const ProductListPage('products/'),
+                  child: const CircularProgressWidget(),
                 )
               ],
             ),

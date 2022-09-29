@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
           splashColor: Colors.orange,
             primarySwatch: Colors.orange,
-            appBarTheme: AppBarTheme(elevation: 16.0),
+            appBarTheme: const AppBarTheme(elevation: 16.0),
           ),
           home: HomeScreen(),
       ),

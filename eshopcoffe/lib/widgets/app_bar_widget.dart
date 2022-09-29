@@ -28,16 +28,6 @@ AppBar appBarWidget(context) {
     iconTheme: const IconThemeData(color: Color(0xFF323232)),
     actions: <Widget>[
       IconButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const SignInPage()),
-          );
-        },
-        icon: const Icon(FontAwesomeIcons.user),
-        color: const Color(0xFF323232),
-      ),
-      IconButton(
         onPressed: onHealthButtonPressed,
         icon: const Icon(FontAwesomeIcons.heartPulse),
         color: const Color(0xFF323232),

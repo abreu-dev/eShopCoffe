@@ -45,7 +45,7 @@ class ProductGridWidget extends StatelessWidget {
                   Container(
                     alignment: Alignment.bottomLeft,
                     padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Text("৳  ${(price != null) ? price : 'Unavailable'}",
+                    child: Text("${(price != null) ? price : 'Unavailable'}",
                         style: TextStyle(
                             color: (price != null)
                                 ? Color(0xFFf67426)

@@ -1,6 +1,9 @@
+import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
 import 'package:eshopcoffe/components/sign_in_page.dart';
 import 'package:eshopcoffe/main.dart';
+import 'package:eshopcoffe/models/authenticated_user/authenticated_user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -13,26 +16,46 @@ class DrawerWidget extends StatefulWidget {
 class DrawerWidgetState extends State<DrawerWidget> {
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<AuthenticationCubit, AuthenticatedUserModel?>(
+      builder: (BuildContext context, AuthenticatedUserModel? user) {
+        return buildView(context, user != null);
+      }
+    );
+  }
+
+  Widget buildView(BuildContext context, bool isLoggedIn) {
+    var widgets = <Widget>[
+      _createDrawerHeader(),
+      _createDrawerItem(
+        icon: Icons.home,
+        text: 'Home',
+        onTap: () =>
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()))
+      )
+    ];
+
+    if (isLoggedIn) {
+      widgets.add(_createDrawerItem(
+        icon: FontAwesomeIcons.user,
+        text: 'Log Out',
+        onTap: () => {
+          context.read<AuthenticationCubit>().logout(),
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()))
+        }));
+    } else {
+      widgets.add(_createDrawerItem(
+        icon: FontAwesomeIcons.user,
+        text: 'Sign In',
+        onTap: () =>
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()))));
+    }
+
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.65,
       child: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: <Widget>[
-            _createDrawerHeader(),
-            _createDrawerItem(
-              icon: Icons.home,
-              text: 'Home',
-              onTap: () =>
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()))
-            ),
-            _createDrawerItem(
-                icon: FontAwesomeIcons.user,
-                text: 'Sign In',
-                onTap: () =>
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()))
-            )
-          ],
+          children: widgets
         )
       )
     );

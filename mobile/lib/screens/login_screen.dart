@@ -41,7 +41,6 @@ class LoginFormState extends State<LoginForm> {
         var model = AuthenticatedUserModel.fromJson(response.data);
         if (!mounted) return;
         BlocProvider.of<AuthenticationCubit>(context).login(model);
-
         Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
       },
       onError: (error) {

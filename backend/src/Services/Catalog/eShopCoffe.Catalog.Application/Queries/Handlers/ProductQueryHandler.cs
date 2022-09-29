@@ -26,13 +26,17 @@ namespace eShopCoffe.Catalog.Application.Queries.Handlers
 
             var totalItems = source.Count();
 
+            var rnd = new Random();
+
             var dtos = (from product in source
                         select new ProductDto()
                         {
                             Id = product.Id,
                             Name = product.Name,
                             Description = product.Description,
-                            QuantityAvailable = product.QuantityAvailable
+                            QuantityAvailable = product.QuantityAvailable.ToString(),
+                            Price = Math.Round(new decimal(rnd.Next(1, 99))).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
+                            ImageUrl = "https://brmotorolanew.vtexassets.com/arquivos/ids/162724-800-auto?v=637992717540670000&width=800&height=auto&aspect=true"
                         })
                         .Skip(query.Parameters.Page * query.Parameters.Size)
                         .Take(query.Parameters.Size)
