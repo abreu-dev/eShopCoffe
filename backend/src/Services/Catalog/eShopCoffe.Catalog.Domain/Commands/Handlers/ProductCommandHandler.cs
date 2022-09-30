@@ -33,7 +33,7 @@ namespace eShopCoffe.Catalog.Domain.Commands.Handlers
                 return;
             }
 
-            var product = new ProductDomain(command.Name, command.Description, command.QuantityAvailable);
+            var product = new ProductDomain(command.Name, command.Description, command.ImageUrl, command.QuantityAvailable, new CurrencyDomain(command.CurrencyValue, command.CurrencyCode));
 
             _productRepository.Add(product);
             _productRepository.UnitOfWork.Complete();
@@ -50,7 +50,7 @@ namespace eShopCoffe.Catalog.Domain.Commands.Handlers
                 return;
             }
 
-            var product = new ProductDomain(command.Id, command.Name, command.Description, command.QuantityAvailable);
+            var product = new ProductDomain(command.Id, command.Name, command.Description, command.ImageUrl, command.QuantityAvailable, new CurrencyDomain(command.CurrencyValue, command.CurrencyCode));
 
             _productRepository.Update(product);
             _productRepository.UnitOfWork.Complete();
