@@ -1,4 +1,5 @@
-﻿using eShopCoffe.Core.Data;
+﻿using eShopCoffe.Core.Cryptography.Interfaces;
+using eShopCoffe.Core.Data;
 using eShopCoffe.Core.Domain.Repositories;
 using eShopCoffe.Identity.Domain.Entities;
 using eShopCoffe.Identity.Domain.Repositories;
@@ -10,8 +11,14 @@ namespace eShopCoffe.Identity.Infra.Data.Repositories
 {
     public class UserRepository : Repository<UserDomain, UserData>, IUserRepository
     {
-        public UserRepository(IBaseContext context, IUserDataAdapter adapter) : base(context, adapter)
+        private readonly IPasswordHash _passwordHash;
+
+        public UserRepository(
+            IBaseContext context,
+            IUserDataAdapter adapter,
+            IPasswordHash passwordHash) : base(context, adapter)
         {
+            _passwordHash = passwordHash;
         }
 
         public override void Update(UserDomain domain)
@@ -33,11 +40,11 @@ namespace eShopCoffe.Identity.Infra.Data.Repositories
             }
         }
 
-        public UserDomain? GetByLoginAndPassword(string login, string password)
+        public UserDomain? GetByUsernameAndPassword(string username, string password)
         {
             var user = _context.Query<UserData>()
                 .AsNoTracking()
-                .FirstOrDefault(x => x.Login == login && x.Password == password);
+                .FirstOrDefault(x => x.Username == username && _passwordHash.Verify(password, x.HashedPassword));
 
             if (user == null) return null;
 

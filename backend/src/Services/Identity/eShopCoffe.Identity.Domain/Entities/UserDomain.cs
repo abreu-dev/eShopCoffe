@@ -1,24 +1,34 @@
-﻿using eShopCoffe.Core.Domain.Entities;
+﻿using eShopCoffe.Core.Cryptography;
+using eShopCoffe.Core.Cryptography.Interfaces;
+using eShopCoffe.Core.Domain.Entities;
 
 namespace eShopCoffe.Identity.Domain.Entities
 {
     public class UserDomain : EntityDomain
     {
-        public string Login { get; private set; }
-        public string Password { get; private set; }
+        public string Username { get; private set; }
+        public string Email { get; private set; }
+        public string HashedPassword { get; private set; }
         public bool IsAdmin { get; private set; }
 
-        public UserDomain(string login, string password)
+        public UserDomain(string username, string email)
         {
-            Login = login;
-            Password = password;
+            Username = username;
+            Email = email;
+            HashedPassword = string.Empty;
         }
 
-        public UserDomain(Guid id, string login, string password, bool isAdmin = false) : base(id)
+        public UserDomain(Guid id, string username, string email, bool isAdmin = false) : base(id)
         {
-            Login = login;
-            Password = password;
+            Username = username;
+            Email = email;
             IsAdmin = isAdmin;
+            HashedPassword = string.Empty;
+        }
+
+        public void SetPassword(IPasswordHash passwordHash, string password)
+        {
+            HashedPassword = passwordHash.Hash(password);
         }
     }
 }

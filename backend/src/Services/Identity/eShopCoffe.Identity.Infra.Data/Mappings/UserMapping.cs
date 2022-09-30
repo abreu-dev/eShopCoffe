@@ -10,13 +10,16 @@ namespace eShopCoffe.Identity.Infra.Data.Mappings
         {
             builder.ToTable(UserData.TableName);
 
-            builder.Property(x => x.Login)
+            builder.Property(x => x.Username)
                 .IsRequired()
-                .HasMaxLength(UserData.LoginMaxLength);
+                .HasMaxLength(UserData.UsernameMaxLength);
 
-            builder.Property(x => x.Password)
+            builder.Property(x => x.Email)
                 .IsRequired()
-                .HasMaxLength(UserData.PasswordMaxLength);
+                .HasMaxLength(UserData.EmailMaxLength);
+
+            builder.Property(x => x.HashedPassword)
+                .IsRequired();
 
             builder.Property(x => x.IsAdmin);
 

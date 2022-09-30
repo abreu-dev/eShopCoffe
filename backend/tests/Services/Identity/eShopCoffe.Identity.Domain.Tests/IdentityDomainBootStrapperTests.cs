@@ -27,7 +27,7 @@ namespace eShopCoffe.Identity.Domain.Tests
             ValidateService(typeof(ICommandHandler<AddUserCommand>), typeof(UserCommandHandler));
             ValidateService(typeof(ICommandHandler<UpdateUserCommand>), typeof(UserCommandHandler));
             ValidateService(typeof(ICommandHandler<RemoveUserCommand>), typeof(UserCommandHandler));
-            ValidateService(typeof(IEventHandler<UserLoggedInEvent>), typeof(UserEventHandler));
+            ValidateService(typeof(IEventHandler<UserSignedInEvent>), typeof(UserEventHandler));
         }
 
         private void ValidateService(Type interfaceType, Type objectType)

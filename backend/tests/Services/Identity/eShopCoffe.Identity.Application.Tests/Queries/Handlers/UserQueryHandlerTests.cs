@@ -31,27 +31,27 @@ namespace eShopCoffe.Identity.Application.Tests.Queries.Handlers
                 new UserData()
                 {
                     Id = Guid.NewGuid(),
-                    Login = "1 - Login"
+                    Username = "1 - Username"
                 },
                 new UserData()
                 {
                     Id = Guid.NewGuid(),
-                    Login = "5 - Login"
+                    Username = "5 - Username"
                 },
                 new UserData()
                 {
                     Id = Guid.NewGuid(),
-                    Login = "3 - Login"
+                    Username = "3 - Username"
                 },
                 new UserData()
                 {
                     Id = Guid.NewGuid(),
-                    Login = "2 - Login"
+                    Username = "2 - Username"
                 },
                 new UserData()
                 {
                     Id = Guid.NewGuid(),
-                    Login = "4 - Login"
+                    Username = "4 - Username"
                 },
             };
             _context.Query<UserData>().Returns(userDataList.AsQueryable());
@@ -64,10 +64,10 @@ namespace eShopCoffe.Identity.Application.Tests.Queries.Handlers
             result.Data.Should().HaveCount(2);
 
             result.Data.ElementAt(0).Id.Should().Be(userDataList.ElementAt(0).Id);
-            result.Data.ElementAt(0).Login.Should().Be(userDataList.ElementAt(0).Login);
+            result.Data.ElementAt(0).Username.Should().Be(userDataList.ElementAt(0).Username);
 
             result.Data.ElementAt(1).Id.Should().Be(userDataList.ElementAt(3).Id);
-            result.Data.ElementAt(1).Login.Should().Be(userDataList.ElementAt(3).Login);
+            result.Data.ElementAt(1).Username.Should().Be(userDataList.ElementAt(3).Username);
         }
     }
 }

@@ -24,15 +24,15 @@ namespace eShopCoffe.API.Controllers.Identity
         public async Task<IActionResult> Get([FromQuery] UserParameters parameters)
         {
             var query = new PagedUsersQuery(parameters);
-            return Ok(await _bus.Query<PagedUsersQuery, IPagedList<UserDto>>(query, CancellationToken.None));
+            return Ok(await _bus.Query<PagedUsersQuery, IPagedList<UserDto>>(query));
         }
 
         [HttpPost]
         [Route("users")]
         public async Task<IActionResult> Post([FromBody] UserCreationDto creationDto)
         {
-            var command = new AddUserCommand(creationDto.Login, creationDto.Password);
-            await _bus.Command(command, CancellationToken.None);
+            var command = new AddUserCommand(creationDto.Username, creationDto.Email, creationDto.Password);
+            await _bus.Command(command);
             return NoContent();
         }
 
@@ -40,8 +40,8 @@ namespace eShopCoffe.API.Controllers.Identity
         [Route("users/{id}")]
         public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] UserCreationDto creationDto)
         {
-            var command = new UpdateUserCommand(id, creationDto.Login, creationDto.Password);
-            await _bus.Command(command, CancellationToken.None);
+            var command = new UpdateUserCommand(id, creationDto.Username, creationDto.Email, creationDto.Password);
+            await _bus.Command(command);
             return NoContent();
         }
 
@@ -50,7 +50,7 @@ namespace eShopCoffe.API.Controllers.Identity
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var command = new RemoveUserCommand(id);
-            await _bus.Command(command, CancellationToken.None);
+            await _bus.Command(command);
             return NoContent();
         }
     }

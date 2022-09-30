@@ -19,11 +19,12 @@ namespace eShopCoffe.Identity.Application.Tests.Services
         public void Authenticate_ShouldBeSuccess_WhenFoundUser()
         {
             // Arrange
-            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
-            _userRepository.GetByLoginAndPassword(userDomain.Login, userDomain.Password).Returns(userDomain);
+            var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Email");
+            var password = "Password";
+            _userRepository.GetByUsernameAndPassword(userDomain.Username, password).Returns(userDomain);
 
             // Act
-            var result = _authenticationService.Authenticate(userDomain.Login, userDomain.Password);
+            var result = _authenticationService.Authenticate(userDomain.Username, password);
 
             // Assert
             result.HasSucceed.Should().BeTrue();
@@ -34,15 +35,16 @@ namespace eShopCoffe.Identity.Application.Tests.Services
         public void Authenticate_ShouldBeFailure_WhenNotFoundUser()
         {
             // Arrange
-            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
-            _userRepository.GetByLoginAndPassword(userDomain.Login, userDomain.Password).Returns(userDomain);
+            var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Email");
+            var password = "Password";
+            _userRepository.GetByUsernameAndPassword(userDomain.Username, password).Returns(userDomain);
 
             // Act
-            var result = _authenticationService.Authenticate("Login1", "Password1");
+            var result = _authenticationService.Authenticate("Username1", "Password1");
 
             // Assert
             result.HasSucceed.Should().BeFalse();
-            result.ErrorCode.Should().Be("LoginFailed");
+            result.ErrorCode.Should().Be("SignInFailed");
             result.ErrorMessage.Should().Be("Incorrect username or password.");
         }
     }

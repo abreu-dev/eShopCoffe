@@ -1,4 +1,5 @@
-﻿using eShopCoffe.Core.Data;
+﻿using eShopCoffe.Core.Cryptography.Interfaces;
+using eShopCoffe.Core.Data;
 using eShopCoffe.Identity.Domain.Entities;
 using eShopCoffe.Identity.Infra.Data.Adapters.Interfaces;
 using eShopCoffe.Identity.Infra.Data.Entities;
@@ -10,20 +11,22 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
     {
         private readonly IBaseContext _context;
         private readonly IUserDataAdapter _adapter;
+        private readonly IPasswordHash _passwordHash;
         private readonly UserRepository _userRepository;
 
         public UserRepositoryTests()
-        {
+        { 
             _context = Substitute.For<IBaseContext>();
             _adapter = Substitute.For<IUserDataAdapter>();
-            _userRepository = new UserRepository(_context, _adapter);
+            _passwordHash = Substitute.For<IPasswordHash>();
+            _userRepository = new UserRepository(_context, _adapter, _passwordHash);
         }
 
         [Fact]
         public void Update_WhenAdapterReturnsNull_ShouldNotUpdate()
         {
             // Arrange
-            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Email");
             _adapter.Transform(userDomain).ReturnsNull();
 
             // Act
@@ -39,7 +42,7 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
         public void Update_WhenExistingDataIsNull_ShouldUpdate()
         {
             // Arrange
-            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Email");
             var userData = new UserData()
             {
                 Id = userDomain.Id
@@ -69,7 +72,7 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
         public void Update_WhenEntryIsNull_ShouldUpdate()
         {
             // Arrange
-            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Email");
             var userData = new UserData()
             {
                 Id = userDomain.Id
@@ -98,7 +101,7 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
         }
 
         [Fact]
-        public void GetByLoginAndPassword_WhenFound_ShouldReturnDomain()
+        public void GetByUsernameAndPassword_WhenFound_ShouldReturnDomain()
         {
             // Arrange
             var userId = Guid.NewGuid();
@@ -106,23 +109,25 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
                 new UserData()
                 {
                     Id = userId,
-                    Login = "Login1",
-                    Password = "Password1"
+                    Username = "Username1",
+                    HashedPassword = "Password1"
                 },
                 new UserData()
                 {
                     Id = Guid.NewGuid(),
-                    Login = "Login2",
-                    Password = "Password2"
+                    Username = "Username2",
+                    HashedPassword = "Password2"
                 }
             };
             _context.Query<UserData>().Returns(dataList.AsQueryable());
 
-            var domain = new UserDomain(dataList.ElementAt(0).Id, dataList.ElementAt(0).Login, dataList.ElementAt(0).Password);
+            _passwordHash.Verify("Password1", dataList.ElementAt(0).HashedPassword).Returns(true);
+
+            var domain = new UserDomain(dataList.ElementAt(0).Id, dataList.ElementAt(0).Username, dataList.ElementAt(0).HashedPassword);
             _adapter.Transform(dataList.ElementAt(0)).Returns(domain);
 
             // Act
-            var result = _userRepository.GetByLoginAndPassword(dataList.ElementAt(0).Login, dataList.ElementAt(0).Password);
+            var result = _userRepository.GetByUsernameAndPassword("Username1", "Password1");
 
             // Assert
             result.Should().NotBeNull();
@@ -130,9 +135,9 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
         }
 
         [Theory]
-        [InlineData("Login1", "Password2")]
-        [InlineData("Login2", "Password1")]
-        public void GetByLoginAndPassword_WhenNotFound_ShouldReturnNull(string login, string password)
+        [InlineData("Username1", "Password2")]
+        [InlineData("Username2", "Password1")]
+        public void GetByUsernameAndPassword_WhenNotFound_ShouldReturnNull(string username, string password)
         {
             // Arrange
             var userId = Guid.NewGuid();
@@ -140,20 +145,20 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
                 new UserData()
                 {
                     Id = userId,
-                    Login = "Login1",
-                    Password = "Password1"
+                    Username = "Username1",
+                    HashedPassword = "Password1"
                 },
                 new UserData()
                 {
                     Id = Guid.NewGuid(),
-                    Login = "Login2",
-                    Password = "Password2"
+                    Username = "Username2",
+                    HashedPassword = "Password2"
                 }
             };
             _context.Query<UserData>().Returns(dataList.AsQueryable());
 
             // Act
-            var result = _userRepository.GetByLoginAndPassword(login, password);
+            var result = _userRepository.GetByUsernameAndPassword(username, password);
 
             // Assert
             result.Should().BeNull();

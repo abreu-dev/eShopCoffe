@@ -5,7 +5,7 @@ namespace eShopCoffe.Identity.Domain.Repositories
 {
     public interface IUserRepository : IRepository<UserDomain>
     {
-        UserDomain? GetByLoginAndPassword(string login, string password);
+        UserDomain? GetByUsernameAndPassword(string username, string password);
 
         void UpdateLastAccess(Guid id);
     }

@@ -8,14 +8,15 @@ namespace eShopCoffe.Identity.Domain.Tests.Commands.UserCommands
         public void Constructor_ShouldSetProperties()
         {
             // Arrange
-            var login = "Login";
+            var username = "Username";
+            var email = "Email";
             var password = "Password";
 
             // Act
-            var command = new AddUserCommand(login, password);
+            var command = new AddUserCommand(username, email, password);
 
             // Assert
-            command.Login.Should().Be(login);
+            command.Username.Should().Be(username);
             command.Password.Should().Be(password);
         }
     }

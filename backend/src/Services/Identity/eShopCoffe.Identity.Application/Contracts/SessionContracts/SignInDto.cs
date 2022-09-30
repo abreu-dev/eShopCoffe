@@ -1,8 +1,8 @@
 ﻿namespace eShopCoffe.Identity.Application.Contracts.SessionContracts
 {
-    public class LoginDto
+    public class SignInDto
     {
-        public string Login { get; set; } = string.Empty;
+        public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }
 }

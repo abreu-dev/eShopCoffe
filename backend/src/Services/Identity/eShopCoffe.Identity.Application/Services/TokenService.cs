@@ -63,7 +63,7 @@ namespace eShopCoffe.Identity.Application.Services
 
                 if (user == null) return null;
 
-                return new AuthenticatedUser(user.Id, user.Login, user.IsAdmin);
+                return new AuthenticatedUser(user.Id, user.Username, user.IsAdmin);
             }
             catch
             {

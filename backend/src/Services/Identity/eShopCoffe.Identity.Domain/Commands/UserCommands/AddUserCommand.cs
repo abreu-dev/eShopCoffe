@@ -6,12 +6,14 @@ namespace eShopCoffe.Identity.Domain.Commands.UserCommands
 {
     public class AddUserCommand : ValidatableCommand<AddUserCommand>
     {
-        public string Login { get; private set; }
+        public string Username { get; private set; }
+        public string Email { get; private set; }
         public string Password { get; private set; }
 
-        public AddUserCommand(string login, string password)
+        public AddUserCommand(string username, string email, string password)
         {
-            Login = login;
+            Username = username;
+            Email = email;
             Password = password;
         }
 

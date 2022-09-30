@@ -9,15 +9,17 @@ namespace eShopCoffe.Identity.Domain.Tests.Commands.UserCommands
         {
             // Arrange
             var id = Guid.NewGuid();
-            var login = "Login";
+            var username = "Username";
+            var email = "Email";
             var password = "Password";
 
             // Act
-            var command = new UpdateUserCommand(id, login, password);
+            var command = new UpdateUserCommand(id, username, email, password);
 
             // Assert
             command.Id.Should().Be(id);
-            command.Login.Should().Be(login);
+            command.Username.Should().Be(username);
+            command.Email.Should().Be(email);
             command.Password.Should().Be(password);
         }
     }

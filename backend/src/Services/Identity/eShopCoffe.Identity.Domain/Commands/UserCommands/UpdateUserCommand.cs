@@ -7,13 +7,15 @@ namespace eShopCoffe.Identity.Domain.Commands.UserCommands
     public class UpdateUserCommand : ValidatableCommand<UpdateUserCommand>
     {
         public Guid Id { get; private set; }
-        public string Login { get; private set; }
+        public string Username { get; private set; }
+        public string Email { get; private set; }
         public string Password { get; private set; }
 
-        public UpdateUserCommand(Guid id, string login, string password)
+        public UpdateUserCommand(Guid id, string username, string email, string password)
         {
             Id = id;
-            Login = login;
+            Username = username;
+            Email = email;
             Password = password;
         }
 

@@ -5,6 +5,6 @@ namespace eShopCoffe.Identity.Application.Services.Interfaces
 {
     public interface IAuthenticationService
     {
-        IResult<UserDomain> Authenticate(string login, string password);
+        IResult<UserDomain> Authenticate(string username, string password);
     }
 }

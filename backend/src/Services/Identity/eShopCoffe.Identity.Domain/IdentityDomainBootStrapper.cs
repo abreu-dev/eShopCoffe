@@ -24,7 +24,7 @@ namespace eShopCoffe.Identity.Domain
 
         private static void EventHandlers(IServiceCollection services)
         {
-            services.AddScoped<IEventHandler<UserLoggedInEvent>, UserEventHandler>();
+            services.AddScoped<IEventHandler<UserSignedInEvent>, UserEventHandler>();
         }
     }
 }

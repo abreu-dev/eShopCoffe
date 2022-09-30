@@ -1,5 +1,6 @@
 ﻿using eShopCoffe.Catalog.Infra.Data.Seed;
 using eShopCoffe.Context.Context;
+using eShopCoffe.Core.Cryptography;
 using eShopCoffe.Core.Domain.Repositories;
 using eShopCoffe.Identity.Infra.Data.Seed;
 using Microsoft.EntityFrameworkCore;

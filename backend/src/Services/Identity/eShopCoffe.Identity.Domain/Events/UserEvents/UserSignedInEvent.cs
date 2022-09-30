@@ -2,11 +2,11 @@
 
 namespace eShopCoffe.Identity.Domain.Events.UserEvents
 {
-    public class UserLoggedInEvent : Event
+    public class UserSignedInEvent : Event
     {
         public Guid UserId { get; private set; }
 
-        public UserLoggedInEvent(Guid userId)
+        public UserSignedInEvent(Guid userId)
         {
             UserId = userId;
         }

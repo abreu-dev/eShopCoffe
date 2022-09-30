@@ -15,13 +15,13 @@ namespace eShopCoffe.Identity.Application.Services
             _userRepository = userRepository;
         }
 
-        public IResult<UserDomain> Authenticate(string login, string password)
+        public IResult<UserDomain> Authenticate(string username, string password)
         {
-            var user = _userRepository.GetByLoginAndPassword(login, password);
+            var user = _userRepository.GetByUsernameAndPassword(username, password);
 
             if (user == null)
             {
-                return Result<UserDomain>.Failure("LoginFailed", "Incorrect username or password.");
+                return Result<UserDomain>.Failure("SignInFailed", "Incorrect username or password.");
             }
 
             return Result<UserDomain>.Success(user);

@@ -25,30 +25,30 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpPost]
-        [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+        [Route("sign-in")]
+        public async Task<IActionResult> SignIn([FromBody] SignInDto signInDto)
         {
-            var result = _authenticationService.Authenticate(loginDto.Login, loginDto.Password);
+            var result = _authenticationService.Authenticate(signInDto.Username, signInDto.Password);
 
             if (result.HasSucceed && result.Item != null)
             {
-                var loginResult = new LoginResultDto()
+                var signInResultDto = new SignInResultDto()
                 {
                     Token = _tokenService.GenerateAuthenticationToken(result.Item),
-                    User = new LoginResultUserDto()
+                    User = new SignInResultUserDto()
                     {
                         Id = result.Item.Id,
-                        Login = result.Item.Login,
+                        Username = result.Item.Username,
                         IsAdmin = result.Item.IsAdmin
                     }
                 };
 
-                await _bus.Event(new UserLoggedInEvent(loginResult.User.Id), CancellationToken.None);
+                await _bus.Event(new UserSignedInEvent(signInResultDto.User.Id));
 
-                return Ok(loginResult);
+                return Ok(signInResultDto);
             }
 
-            return BadRequest(new BadRequestResponse("login")
+            return BadRequest(new BadRequestResponse("sign-in")
             {
                 Errors = new List<BadRequestResponseError>()
                 {

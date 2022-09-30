@@ -1,4 +1,6 @@
-﻿using eShopCoffe.Core.Domain.Repositories;
+﻿using eShopCoffe.Core.Cryptography;
+using eShopCoffe.Core.Cryptography.Interfaces;
+using eShopCoffe.Core.Domain.Repositories;
 using eShopCoffe.Core.Domain.Repositories.Interfaces;
 using eShopCoffe.Core.Messaging.Bus;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
@@ -21,6 +23,7 @@ namespace eShopCoffe.Core
             Notifications(services);
             Session(services);
             Repositories(services);
+            Cryptography(services);
         }
 
         private static void Bus(IServiceCollection services)
@@ -48,6 +51,11 @@ namespace eShopCoffe.Core
         private static void Repositories(IServiceCollection services)
         {
             services.AddScoped<IRepository, Repository>();
+        }
+
+        private static void Cryptography(IServiceCollection services)
+        {
+            services.AddScoped<IPasswordHash, PasswordHash>();
         }
     }
 }

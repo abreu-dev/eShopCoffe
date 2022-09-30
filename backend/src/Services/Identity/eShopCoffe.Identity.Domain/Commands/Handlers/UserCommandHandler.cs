@@ -1,4 +1,5 @@
-﻿using eShopCoffe.Core.Messaging.Bus.Interfaces;
+﻿using eShopCoffe.Core.Cryptography.Interfaces;
+using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Core.Messaging.Handlers.Interfaces;
 using eShopCoffe.Core.Messaging.Requests;
 using eShopCoffe.Identity.Domain.Commands.UserCommands;
@@ -14,12 +15,16 @@ namespace eShopCoffe.Identity.Domain.Commands.Handlers
     {
         private readonly IBus _bus;
         private readonly IUserRepository _userRepository;
+        private readonly IPasswordHash _passwordHash;
 
-        public UserCommandHandler(IBus bus,
-                                  IUserRepository userRepository)
+        public UserCommandHandler(
+            IBus bus,
+            IUserRepository userRepository,
+            IPasswordHash passwordHash)
         {
             _bus = bus;
             _userRepository = userRepository;
+            _passwordHash = passwordHash;
         }
 
         public async Task Handle(AddUserCommand command, CancellationToken cancellationToken = default)
@@ -33,7 +38,8 @@ namespace eShopCoffe.Identity.Domain.Commands.Handlers
                 return;
             }
 
-            var user = new UserDomain(command.Login, command.Password);
+            var user = new UserDomain(command.Username, command.Email);
+            user.SetPassword(_passwordHash, command.Password);
 
             _userRepository.Add(user);
             _userRepository.UnitOfWork.Complete();
@@ -50,7 +56,8 @@ namespace eShopCoffe.Identity.Domain.Commands.Handlers
                 return;
             }
 
-            var user = new UserDomain(command.Id, command.Login, command.Password);
+            var user = new UserDomain(command.Id, command.Username, command.Email);
+            user.SetPassword(_passwordHash, command.Password);
 
             _userRepository.Update(user);
             _userRepository.UnitOfWork.Complete();

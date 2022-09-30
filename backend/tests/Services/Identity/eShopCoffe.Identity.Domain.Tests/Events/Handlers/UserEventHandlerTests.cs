@@ -19,7 +19,7 @@ namespace eShopCoffe.Identity.Domain.Tests.Events.Handlers
         public void Handle_UserLoggedInEvent_ShouldCallUserLastAccess()
         {
             // Arrange
-            var @event = new UserLoggedInEvent(Guid.NewGuid());
+            var @event = new UserSignedInEvent(Guid.NewGuid());
 
             // Act
             _handler.Handle(@event);

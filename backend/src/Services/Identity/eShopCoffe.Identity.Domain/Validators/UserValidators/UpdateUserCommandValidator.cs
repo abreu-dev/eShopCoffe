@@ -11,7 +11,10 @@ namespace eShopCoffe.Identity.Domain.Validators.UserValidators
             RuleFor(x => x.Id)
                 .NotEmpty();
 
-            RuleFor(x => x.Login)
+            RuleFor(x => x.Username)
+                .NotEmpty();
+
+            RuleFor(x => x.Email)
                 .NotEmpty();
 
             RuleFor(x => x.Password)
