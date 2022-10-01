@@ -217,5 +217,159 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
             dataList.ElementAt(0).LastAccess.Should().BeNull();
             dataList.ElementAt(1).LastAccess.Should().BeNull();
         }
+
+        [Fact]
+        public void ChangeTemporaryPasswordResetCode_WhenFound_ShouldPasswordResetInfos()
+        {
+            // Arrange
+            var dataList = new List<UserData>() {
+                new UserData()
+                {
+                    Username = "Username1",
+                    HashedTemporaryPasswordResetCode = null,
+                    ExpireTemporaryPasswordResetCode = null
+                },
+                new UserData()
+                {
+                    Username = "Username2",
+                    HashedTemporaryPasswordResetCode = "654321",
+                    ExpireTemporaryPasswordResetCode = new DateTime(2022, 10, 02)
+                }
+            };
+            _context.Query<UserData>().Returns(dataList.AsQueryable());
+
+            var temporaryPasswordResetCode = "PasswordCode";
+            var hashedTemporaryPasswordResetCode = "HashedPasswordCode";
+            _passwordHash.Hash(temporaryPasswordResetCode).Returns(hashedTemporaryPasswordResetCode);
+
+            // Act
+            _userRepository.ChangeTemporaryPasswordResetCode(dataList.ElementAt(0).Username, temporaryPasswordResetCode);
+
+            // Assert
+            dataList.ElementAt(0).HashedTemporaryPasswordResetCode.Should().Be(hashedTemporaryPasswordResetCode);
+            dataList.ElementAt(0).ExpireTemporaryPasswordResetCode.Should().NotBeNull();
+
+            dataList.ElementAt(1).HashedTemporaryPasswordResetCode.Should().Be("654321");
+            dataList.ElementAt(1).ExpireTemporaryPasswordResetCode.Should().Be(new DateTime(2022, 10, 02));
+
+            _passwordHash.Received(1).Hash(Arg.Any<string>());
+            _passwordHash.Received(1).Hash(temporaryPasswordResetCode);
+        }
+
+        [Fact]
+        public void ChangeTemporaryPasswordResetCode_WhenNotFound_ShouldDoNothing()
+        {
+            // Arrange
+            var dataList = new List<UserData>() {
+                new UserData()
+                {
+                    Username = "Username1",
+                    HashedTemporaryPasswordResetCode = null,
+                    ExpireTemporaryPasswordResetCode = null
+                },
+                new UserData()
+                {
+                    Username = "Username2",
+                    HashedTemporaryPasswordResetCode = "654321",
+                    ExpireTemporaryPasswordResetCode = new DateTime(2022, 10, 02)
+                }
+            };
+            _context.Query<UserData>().Returns(dataList.AsQueryable());
+
+            var temporaryPasswordResetCode = "PasswordCode";
+
+            // Act
+            _userRepository.ChangeTemporaryPasswordResetCode("Username3", temporaryPasswordResetCode);
+
+            // Assert
+            dataList.ElementAt(0).HashedTemporaryPasswordResetCode.Should().BeNull();
+            dataList.ElementAt(0).ExpireTemporaryPasswordResetCode.Should().BeNull();
+
+            dataList.ElementAt(1).HashedTemporaryPasswordResetCode.Should().Be("654321");
+            dataList.ElementAt(1).ExpireTemporaryPasswordResetCode.Should().Be(new DateTime(2022, 10, 02));
+
+            _passwordHash.DidNotReceive().Hash(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void ChangePassword_WhenFound_ShouldSetHashedPassword()
+        {
+            // Arrange
+            var dataList = new List<UserData>() {
+                new UserData()
+                {
+                    Username = "Username1",
+                    HashedPassword = "HashedPassword1",
+                    HashedTemporaryPasswordResetCode = "123456",
+                    ExpireTemporaryPasswordResetCode = new DateTime(2022, 10, 01)
+                },
+                new UserData()
+                {
+                    Username = "Username2",
+                    HashedPassword = "HashedPassword2",
+                    HashedTemporaryPasswordResetCode = "654321",
+                    ExpireTemporaryPasswordResetCode = new DateTime(2022, 10, 02)
+                }
+            };
+            _context.Query<UserData>().Returns(dataList.AsQueryable());
+
+            var newPassword = "NewPassword";
+            var newHashedPassword = "NewHashedPassword";
+            _passwordHash.Hash(newPassword).Returns(newHashedPassword);
+
+            // Act
+            _userRepository.ChangePassword(dataList.ElementAt(0).Username, newPassword);
+
+            // Assert
+            dataList.ElementAt(0).HashedPassword.Should().Be(newHashedPassword);
+            dataList.ElementAt(0).HashedTemporaryPasswordResetCode.Should().BeNull();
+            dataList.ElementAt(0).ExpireTemporaryPasswordResetCode.Should().BeNull();
+
+            dataList.ElementAt(1).HashedPassword.Should().Be("HashedPassword2");
+            dataList.ElementAt(1).HashedTemporaryPasswordResetCode.Should().Be("654321");
+            dataList.ElementAt(1).ExpireTemporaryPasswordResetCode.Should().Be(new DateTime(2022, 10, 02));
+
+            _passwordHash.Received(1).Hash(Arg.Any<string>());
+            _passwordHash.Received(1).Hash(newPassword);
+        }
+
+        [Fact]
+        public void ChangePassword_WhenNotFound_ShouldDoNothing()
+        {
+            // Arrange
+            var dataList = new List<UserData>() {
+                new UserData()
+                {
+                    Username = "Username1",
+                    HashedPassword = "HashedPassword1",
+                    HashedTemporaryPasswordResetCode = "123456",
+                    ExpireTemporaryPasswordResetCode = new DateTime(2022, 10, 01)
+                },
+                new UserData()
+                {
+                    Username = "Username2",
+                    HashedPassword = "HashedPassword2",
+                    HashedTemporaryPasswordResetCode = "654321",
+                    ExpireTemporaryPasswordResetCode = new DateTime(2022, 10, 02)
+                }
+            };
+            _context.Query<UserData>().Returns(dataList.AsQueryable());
+
+            var newPassword = "NewPassword";
+
+            // Act
+            _userRepository.ChangePassword("Username3", newPassword);
+
+            // Assert
+            dataList.ElementAt(0).HashedPassword.Should().Be("HashedPassword1");
+            dataList.ElementAt(0).HashedTemporaryPasswordResetCode.Should().Be("123456");
+            dataList.ElementAt(0).ExpireTemporaryPasswordResetCode.Should().Be(new DateTime(2022, 10, 01));
+
+            dataList.ElementAt(1).HashedPassword.Should().Be("HashedPassword2");
+            dataList.ElementAt(1).HashedTemporaryPasswordResetCode.Should().Be("654321");
+            dataList.ElementAt(1).ExpireTemporaryPasswordResetCode.Should().Be(new DateTime(2022, 10, 02));
+
+            _passwordHash.DidNotReceive().Hash(Arg.Any<string>());
+        }
     }
 }

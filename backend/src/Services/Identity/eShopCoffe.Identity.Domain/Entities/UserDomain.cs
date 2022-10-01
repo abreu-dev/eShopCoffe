@@ -1,6 +1,4 @@
-﻿using eShopCoffe.Core.Cryptography;
-using eShopCoffe.Core.Cryptography.Interfaces;
-using eShopCoffe.Core.Domain.Entities;
+﻿using eShopCoffe.Core.Domain.Entities;
 
 namespace eShopCoffe.Identity.Domain.Entities
 {
@@ -24,11 +22,6 @@ namespace eShopCoffe.Identity.Domain.Entities
             Email = email;
             IsAdmin = isAdmin;
             HashedPassword = string.Empty;
-        }
-
-        public void SetPassword(IPasswordHash passwordHash, string password)
-        {
-            HashedPassword = passwordHash.Hash(password);
         }
     }
 }

@@ -24,7 +24,9 @@ namespace eShopCoffe.Identity.Application
 
         private static void Services(IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<ISignInService, SignInService>();
+            services.AddScoped<ISignUpService, SignUpService>();
+            services.AddScoped<IPasswordResetService, PasswordResetService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IHealthService, HealthService>();
         }

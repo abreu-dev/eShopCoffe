@@ -4,19 +4,19 @@ using eShopCoffe.Identity.Domain.Repositories;
 
 namespace eShopCoffe.Identity.Application.Tests.Services
 {
-    public class AuthenticationServiceTests
+    public class SignInServiceTests
     {
         private readonly IUserRepository _userRepository;
-        private readonly AuthenticationService _authenticationService;
+        private readonly SignInService _signInService;
 
-        public AuthenticationServiceTests()
+        public SignInServiceTests()
         {
             _userRepository = Substitute.For<IUserRepository>();
-            _authenticationService = new AuthenticationService(_userRepository);
+            _signInService = new SignInService(_userRepository);
         }
 
         [Fact]
-        public void Authenticate_ShouldBeSuccess_WhenFoundUser()
+        public void SignIn_ShouldBeSuccess_WhenFoundUser()
         {
             // Arrange
             var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Email");
@@ -24,7 +24,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
             _userRepository.GetByUsernameAndPassword(userDomain.Username, password).Returns(userDomain);
 
             // Act
-            var result = _authenticationService.Authenticate(userDomain.Username, password);
+            var result = _signInService.SignIn(userDomain.Username, password);
 
             // Assert
             result.HasSucceed.Should().BeTrue();
@@ -32,7 +32,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
         }
 
         [Fact]
-        public void Authenticate_ShouldBeFailure_WhenNotFoundUser()
+        public void SignIn_ShouldBeFailure_WhenNotFoundUser()
         {
             // Arrange
             var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Email");
@@ -40,7 +40,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
             _userRepository.GetByUsernameAndPassword(userDomain.Username, password).Returns(userDomain);
 
             // Act
-            var result = _authenticationService.Authenticate("Username1", "Password1");
+            var result = _signInService.SignIn("Username1", "Password1");
 
             // Assert
             result.HasSucceed.Should().BeFalse();

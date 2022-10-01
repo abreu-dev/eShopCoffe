@@ -2,6 +2,8 @@
 using eShopCoffe.Core.Cryptography.Interfaces;
 using eShopCoffe.Core.Domain.Repositories;
 using eShopCoffe.Core.Domain.Repositories.Interfaces;
+using eShopCoffe.Core.Email;
+using eShopCoffe.Core.Email.Interfaces;
 using eShopCoffe.Core.Messaging.Bus;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Core.Messaging.Dispatchers;
@@ -24,6 +26,7 @@ namespace eShopCoffe.Core
             Session(services);
             Repositories(services);
             Cryptography(services);
+            Email(services);
         }
 
         private static void Bus(IServiceCollection services)
@@ -56,6 +59,13 @@ namespace eShopCoffe.Core
         private static void Cryptography(IServiceCollection services)
         {
             services.AddScoped<IPasswordHash, PasswordHash>();
+        }
+
+        private static void Email(IServiceCollection services)
+        {
+            services.AddScoped<IEmailSettings, EmailSettings>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IEmailSender, EmailSenderSmtp>();
         }
     }
 }

@@ -44,6 +44,7 @@ namespace eShopCoffe.Catalog.Infra.Data.Seed
             "O café Verona é um sedutor blend de grãos da américa latina e da indonésia, com um toque suave de italian. roast conferindo intensidade, alma e doçura. Esta mistura deliciosa combina tão bem com chocolate que se tornou um favorito no dos namorados – para nós, é o café que mais tem a ver com romance. Bella, bella. P.s.: quem gosta de literatura deve conhecer Verona como a cidade onde Shakespeare ambientou romeu e julieta. Embora a peça acabe em tragé, pode ter certeza de que todo copo deste café tem um final feliz. A embalagem pode variar",
             "Muito mais aroma e sabor: Prepare cafés muito mais saborosos triturando grãos selecionados, obtendo mais pureza e qualidade",
         };
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1075:URIs should not be hardcoded", Justification = "<Pending>")]
         public static readonly IEnumerable<string> ProductImageUrlList = new List<string>()
         {
             "https://m.media-amazon.com/images/I/61Y+CdkhZOL._AC_SX679_.jpg",

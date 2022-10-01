@@ -17,5 +17,8 @@ namespace eShopCoffe.Identity.Infra.Data.Entities
         public bool IsAdmin { get; set; }
 
         public DateTime? LastAccess { get; set; }
+
+        public string? HashedTemporaryPasswordResetCode { get; set; }
+        public DateTime? ExpireTemporaryPasswordResetCode { get; set; }
     }
 }

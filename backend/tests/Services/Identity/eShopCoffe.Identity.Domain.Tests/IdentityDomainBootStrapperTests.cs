@@ -1,8 +1,9 @@
 ﻿using eShopCoffe.Core.Messaging.Handlers.Interfaces;
-using eShopCoffe.Identity.Domain.Commands.Handlers;
-using eShopCoffe.Identity.Domain.Commands.UserCommands;
 using eShopCoffe.Identity.Domain.Events.Handlers;
 using eShopCoffe.Identity.Domain.Events.UserEvents;
+using eShopCoffe.Identity.Domain.Tests.Validators;
+using eShopCoffe.Identity.Domain.Validators;
+using eShopCoffe.Identity.Domain.Validators.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace eShopCoffe.Identity.Domain.Tests
@@ -23,11 +24,10 @@ namespace eShopCoffe.Identity.Domain.Tests
             IdentityDomainBootStrapper.ConfigureServices(_serviceCollection);
 
             // Assert
-            _serviceCollection.Received(4).Add(Arg.Any<ServiceDescriptor>());
-            ValidateService(typeof(ICommandHandler<AddUserCommand>), typeof(UserCommandHandler));
-            ValidateService(typeof(ICommandHandler<UpdateUserCommand>), typeof(UserCommandHandler));
-            ValidateService(typeof(ICommandHandler<RemoveUserCommand>), typeof(UserCommandHandler));
+            _serviceCollection.Received(3).Add(Arg.Any<ServiceDescriptor>());
             ValidateService(typeof(IEventHandler<UserSignedInEvent>), typeof(UserEventHandler));
+            ValidateService(typeof(ISignUpValidator), typeof(SignUpValidator));
+            ValidateService(typeof(IPasswordValidator), typeof(PasswordValidator));
         }
 
         private void ValidateService(Type interfaceType, Type objectType)

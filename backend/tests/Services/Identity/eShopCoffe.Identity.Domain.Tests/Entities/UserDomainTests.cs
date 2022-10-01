@@ -60,27 +60,5 @@ namespace eShopCoffe.Identity.Domain.Tests.Entities
             userDomain.IsAdmin.Should().Be(isAdmin);
             userDomain.HashedPassword.Should().BeEmpty();
         }
-
-        [Fact]
-        public void SetPassword_ShouldSetHashedPassword()
-        {
-            // Arrange
-            var userDomain = new UserDomain("Username", "Email");
-
-            var password = "Password";
-
-            var hashedPassword = "HashedPassword";
-            var passwordHash = Substitute.For<IPasswordHash>();
-            passwordHash.Hash(password).Returns(hashedPassword);
-
-            // Act
-            userDomain.SetPassword(passwordHash, password);
-
-            // Assert
-            passwordHash.Received(1).Hash(Arg.Any<string>());
-            passwordHash.Received(1).Hash(password);
-
-            userDomain.HashedPassword.Should().Be(hashedPassword);
-        }
     }
 }

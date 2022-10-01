@@ -2,6 +2,8 @@
 using eShopCoffe.Core.Cryptography.Interfaces;
 using eShopCoffe.Core.Domain.Repositories;
 using eShopCoffe.Core.Domain.Repositories.Interfaces;
+using eShopCoffe.Core.Email;
+using eShopCoffe.Core.Email.Interfaces;
 using eShopCoffe.Core.Messaging.Bus;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Core.Messaging.Dispatchers;
@@ -30,7 +32,7 @@ namespace eShopCoffe.Core.Tests
             EShopCoffeCoreBootStrapper.ConfigureServices(_serviceCollection);
 
             // Assert
-            _serviceCollection.Received(8).Add(Arg.Any<ServiceDescriptor>());
+            _serviceCollection.Received(11).Add(Arg.Any<ServiceDescriptor>());
             ValidateService(typeof(IBus), typeof(MemoryBus));
             ValidateService(typeof(ICommandDispatcher), typeof(CommandDispatcher));
             ValidateService(typeof(IQueryDispatcher), typeof(QueryDispatcher));
@@ -39,6 +41,9 @@ namespace eShopCoffe.Core.Tests
             ValidateService(typeof(ISessionAccessor), typeof(SessionAccessor));
             ValidateService(typeof(IRepository), typeof(Repository));
             ValidateService(typeof(IPasswordHash), typeof(PasswordHash));
+            ValidateService(typeof(IEmailService), typeof(EmailService));
+            ValidateService(typeof(IEmailSettings), typeof(EmailSettings));
+            ValidateService(typeof(IEmailSender), typeof(EmailSenderSmtp));
         }
 
         private void ValidateService(Type interfaceType, Type objectType)

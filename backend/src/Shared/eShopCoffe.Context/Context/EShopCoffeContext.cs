@@ -83,7 +83,7 @@ namespace eShopCoffe.Context.Context
         {
             foreach (var entry in ChangeTracker.Entries())
             {
-                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: { entry.State.ToString()}");
+                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State}");
             }
 
             SaveChanges();

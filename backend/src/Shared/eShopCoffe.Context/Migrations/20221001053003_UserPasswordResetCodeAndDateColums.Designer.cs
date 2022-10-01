@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eShopCoffe.Context.Context;
 
@@ -11,9 +12,10 @@ using eShopCoffe.Context.Context;
 namespace eShopCoffe.Context.Migrations
 {
     [DbContext(typeof(EShopCoffeContext))]
-    partial class EShopCoffeContextModelSnapshot : ModelSnapshot
+    [Migration("20221001053003_UserPasswordResetCodeAndDateColums")]
+    partial class UserPasswordResetCodeAndDateColums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

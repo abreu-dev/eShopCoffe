@@ -24,6 +24,9 @@ namespace eShopCoffe.Identity.Infra.Data.Mappings
             builder.Property(x => x.IsAdmin);
 
             builder.Property(x => x.LastAccess);
+
+            builder.Property(x => x.HashedTemporaryPasswordResetCode);
+            builder.Property(x => x.ExpireTemporaryPasswordResetCode);
         }
     }
 }

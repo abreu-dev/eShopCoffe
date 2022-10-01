@@ -6,16 +6,16 @@ using eShopCoffe.Identity.Domain.Repositories;
 
 namespace eShopCoffe.Identity.Application.Services
 {
-    public class AuthenticationService : IAuthenticationService
+    public class SignInService : ISignInService
     {
         private readonly IUserRepository _userRepository;
 
-        public AuthenticationService(IUserRepository userRepository)
+        public SignInService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public IResult<UserDomain> Authenticate(string username, string password)
+        public IResult<UserDomain> SignIn(string username, string password)
         {
             var user = _userRepository.GetByUsernameAndPassword(username, password);
 
