@@ -11,7 +11,7 @@ namespace eShopCoffe.Catalog.Infra.Data.Adapters
         {
             if (data == null) return null;
 
-            return new ProductDomain(data.Id, data.Name, data.Description, data.QuantityAvailable);
+            return new ProductDomain(data.Id, data.Name, data.Description, data.ImageUrl, data.QuantityAvailable, new CurrencyDomain(data.CurrencyValue, data.CurrencyCode));
         }
 
         public override ProductData? Transform(ProductDomain? domain)
@@ -23,7 +23,10 @@ namespace eShopCoffe.Catalog.Infra.Data.Adapters
                 Id = domain.Id,
                 Name = domain.Name,
                 Description = domain.Description,
-                QuantityAvailable = domain.QuantityAvailable
+                ImageUrl = domain.ImageUrl,
+                QuantityAvailable = domain.QuantityAvailable,
+                CurrencyValue = domain.Currency.Value,
+                CurrencyCode = domain.Currency.Code
             };
         }
     }

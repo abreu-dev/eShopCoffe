@@ -10,16 +10,21 @@ namespace eShopCoffe.Catalog.Domain.Tests.Entities
             // Arrange
             var name = "Name";
             var description = "Description";
+            var imageUrl = "ImageUrl";
             var quantityAvailable = 0;
+            var currency = new CurrencyDomain(1, "CurrencyCode");
 
             // Act
-            var userDomain = new ProductDomain(name, description, quantityAvailable);
+            var productDomain = new ProductDomain(name, description, imageUrl, quantityAvailable, currency);
 
             // Assert
-            userDomain.Name.Should().Be(name);
-            userDomain.Description.Should().Be(description);
-            userDomain.QuantityAvailable.Should().Be(quantityAvailable);
+            productDomain.Name.Should().Be(name);
+            productDomain.Description.Should().Be(description);
+            productDomain.ImageUrl.Should().Be(imageUrl);
+            productDomain.QuantityAvailable.Should().Be(quantityAvailable);
+            productDomain.Currency.Should().Be(currency);
         }
+
         [Fact]
         public void Constructor2_ShouldSetProperties()
         {
@@ -27,16 +32,20 @@ namespace eShopCoffe.Catalog.Domain.Tests.Entities
             var id = Guid.NewGuid();
             var name = "Name";
             var description = "Description";
+            var imageUrl = "ImageUrl";
             var quantityAvailable = 0;
+            var currency = new CurrencyDomain(1, "CurrencyCode");
 
             // Act
-            var userDomain = new ProductDomain(id, name, description, quantityAvailable);
+            var productDomain = new ProductDomain(id, name, description, imageUrl, quantityAvailable, currency);
 
             // Assert
-            userDomain.Id.Should().Be(id);
-            userDomain.Name.Should().Be(name);
-            userDomain.Description.Should().Be(description);
-            userDomain.QuantityAvailable.Should().Be(quantityAvailable);
+            productDomain.Id.Should().Be(id);
+            productDomain.Name.Should().Be(name);
+            productDomain.Description.Should().Be(description);
+            productDomain.ImageUrl.Should().Be(imageUrl);
+            productDomain.QuantityAvailable.Should().Be(quantityAvailable);
+            productDomain.Currency.Should().Be(currency);
         }
     }
 }

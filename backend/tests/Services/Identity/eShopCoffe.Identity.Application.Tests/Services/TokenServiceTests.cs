@@ -23,7 +23,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
         public void GenerateAuthenticationToken_ShouldReturnToken()
         {
             // Arrange
-            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Password");
             _jwtSettings.Expires.Returns(120);
             _jwtSettings.Secret.Returns(Guid.NewGuid().ToString());
 
@@ -48,7 +48,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
         public void ValidateToken_WhenUserNotFound_ShouldReturnNull()
         {
             // Arrange
-            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Password");
             _jwtSettings.Expires.Returns(120);
             _jwtSettings.Secret.Returns(Guid.NewGuid().ToString());
             var token = _tokenService.GenerateAuthenticationToken(userDomain);
@@ -65,7 +65,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
         public void ValidateToken_ShouldReturnAuthenticatedUser()
         {
             // Arrange
-            var userDomain = new UserDomain(Guid.NewGuid(), "Login", "Password");
+            var userDomain = new UserDomain(Guid.NewGuid(), "Username", "Password");
             _jwtSettings.Expires.Returns(120);
             _jwtSettings.Secret.Returns(Guid.NewGuid().ToString());
             var token = _tokenService.GenerateAuthenticationToken(userDomain);
@@ -79,7 +79,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
             if (result == null) return;
 
             result.Id.Should().Be(userDomain.Id);
-            result.Login.Should().Be(userDomain.Login);
+            result.Username.Should().Be(userDomain.Username);
             result.IsAdmin.Should().Be(userDomain.IsAdmin);
         }
     }

@@ -11,7 +11,7 @@ namespace eShopCoffe.Identity.Infra.Data.Adapters
         {
             if (data == null) return null;
 
-            return new UserDomain(data.Id, data.Login, data.Password, data.IsAdmin);
+            return new UserDomain(data.Id, data.Username, data.Email, data.IsAdmin);
         }
 
         public override UserData? Transform(UserDomain? domain)
@@ -21,8 +21,9 @@ namespace eShopCoffe.Identity.Infra.Data.Adapters
             return new UserData()
             {
                 Id = domain.Id,
-                Login = domain.Login,
-                Password = domain.Password,
+                Username = domain.Username,
+                Email = domain.Email,
+                HashedPassword = domain.HashedPassword,
                 IsAdmin = domain.IsAdmin
             };
         }

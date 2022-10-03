@@ -3,7 +3,7 @@
     public interface IAuthenticatedUser
     {
         Guid Id { get; }
-        string Login { get; }
+        string Username { get; }
         bool IsAdmin { get; }
     }
 }

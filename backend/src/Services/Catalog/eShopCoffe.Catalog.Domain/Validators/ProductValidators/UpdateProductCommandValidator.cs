@@ -17,8 +17,17 @@ namespace eShopCoffe.Catalog.Domain.Validators.ProductValidators
             RuleFor(x => x.Description)
                 .NotEmpty();
 
+            RuleFor(x => x.ImageUrl)
+                .NotEmpty();
+
             RuleFor(x => x.QuantityAvailable)
                 .GreaterThanOrEqualTo(0);
+
+            RuleFor(x => x.CurrencyCode)
+                .NotEmpty();
+
+            RuleFor(x => x.CurrencyValue)
+                .GreaterThan(0);
         }
     }
 }

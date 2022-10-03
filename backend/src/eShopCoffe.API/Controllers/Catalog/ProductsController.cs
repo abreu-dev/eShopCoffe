@@ -32,7 +32,13 @@ namespace eShopCoffe.API.Controllers.Catalog
         [AdminAuthenticationTokenFilter]
         public async Task<IActionResult> Post([FromBody] ProductCreationDto creationDto)
         {
-            var command = new AddProductCommand(creationDto.Name, creationDto.Description, creationDto.QuantityAvailable);
+            var command = new AddProductCommand(
+                creationDto.Name,
+                creationDto.Description,
+                creationDto.ImageUrl,
+                creationDto.QuantityAvailable,
+                creationDto.CurrencyValue,
+                creationDto.CurrencyCode);
             await _bus.Command(command);
             return NoContent();
         }
@@ -42,7 +48,14 @@ namespace eShopCoffe.API.Controllers.Catalog
         [AdminAuthenticationTokenFilter]
         public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] ProductCreationDto creationDto)
         {
-            var command = new UpdateProductCommand(id, creationDto.Name, creationDto.Description, creationDto.QuantityAvailable);
+            var command = new UpdateProductCommand(
+                id,
+                creationDto.Name,
+                creationDto.Description,
+                creationDto.ImageUrl,
+                creationDto.QuantityAvailable,
+                creationDto.CurrencyValue,
+                creationDto.CurrencyCode);
             await _bus.Command(command);
             return NoContent();
         }

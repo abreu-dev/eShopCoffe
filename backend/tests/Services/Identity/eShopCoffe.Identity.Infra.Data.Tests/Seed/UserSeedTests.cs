@@ -1,4 +1,5 @@
-﻿using eShopCoffe.Core.Domain.Repositories.Interfaces;
+﻿using eShopCoffe.Core.Cryptography.Interfaces;
+using eShopCoffe.Core.Domain.Repositories.Interfaces;
 using eShopCoffe.Identity.Infra.Data.Entities;
 using eShopCoffe.Identity.Infra.Data.Seed;
 
@@ -11,11 +12,12 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Seed
         {
             // Arrange
             var repository = Substitute.For<IRepository>();
+
             repository.Query<UserData>().Returns(new List<UserData>()
             {
                 new UserData()
                 {
-                    Login = UserSeed.AdministratorLogin
+                    Id = UserSeed.AdministratorId
                 }
             }.AsQueryable());
 
@@ -33,11 +35,12 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Seed
         {
             // Arrange
             var repository = Substitute.For<IRepository>();
+
             repository.Query<UserData>().Returns(new List<UserData>()
             {
                 new UserData()
                 {
-                    Login = "Login"
+                    Id = Guid.NewGuid()
                 }
             }.AsQueryable());
 
@@ -47,8 +50,8 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Seed
             // Assert
             repository.Received(1).Query<UserData>();
             repository.Received(1).Add(Arg.Any<UserData>());
-            repository.Received(1).Add(Arg.Is<UserData>(x => x.Login == UserSeed.AdministratorLogin
-                && x.Password == UserSeed.AdministratorPassword && x.IsAdmin));
+            repository.Received(1).Add(Arg.Is<UserData>(x => x.Username == UserSeed.AdministratorUsername
+                && x.HashedPassword == UserSeed.AdministratorHashedPassword && x.IsAdmin));
             repository.UnitOfWork.Received(1).Complete();
         }
     }

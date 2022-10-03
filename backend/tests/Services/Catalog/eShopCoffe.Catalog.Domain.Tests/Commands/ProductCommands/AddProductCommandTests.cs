@@ -10,15 +10,21 @@ namespace eShopCoffe.Catalog.Domain.Tests.Commands.ProductCommands
             // Arrange
             var name = "Name";
             var description = "Description";
+            var imageUrl = "ImageUrl";
             var quantityAvailable = 0;
+            var currencyValue = 1;
+            var currencyCode = "CurrencyCode";
 
             // Act
-            var command = new AddProductCommand(name, description, quantityAvailable);
+            var command = new AddProductCommand(name, description, imageUrl, quantityAvailable, currencyValue, currencyCode);
 
             // Assert
             command.Name.Should().Be(name);
             command.Description.Should().Be(description);
+            command.ImageUrl.Should().Be(imageUrl);
             command.QuantityAvailable.Should().Be(quantityAvailable);
+            command.CurrencyValue.Should().Be(currencyValue);
+            command.CurrencyCode.Should().Be(currencyCode);
         }
     }
 }
