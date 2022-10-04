@@ -32,7 +32,10 @@ namespace eShopCoffe.Catalog.Application.Queries.Handlers
                             Id = product.Id,
                             Name = product.Name,
                             Description = product.Description,
-                            QuantityAvailable = product.QuantityAvailable
+                            ImageUrl = product.ImageUrl,
+                            QuantityAvailable = product.QuantityAvailable,
+                            CurrencyCode = product.CurrencyCode,
+                            CurrencyValue = product.CurrencyValue
                         })
                         .Skip(query.Parameters.Page * query.Parameters.Size)
                         .Take(query.Parameters.Size)

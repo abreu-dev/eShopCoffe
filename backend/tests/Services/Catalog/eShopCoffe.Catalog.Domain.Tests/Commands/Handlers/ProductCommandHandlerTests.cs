@@ -12,7 +12,10 @@ namespace eShopCoffe.Catalog.Domain.Tests.Commands.Handlers
         private static readonly Guid ValidId = Guid.NewGuid();
         private static readonly string ValidName = "Name";
         private static readonly string ValidDescription = "Description";
+        private static readonly string ValidImageUrl = "ImageUrl";
         private static readonly int ValidQuantityAvailable = 0;
+        private static readonly decimal ValidCurrencyValue = 1;
+        private static readonly string ValidCurrencyCode = "CurrencyCode";
 
         private readonly IBus _bus;
         private readonly IProductRepository _productRepository;
@@ -29,14 +32,25 @@ namespace eShopCoffe.Catalog.Domain.Tests.Commands.Handlers
         public void Handle_AddProductCommand_WhenValidCommand_ShouldAdd()
         {
             // Arrange
-            var command = new AddProductCommand(ValidName, ValidDescription, ValidQuantityAvailable);
+            var command = new AddProductCommand(
+                ValidName,
+                ValidDescription,
+                ValidImageUrl,
+                ValidQuantityAvailable,
+                ValidCurrencyValue,
+                ValidCurrencyCode);
 
             // Act
             _handler.Handle(command).Wait();
 
             // Assert
             _productRepository.Received(1).Add(Arg.Any<ProductDomain>());
-            _productRepository.Received(1).Add(Arg.Is<ProductDomain>(x => x.Name == command.Name && x.Description == command.Description && x.QuantityAvailable == command.QuantityAvailable));
+            _productRepository.Received(1).Add(Arg.Is<ProductDomain>(x => x.Name == command.Name
+                                                                          && x.Description == command.Description
+                                                                          && x.ImageUrl == command.ImageUrl
+                                                                          && x.QuantityAvailable == command.QuantityAvailable
+                                                                          && x.Currency.Value == command.CurrencyValue
+                                                                          && x.Currency.Code == command.CurrencyCode));
             _productRepository.UnitOfWork.Received(1).Complete();
 
             _bus.DidNotReceive().Notification(Arg.Any<INotification>());
@@ -46,7 +60,13 @@ namespace eShopCoffe.Catalog.Domain.Tests.Commands.Handlers
         public void Handle_AddProductCommand_WhenInvalidCommand_ShouldNotificate()
         {
             // Arrange
-            var command = new AddProductCommand(string.Empty, ValidDescription, ValidQuantityAvailable);
+            var command = new AddProductCommand(
+                string.Empty,
+                ValidDescription,
+                ValidImageUrl,
+                ValidQuantityAvailable,
+                ValidCurrencyValue,
+                ValidCurrencyCode);
 
             // Act
             _handler.Handle(command).Wait();
@@ -63,14 +83,27 @@ namespace eShopCoffe.Catalog.Domain.Tests.Commands.Handlers
         public void Handle_UpdateProductCommand_WhenValidCommand_ShouldUpdate()
         {
             // Arrange
-            var command = new UpdateProductCommand(ValidId, ValidName, ValidDescription, ValidQuantityAvailable);
+            var command = new UpdateProductCommand(
+                ValidId,
+                ValidName,
+                ValidDescription,
+                ValidImageUrl,
+                ValidQuantityAvailable,
+                ValidCurrencyValue,
+                ValidCurrencyCode);
 
             // Act
             _handler.Handle(command).Wait();
 
             // Assert
             _productRepository.Received(1).Update(Arg.Any<ProductDomain>());
-            _productRepository.Received(1).Update(Arg.Is<ProductDomain>(x => x.Id == command.Id && x.Name == command.Name && x.Description == command.Description && x.QuantityAvailable == command.QuantityAvailable));
+            _productRepository.Received(1).Update(Arg.Is<ProductDomain>(x => x.Id == command.Id
+                                                                             && x.Name == command.Name
+                                                                             && x.Description == command.Description
+                                                                             && x.ImageUrl == command.ImageUrl
+                                                                             && x.QuantityAvailable == command.QuantityAvailable
+                                                                             && x.Currency.Value == command.CurrencyValue
+                                                                             && x.Currency.Code == command.CurrencyCode));
             _productRepository.UnitOfWork.Received(1).Complete();
 
             _bus.DidNotReceive().Notification(Arg.Any<INotification>());
@@ -80,7 +113,14 @@ namespace eShopCoffe.Catalog.Domain.Tests.Commands.Handlers
         public void Handle_UpdateProductCommand_WhenInvalidCommand_ShouldNotificate()
         {
             // Arrange
-            var command = new UpdateProductCommand(ValidId, string.Empty, ValidDescription, ValidQuantityAvailable);
+            var command = new UpdateProductCommand(
+                ValidId,
+                string.Empty,
+                ValidDescription,
+                ValidImageUrl,
+                ValidQuantityAvailable,
+                ValidCurrencyValue,
+                ValidCurrencyCode);
 
             // Act
             _handler.Handle(command).Wait();

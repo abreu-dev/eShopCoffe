@@ -4,7 +4,6 @@ using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Identity.Application.Contracts.UserContracts;
 using eShopCoffe.Identity.Application.Parameters;
 using eShopCoffe.Identity.Application.Queries.UserQueries;
-using eShopCoffe.Identity.Domain.Commands.UserCommands;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eShopCoffe.API.Controllers.Identity
@@ -24,34 +23,7 @@ namespace eShopCoffe.API.Controllers.Identity
         public async Task<IActionResult> Get([FromQuery] UserParameters parameters)
         {
             var query = new PagedUsersQuery(parameters);
-            return Ok(await _bus.Query<PagedUsersQuery, IPagedList<UserDto>>(query, CancellationToken.None));
-        }
-
-        [HttpPost]
-        [Route("users")]
-        public async Task<IActionResult> Post([FromBody] UserCreationDto creationDto)
-        {
-            var command = new AddUserCommand(creationDto.Login, creationDto.Password);
-            await _bus.Command(command, CancellationToken.None);
-            return NoContent();
-        }
-
-        [HttpPut]
-        [Route("users/{id}")]
-        public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] UserCreationDto creationDto)
-        {
-            var command = new UpdateUserCommand(id, creationDto.Login, creationDto.Password);
-            await _bus.Command(command, CancellationToken.None);
-            return NoContent();
-        }
-
-        [HttpDelete]
-        [Route("users/{id}")]
-        public async Task<IActionResult> Delete([FromRoute] Guid id)
-        {
-            var command = new RemoveUserCommand(id);
-            await _bus.Command(command, CancellationToken.None);
-            return NoContent();
+            return Ok(await _bus.Query<PagedUsersQuery, IPagedList<UserDto>>(query));
         }
     }
 }

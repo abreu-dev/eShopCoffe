@@ -1,4 +1,5 @@
-﻿using eShopCoffe.Identity.Domain.Entities;
+﻿using eShopCoffe.Core.Cryptography.Interfaces;
+using eShopCoffe.Identity.Domain.Entities;
 
 namespace eShopCoffe.Identity.Domain.Tests.Entities
 {
@@ -8,16 +9,17 @@ namespace eShopCoffe.Identity.Domain.Tests.Entities
         public void Constructor1_ShouldSetProperties()
         {
             // Arrange
-            var login = "Login";
-            var password = "Password";
+            var username = "Username";
+            var email = "Email";
 
             // Act
-            var userDomain = new UserDomain(login, password);
+            var userDomain = new UserDomain(username, email);
 
             // Assert
-            userDomain.Login.Should().Be(login);
-            userDomain.Password.Should().Be(password);
+            userDomain.Username.Should().Be(username);
+            userDomain.Email.Should().Be(email);
             userDomain.IsAdmin.Should().BeFalse();
+            userDomain.HashedPassword.Should().BeEmpty();
         }
 
         [Fact]
@@ -25,17 +27,18 @@ namespace eShopCoffe.Identity.Domain.Tests.Entities
         {
             // Arrange
             var id = Guid.NewGuid();
-            var login = "Login";
-            var password = "Password";
+            var username = "Username";
+            var email = "Email";
 
             // Act
-            var userDomain = new UserDomain(id, login, password);
+            var userDomain = new UserDomain(id, username, email);
 
             // Assert
             userDomain.Id.Should().Be(id);
-            userDomain.Login.Should().Be(login);
-            userDomain.Password.Should().Be(password);
+            userDomain.Username.Should().Be(username);
+            userDomain.Email.Should().Be(email);
             userDomain.IsAdmin.Should().BeFalse();
+            userDomain.HashedPassword.Should().BeEmpty();
         }
 
         [Fact]
@@ -43,18 +46,19 @@ namespace eShopCoffe.Identity.Domain.Tests.Entities
         {
             // Arrange
             var id = Guid.NewGuid();
-            var login = "Login";
-            var password = "Password";
+            var username = "Username";
+            var email = "Email";
             var isAdmin = true;
 
             // Act
-            var userDomain = new UserDomain(id, login, password, isAdmin);
+            var userDomain = new UserDomain(id, username, email, isAdmin);
 
             // Assert
             userDomain.Id.Should().Be(id);
-            userDomain.Login.Should().Be(login);
-            userDomain.Password.Should().Be(password);
+            userDomain.Username.Should().Be(username);
+            userDomain.Email.Should().Be(email);
             userDomain.IsAdmin.Should().Be(isAdmin);
+            userDomain.HashedPassword.Should().BeEmpty();
         }
     }
 }

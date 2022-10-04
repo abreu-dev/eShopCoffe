@@ -1,4 +1,6 @@
-﻿using eShopCoffe.Context.Context;
+﻿using eShopCoffe.Catalog.Infra.Data.Seed;
+using eShopCoffe.Context.Context;
+using eShopCoffe.Core.Cryptography;
 using eShopCoffe.Core.Domain.Repositories;
 using eShopCoffe.Identity.Infra.Data.Seed;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,7 @@ namespace eShopCoffe.Context.Seed
                 var context = scope.ServiceProvider.GetRequiredService<EShopCoffeContext>();
 
                 UserSeed.SeedData(new Repository(context));
+                ProductSeed.SeedData(new Repository(context));
             }
         }
     }

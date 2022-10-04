@@ -30,7 +30,7 @@ namespace eShopCoffe.Catalog.Infra.Data.Tests.Adapters
         public void Transform_DomainToData_WhenNotNull_ShouldReturnData()
         {
             // Arrange
-            var domain = new ProductDomain(Guid.NewGuid(), "Name", "Description", 0);
+            var domain = new ProductDomain(Guid.NewGuid(), "Name", "Description", "ImageUrl", 0, new CurrencyDomain(1, "Code"));
 
             // Act
             var data = _adapter.Transform(domain);
@@ -42,7 +42,10 @@ namespace eShopCoffe.Catalog.Infra.Data.Tests.Adapters
             data.Id.Should().Be(domain.Id);
             data.Name.Should().Be(domain.Name);
             data.Description.Should().Be(domain.Description);
+            data.ImageUrl.Should().Be(domain.ImageUrl);
             data.QuantityAvailable.Should().Be(domain.QuantityAvailable);
+            data.CurrencyValue.Should().Be(domain.Currency.Value);
+            data.CurrencyCode.Should().Be(domain.Currency.Code);
         }
 
         [Fact]
@@ -67,7 +70,10 @@ namespace eShopCoffe.Catalog.Infra.Data.Tests.Adapters
                 Id = Guid.NewGuid(),
                 Name = "Name",
                 Description = "Description",
-                QuantityAvailable = 0
+                ImageUrl = "ImageUrl",
+                QuantityAvailable = 0,
+                CurrencyValue = 1,
+                CurrencyCode = "CurrencyCode"
             };
 
             // Act
@@ -80,7 +86,10 @@ namespace eShopCoffe.Catalog.Infra.Data.Tests.Adapters
             domain.Id.Should().Be(data.Id);
             domain.Name.Should().Be(data.Name);
             domain.Description.Should().Be(data.Description);
+            domain.ImageUrl.Should().Be(data.ImageUrl);
             domain.QuantityAvailable.Should().Be(data.QuantityAvailable);
+            domain.Currency.Value.Should().Be(data.CurrencyValue);
+            domain.Currency.Code.Should().Be(data.CurrencyCode);
         }
     }
 }

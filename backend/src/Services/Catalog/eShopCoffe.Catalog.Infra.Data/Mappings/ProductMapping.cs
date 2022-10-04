@@ -16,7 +16,16 @@ namespace eShopCoffe.Catalog.Infra.Data.Mappings
             builder.Property(x => x.Description)
                 .IsRequired();
 
+            builder.Property(x => x.ImageUrl)
+                .IsRequired();
+
             builder.Property(x => x.QuantityAvailable)
+                .IsRequired();
+
+            builder.Property(x => x.CurrencyValue)
+                .IsRequired();
+
+            builder.Property(x => x.CurrencyCode)
                 .IsRequired();
         }
     }

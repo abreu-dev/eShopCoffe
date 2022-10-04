@@ -4,7 +4,7 @@ using eShopCoffe.Identity.Domain.Repositories;
 
 namespace eShopCoffe.Identity.Domain.Events.Handlers
 {
-    public class UserEventHandler : IEventHandler<UserLoggedInEvent>
+    public class UserEventHandler : IEventHandler<UserSignedInEvent>
     {
         private readonly IUserRepository _userRepository;
 
@@ -13,7 +13,7 @@ namespace eShopCoffe.Identity.Domain.Events.Handlers
             _userRepository = userRepository;
         }
 
-        public Task Handle(UserLoggedInEvent @event, CancellationToken cancellationToken = default)
+        public Task Handle(UserSignedInEvent @event, CancellationToken cancellationToken = default)
         {
             _userRepository.UpdateLastAccess(@event.UserId);
             _userRepository.UnitOfWork.Complete();

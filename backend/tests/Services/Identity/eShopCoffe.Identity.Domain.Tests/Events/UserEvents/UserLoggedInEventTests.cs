@@ -11,7 +11,7 @@ namespace eShopCoffe.Identity.Domain.Tests.Events.UserEvents
             var userId = Guid.NewGuid();
 
             // Act
-            var @event = new UserLoggedInEvent(userId);
+            var @event = new UserSignedInEvent(userId);
 
             // Assert
             @event.UserId.Should().Be(userId);

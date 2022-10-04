@@ -30,7 +30,7 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Adapters
         public void Transform_DomainToData_WhenNotNull_ShouldReturnData()
         {
             // Arrange
-            var domain = new UserDomain(Guid.NewGuid(), "Login", "Password", true);
+            var domain = new UserDomain(Guid.NewGuid(), "Username", "Email", true);
 
             // Act
             var data = _adapter.Transform(domain);
@@ -40,8 +40,9 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Adapters
             if (data == null) return;
 
             data.Id.Should().Be(domain.Id);
-            data.Login.Should().Be(domain.Login);
-            data.Password.Should().Be(domain.Password);
+            data.Username.Should().Be(domain.Username);
+            data.Email.Should().Be(domain.Email);
+            data.HashedPassword.Should().BeEmpty();
             data.IsAdmin.Should().Be(domain.IsAdmin);
         }
 
@@ -65,8 +66,8 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Adapters
             var data = new UserData()
             {
                 Id = Guid.NewGuid(),
-                Login = "Login",
-                Password = "Password",
+                Username = "Username",
+                HashedPassword = "Password",
                 IsAdmin = true
             };
 
@@ -78,8 +79,9 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Adapters
             if (domain == null) return;
 
             domain.Id.Should().Be(data.Id);
-            domain.Login.Should().Be(data.Login);
-            domain.Password.Should().Be(data.Password);
+            domain.Username.Should().Be(data.Username);
+            domain.Email.Should().Be(data.Email);
+            domain.HashedPassword.Should().BeEmpty();
             domain.IsAdmin.Should().Be(data.IsAdmin);
         }
     }

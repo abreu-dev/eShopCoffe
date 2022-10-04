@@ -22,7 +22,7 @@ namespace eShopCoffe.Identity.Application.Queries.Handlers
         {
             var source = _context.Query<UserData>();
 
-            source = source.OrderBy(p => p.Login);
+            source = source.OrderBy(p => p.Username);
 
             var totalItems = source.Count();
 
@@ -30,7 +30,8 @@ namespace eShopCoffe.Identity.Application.Queries.Handlers
                         select new UserDto()
                         {
                             Id = user.Id,
-                            Login = user.Login
+                            Username = user.Username,
+                            Email = user.Email
                         })
                         .Skip(query.Parameters.Page * query.Parameters.Size)
                         .Take(query.Parameters.Size)
