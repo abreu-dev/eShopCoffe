@@ -33,35 +33,50 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
                     Id = Guid.NewGuid(),
                     Name = "1 - Name",
                     Description = "1 - Description",
-                    QuantityAvailable = 1
+                    ImageUrl = "1 - ImageUrl",
+                    QuantityAvailable = 1,
+                    CurrencyCode = "1 - CurrencyCode",
+                    CurrencyValue = 10
                 },
                 new ProductData()
                 {
                     Id = Guid.NewGuid(),
                     Name = "5 - Name",
                     Description = "5 - Description",
-                    QuantityAvailable = 5
+                    ImageUrl = "5 - ImageUrl",
+                    QuantityAvailable = 5,
+                    CurrencyCode = "5 - CurrencyCode",
+                    CurrencyValue = 50
                 },
                 new ProductData()
                 {
                     Id = Guid.NewGuid(),
                     Name = "3 - Name",
                     Description = "3 - Description",
-                    QuantityAvailable = 3
+                    ImageUrl = "3 - ImageUrl",
+                    QuantityAvailable = 3,
+                    CurrencyCode = "3 - CurrencyCode",
+                    CurrencyValue = 30
                 },
                 new ProductData()
                 {
                     Id = Guid.NewGuid(),
                     Name = "2 - Name",
                     Description = "2 - Description",
-                    QuantityAvailable = 2
+                    ImageUrl = "2 - ImageUrl",
+                    QuantityAvailable = 2,
+                    CurrencyCode = "2 - CurrencyCode",
+                    CurrencyValue = 20
                 },
                 new ProductData()
                 {
                     Id = Guid.NewGuid(),
                     Name = "4 - Name",
                     Description = "4 - Description",
-                    QuantityAvailable = 4
+                    ImageUrl = "4 - ImageUrl",
+                    QuantityAvailable = 4,
+                    CurrencyCode = "4 - CurrencyCode",
+                    CurrencyValue = 40
                 },
             };
             _context.Query<ProductData>().Returns(productDataList.AsQueryable());
@@ -76,12 +91,18 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
             result.Data.ElementAt(0).Id.Should().Be(productDataList.ElementAt(0).Id);
             result.Data.ElementAt(0).Name.Should().Be(productDataList.ElementAt(0).Name);
             result.Data.ElementAt(0).Description.Should().Be(productDataList.ElementAt(0).Description);
+            result.Data.ElementAt(0).ImageUrl.Should().Be(productDataList.ElementAt(0).ImageUrl);
             result.Data.ElementAt(0).QuantityAvailable.Should().Be(productDataList.ElementAt(0).QuantityAvailable);
+            result.Data.ElementAt(0).CurrencyValue.Should().Be(productDataList.ElementAt(0).CurrencyValue);
+            result.Data.ElementAt(0).CurrencyCode.Should().Be(productDataList.ElementAt(0).CurrencyCode);
 
             result.Data.ElementAt(1).Id.Should().Be(productDataList.ElementAt(3).Id);
             result.Data.ElementAt(1).Name.Should().Be(productDataList.ElementAt(3).Name);
             result.Data.ElementAt(1).Description.Should().Be(productDataList.ElementAt(3).Description);
+            result.Data.ElementAt(1).ImageUrl.Should().Be(productDataList.ElementAt(3).ImageUrl);
             result.Data.ElementAt(1).QuantityAvailable.Should().Be(productDataList.ElementAt(3).QuantityAvailable);
+            result.Data.ElementAt(1).CurrencyValue.Should().Be(productDataList.ElementAt(3).CurrencyValue);
+            result.Data.ElementAt(1).CurrencyCode.Should().Be(productDataList.ElementAt(3).CurrencyCode);
         }
     }
 }

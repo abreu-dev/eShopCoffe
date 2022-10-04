@@ -25,9 +25,11 @@ namespace eShopCoffe.Identity.Application.Tests
             IdentityApplicationBootStrapper.ConfigureServices(_serviceCollection);
 
             // Assert
-            _serviceCollection.Received(4).Add(Arg.Any<ServiceDescriptor>());
+            _serviceCollection.Received(6).Add(Arg.Any<ServiceDescriptor>());
             ValidateService(typeof(IQueryHandler<PagedUsersQuery, IPagedList<UserDto>>), typeof(UserQueryHandler));
-            ValidateService(typeof(IAuthenticationService), typeof(AuthenticationService));
+            ValidateService(typeof(ISignInService), typeof(SignInService));
+            ValidateService(typeof(ISignUpService), typeof(SignUpService));
+            ValidateService(typeof(IPasswordResetService), typeof(PasswordResetService));
             ValidateService(typeof(ITokenService), typeof(TokenService));
             ValidateService(typeof(IHealthService), typeof(HealthService));
         }

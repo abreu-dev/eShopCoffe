@@ -9,15 +9,15 @@ namespace eShopCoffe.Core.Tests.Security
         {
             // Arrange
             var id = Guid.NewGuid();
-            var login = "Login";
+            var username = "Username";
             var isAdmin = true;
 
             // Act
-            var domainNotification = new AuthenticatedUser(id, login, isAdmin);
+            var domainNotification = new AuthenticatedUser(id, username, isAdmin);
 
             // Assert
             domainNotification.Id.Should().Be(id);
-            domainNotification.Login.Should().Be(login);
+            domainNotification.Username.Should().Be(username);
             domainNotification.IsAdmin.Should().Be(isAdmin);
         }
     }

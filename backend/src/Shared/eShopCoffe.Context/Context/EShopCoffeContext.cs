@@ -47,7 +47,7 @@ namespace eShopCoffe.Context.Context
 
         public void AddData<TEntity>(TEntity data) where TEntity : EntityData
         {
-            data.OnCreate(GetDate(), GetLogin());
+            data.OnCreate(GetDate(), GetUsername());
             Add(data);
         }
 
@@ -65,7 +65,7 @@ namespace eShopCoffe.Context.Context
         public void UpdateState<TEntity>(TEntity data) where TEntity : EntityData
         {
             var entry = GetDbEntry(data);
-            data.OnUpdate(GetDate(), GetLogin());
+            data.OnUpdate(GetDate(), GetUsername());
 
             if (entry != null)
             {
@@ -83,13 +83,13 @@ namespace eShopCoffe.Context.Context
         {
             foreach (var entry in ChangeTracker.Entries())
             {
-                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: { entry.State.ToString()}");
+                Console.WriteLine($"Entity: {entry.Entity.GetType().Name}, State: {entry.State}");
             }
 
             SaveChanges();
         }
 
-        private string GetLogin() => _sessionAccessor.User?.Login ?? EntityData.DefaultUser;
+        private string GetUsername() => _sessionAccessor.User?.Username ?? EntityData.DefaultUser;
         private DateTime GetDate() => DateTime.UtcNow;
 
         public static string CreateSqlServerConnectionString()
