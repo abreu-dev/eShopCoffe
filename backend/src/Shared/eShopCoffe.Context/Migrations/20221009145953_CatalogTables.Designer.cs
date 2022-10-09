@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using eShopCoffe.Context.Context;
@@ -11,9 +12,10 @@ using eShopCoffe.Context.Context;
 namespace eShopCoffe.Context.Migrations
 {
     [DbContext(typeof(EShopCoffeContext))]
-    partial class EShopCoffeContextModelSnapshot : ModelSnapshot
+    [Migration("20221009145953_CatalogTables")]
+    partial class CatalogTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,72 +23,6 @@ namespace eShopCoffe.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("eShopCoffe.Basket.Infra.Data.Entities.BasketData", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Basket", (string)null);
-                });
-
-            modelBuilder.Entity("eShopCoffe.Basket.Infra.Data.Entities.BasketItemData", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("BasketId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BasketId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("BasketItem", (string)null);
-                });
 
             modelBuilder.Entity("eShopCoffe.Catalog.Infra.Data.Entities.ProductData", b =>
                 {
@@ -182,41 +118,6 @@ namespace eShopCoffe.Context.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
-                });
-
-            modelBuilder.Entity("eShopCoffe.Basket.Infra.Data.Entities.BasketData", b =>
-                {
-                    b.HasOne("eShopCoffe.Identity.Infra.Data.Entities.UserData", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("eShopCoffe.Basket.Infra.Data.Entities.BasketItemData", b =>
-                {
-                    b.HasOne("eShopCoffe.Basket.Infra.Data.Entities.BasketData", "Basket")
-                        .WithMany("Items")
-                        .HasForeignKey("BasketId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("eShopCoffe.Catalog.Infra.Data.Entities.ProductData", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Basket");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("eShopCoffe.Basket.Infra.Data.Entities.BasketData", b =>
-                {
-                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }
