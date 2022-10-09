@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eShopCoffe.API.Controllers
 {
-    [IgnoreAuthenticationTokenFilter]
+    //[IgnoreAuthenticationTokenFilter]
     public class HealthController : BaseController
     {
         private readonly IHealthService _healthService;
