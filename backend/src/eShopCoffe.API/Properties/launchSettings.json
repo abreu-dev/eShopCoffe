@@ -5,13 +5,7 @@
       "commandName": "Project",
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASE_SERVER": "localhost",
-        "DATABASE_NAME": "eShopCoffe",
-        "DATABASE_USER": "sa",
-        "DATABASE_PASSWORD": "sa@123",
-        "JWT_SECRET": "fa35c0bf-4f74-40d4-b9aa-9e294f2b607e",
-        "JWT_EXPIRES": "24"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:5003",
       "dotnetRunMessages": true

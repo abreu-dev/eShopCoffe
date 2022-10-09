@@ -92,9 +92,13 @@ namespace eShopCoffe.Context.Context
         private string GetUsername() => _sessionAccessor.User?.Username ?? EntityData.DefaultUser;
         private DateTime GetDate() => DateTime.UtcNow;
 
-        public static string CreateSqlServerConnectionString()
+        public static string CreateConnectionString()
         {
-            return $"Server={Environment.GetEnvironmentVariable("DATABASE_SERVER")};Database={Environment.GetEnvironmentVariable("DATABASE_NAME")};User Id={Environment.GetEnvironmentVariable("DATABASE_USER")};Password={Environment.GetEnvironmentVariable("DATABASE_PASSWORD")};";
+            var connectionString = $"Host={Environment.GetEnvironmentVariable("DATABASE_SERVER")};" +
+                $"Database={Environment.GetEnvironmentVariable("DATABASE_NAME")};" +
+                $"User Id={Environment.GetEnvironmentVariable("DATABASE_USER")};" +
+                $"Password={Environment.GetEnvironmentVariable("DATABASE_PASSWORD")};";
+            return connectionString;
         }
     }
 }
