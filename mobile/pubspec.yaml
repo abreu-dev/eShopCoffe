@@ -44,6 +44,7 @@ dependencies:
   dio: ^4.0.6
   bloc: ^8.1.0
   intl: ^0.17.0
+  flutter_flavorizr: ^2.1.4
 
 dev_dependencies:
   flutter_test:
@@ -122,3 +123,29 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "environment"
+
+  flavors:
+    development:
+      app:
+        name: "eShopCoffe.Dev"
+
+      android:
+        applicationId: "com.gabrielabreu.eshopcoffe.dev"
+
+      ios:
+        bundleId: "com.gabrielabreu.eshopcoffe.dev"
+
+    production:
+      app:
+        name: "eShopCoffe"
+
+      android:
+        applicationId: "com.gabrielabreu.eshopcoffe"
+
+      ios:
+        bundleId: "com.gabrielabreu.eshopcoffe"

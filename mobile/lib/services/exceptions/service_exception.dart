@@ -1,3 +1,5 @@
+import 'package:eshopcoffe/flavors.dart';
+
 class ServiceException implements Exception {
   final int? statusCode;
   final String message;
@@ -9,6 +11,6 @@ class ServiceException implements Exception {
 
   @override
   String toString() {
-    return "Request to API failed with status code '$statusCode'";
+    return "Request to API ${F.apiUrl} failed with status code '$statusCode'";
   }
 }
