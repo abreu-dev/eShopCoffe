@@ -8,11 +8,12 @@ import 'package:eshopcoffe/utils/local_storage.dart';
 import 'package:eshopcoffe/services/exceptions/bad_request_exception.dart';
 import 'package:eshopcoffe/services/exceptions/models/bad_request_response_model.dart';
 import 'package:eshopcoffe/services/exceptions/service_exception.dart';
+import 'package:eshopcoffe/flavors.dart';
 
 class AppDio with DioMixin implements Dio {
   AppDio._([BaseOptions? options]) {
     options = BaseOptions(
-        baseUrl: 'http://10.0.2.2:5003',
+        baseUrl: F.apiUrl,
         contentType: 'application/json',
         connectTimeout: 5000,
         sendTimeout: 5000,
