@@ -34,4 +34,34 @@ class SessionService {
       throw AppDio.getTreatedDioError(error);
     }
   }
+
+  Future<Response> requestPasswordReset(String username) async {
+    final Map<String, String> body = {
+      'username': username
+    };
+
+    try {
+      Response response = await _dio.post('/identity/password-reset:request', data: body);
+      return response;
+    }
+    on DioError catch (error) {
+      throw AppDio.getTreatedDioError(error);
+    }
+  }
+
+  Future<Response> confirmPasswordReset(String username, String newPassword, String passwordResetCode) async {
+    final Map<String, String> body = {
+      'username': username,
+      'newPassword': newPassword,
+      'passwordResetCode': passwordResetCode
+    };
+
+    try {
+      Response response = await _dio.post('/identity/password-reset:confirm', data: body);
+      return response;
+    }
+    on DioError catch (error) {
+      throw AppDio.getTreatedDioError(error);
+    }
+  }
 }

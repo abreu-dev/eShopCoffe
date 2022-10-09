@@ -4,7 +4,7 @@ class SnackBarHelper {
   static void success(BuildContext context, String message) {
     var snackBar = SnackBar(
       content: Text(message),
-      backgroundColor: Colors.green,
+      backgroundColor: const Color(0xFF74AA50),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
