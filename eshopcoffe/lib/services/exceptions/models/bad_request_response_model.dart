@@ -6,9 +6,11 @@ class BadRequestResponseModel {
   BadRequestResponseModel(this.instance, this.traceId, this.errors);
 
   BadRequestResponseModel.fromJson(Map<String, dynamic> json):
-        instance = json['instance'],
-        traceId = json['traceId'],
-        errors = List<BadRequestResponseErrorModel>.from(json['errors'].map((error) => BadRequestResponseErrorModel.fromJson(error)));
+    instance = json['instance'],
+    traceId = json['traceId'],
+    errors = json['errors'] != '[]' ?
+      List<BadRequestResponseErrorModel>.from(json['errors'].map((error) =>
+          BadRequestResponseErrorModel.fromJson(error))) : <BadRequestResponseErrorModel>[];
 
   @override
   String toString() {
@@ -23,8 +25,8 @@ class BadRequestResponseErrorModel {
   BadRequestResponseErrorModel(this.type, this.error);
 
   BadRequestResponseErrorModel.fromJson(Map<String, dynamic> json):
-        type = json['type'],
-        error = json['error'];
+    type = json['type'],
+    error = json['error'];
 
   @override
   String toString() {

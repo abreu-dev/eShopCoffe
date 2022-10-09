@@ -1,4 +1,4 @@
-import '../../models/product/product_model.dart';
+import 'package:eshopcoffe/models/product/product_model.dart';
 
 class ProductListWrapperModel {
   List<ProductModel> products;

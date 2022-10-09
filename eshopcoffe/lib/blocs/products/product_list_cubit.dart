@@ -1,7 +1,6 @@
-import 'package:eshopcoffe/blocs/products/product_list_wrapper_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../models/product_paged_list/product_paged_list_model.dart';
+import 'package:eshopcoffe/blocs/products/product_list_wrapper_model.dart';
+import 'package:eshopcoffe/models/product_paged_list/product_paged_list_model.dart';
 
 class CatalogCubit extends Cubit<ProductListWrapperModel> {
   CatalogCubit(): super(ProductListWrapperModel.initial());

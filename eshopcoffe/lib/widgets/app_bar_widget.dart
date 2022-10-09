@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:eshopcoffe/components/sign_in_page.dart';
 import 'package:eshopcoffe/services/health_service.dart';
 import 'package:eshopcoffe/utils/snack_bar_helper.dart';
 
@@ -21,9 +20,8 @@ AppBar appBarWidget(context) {
     centerTitle: true,
     backgroundColor: Colors.white,
     title: Image.asset(
-      'assets/images/ic_app_icon.png',
-      width: 80,
-      height: 40,
+      'assets/images/app_icon_1.png',
+      height: 50,
     ),
     iconTheme: const IconThemeData(color: Color(0xFF323232)),
     actions: <Widget>[

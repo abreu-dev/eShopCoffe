@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
 import 'package:eshopcoffe/main.dart';
 import 'package:eshopcoffe/models/authenticated_user/authenticated_user_model.dart';
 import 'package:eshopcoffe/services/session_service.dart';
 import 'package:eshopcoffe/utils/snack_bar_helper.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:eshopcoffe/components/sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -19,7 +18,7 @@ class SignInPage extends StatefulWidget {
 class SignInPageState extends State<SignInPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final SessionService _sessionService = SessionService();
+  var _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +30,12 @@ class SignInPageState extends State<SignInPage> {
 
   Widget buildView() {
     onSignInButtonPressed() async {
-      await _sessionService.login(_usernameController.text, _passwordController.text).then((response) async {
+      await SessionService().signIn(
+          _usernameController.text,
+          _passwordController.text)
+      .then((response) async {
         var model = AuthenticatedUserModel.fromJson(response.data);
-        context.read<AuthenticationCubit>().login(model);
+        context.read<AuthenticationCubit>().signIn(model);
         Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
       },
       onError: (error) {
@@ -73,7 +75,7 @@ class SignInPageState extends State<SignInPage> {
                   width: 130,
                   height: 130,
                   alignment: Alignment.center,
-                  child: Image.asset("assets/images/ic_app_icon.png"),
+                  child: Image.asset("assets/images/app_icon_1.png"),
                 ),
                 const SizedBox(
                   height: 15,
@@ -108,6 +110,7 @@ class SignInPageState extends State<SignInPage> {
                 ),
                 TextField(
                   controller: _passwordController,
+                  obscureText: !_passwordVisible,
                   showCursor: true,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(
@@ -123,10 +126,17 @@ class SignInPageState extends State<SignInPage> {
                       color: const Color(0xFF666666),
                       size: defaultIconSize,
                     ),
-                    suffixIcon: Icon(
-                      Icons.remove_red_eye,
-                      color: const Color(0xFF666666),
-                      size: defaultIconSize,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                        color: const Color(0xFF666666),
+                        size: defaultIconSize,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _passwordVisible = !_passwordVisible;
+                        });
+                      }
                     ),
                     fillColor: const Color(0xFFF2F3F5),
                     hintStyle: TextStyle(
@@ -164,10 +174,10 @@ class SignInPageState extends State<SignInPage> {
                   child: MaterialButton(
                     padding: const EdgeInsets.all(17.0),
                     onPressed: () async => onSignInButtonPressed(),
-                    color: const Color(0xFFBC1F26),
+                    color: const Color(0xFF74AA50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
-                        side: const BorderSide(color: Color(0xFFBC1F26))
+                        side: const BorderSide(color: Color(0xFF74AA50))
                     ),
                     child: const Text(
                       "Sign In",
@@ -207,13 +217,13 @@ class SignInPageState extends State<SignInPage> {
                     onTap: () => {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SingUpPage()),
+                        MaterialPageRoute(builder: (context) => const SignUpPage()),
                       )
                     },
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
-                        color: const Color(0xFFAC252B),
+                        color: const Color(0xFF74AA50),
                         fontFamily: defaultFontFamily,
                         fontSize: defaultFontSize,
                         fontStyle: FontStyle.normal,

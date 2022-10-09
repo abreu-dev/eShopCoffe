@@ -1,4 +1,4 @@
-import 'package:eshopcoffe/models/bad_request_response_model.dart';
+import 'package:eshopcoffe/services/exceptions/models/bad_request_response_model.dart';
 
 class BadRequestException implements Exception {
   final BadRequestResponseModel model;

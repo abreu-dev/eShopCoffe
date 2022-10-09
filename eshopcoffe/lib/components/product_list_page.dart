@@ -18,7 +18,7 @@ class ProductListPage extends StatefulWidget {
 }
 
 class ProductListPageState extends State<ProductListPage> {
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   void _scrollListener() async {
     if (_scrollController.offset >=
@@ -89,7 +89,7 @@ Widget createListView(BuildContext context, List<ProductModel> products, ScrollC
       childAspectRatio: 8.0 / 12.0,
       children: List<Widget>.generate(products.length, (index) {
         return GridTile(
-            child: ProductGridWidget(products[index].name, products[index].imageUrl, "", products[index].price)
+            child: ProductGridWidget(products[index])
         );
       }),
     )

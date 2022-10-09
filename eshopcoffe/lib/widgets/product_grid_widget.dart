@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:eshopcoffe/models/product/product_model.dart';
 
 class ProductGridWidget extends StatelessWidget {
-  final String name;
-  final String imageUrl;
-  final String slug;
-  final String price;
+  final ProductModel product;
 
-  const ProductGridWidget(this.name, this.imageUrl, this.slug, this.price, {super.key});
+  const ProductGridWidget(this.product, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    var isAvailable = product.isAvailable();
+
     return InkWell(
       onTap: () { },
       child: Container(
-        padding: EdgeInsets.only(top: 5),
+        padding: const EdgeInsets.only(top: 5),
         child: Card(
             color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: const BorderRadius.all(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
                 Radius.circular(8.0),
               ),
             ),
@@ -26,17 +26,17 @@ class ProductGridWidget extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Image.network(
-                    imageUrl,
+                    product.imageUrl,
                     width: 150,
                     height: 150,
                   ),
                   Container(
                     alignment: Alignment.center,
-                    padding: EdgeInsets.only(left: 10, right: 10, top: 15),
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
                     child: Text(
-                        (name.length <= 40 ? name : name.substring(0, 40)),
+                        (product.name.length <= 40 ? product.name : product.name.substring(0, 40)),
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Color(0xFF444444),
                             fontFamily: 'Roboto-Light.ttf',
                             fontSize: 15,
@@ -44,12 +44,12 @@ class ProductGridWidget extends StatelessWidget {
                   ),
                   Container(
                     alignment: Alignment.bottomLeft,
-                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Text("${(price != null) ? price : 'Unavailable'}",
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Text((isAvailable) ? product.currencyText() : 'Unavailable',
                         style: TextStyle(
-                            color: (price != null)
-                                ? Color(0xFFf67426)
-                                : Color(0xFF0dc2cd),
+                            color: (isAvailable)
+                                ? const Color(0xFF77AF4D)
+                                : const Color(0xFF454A3E),
                             fontFamily: 'Roboto-Light.ttf',
                             fontSize: 20,
                             fontWeight: FontWeight.w500)),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:eshopcoffe/components/product_list_page.dart';
 import 'package:eshopcoffe/widgets/search_widget.dart';
-
-import '../widgets/circular_progress_widget.dart';
+import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

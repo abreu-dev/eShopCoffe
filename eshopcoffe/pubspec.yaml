@@ -43,6 +43,7 @@ dependencies:
   flutter_secure_storage: ^6.0.0
   dio: ^4.0.6
   bloc: ^8.1.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -71,17 +72,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/ic_add_cart.png
-    - assets/images/ic_discount.png
-    - assets/images/promotion_one.png
-    - assets/images/promotion_two.png
-    - assets/images/promotion__one.png
-    - assets/images/promotion_three.png
-    - assets/images/ic_app_icon.png
-    - assets/images/ic_category_image.png
-    - assets/images/empty_shopping_cart_image.png
     - assets/images/empty_shopping_cart.png
-    - assets/images/empty_wish_list.png
+    - assets/images/app_icon_1.png
+    - assets/images/app_thumb_1.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

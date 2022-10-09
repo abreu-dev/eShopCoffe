@@ -24,8 +24,9 @@ mixin _$ProductModel {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
-  String get quantityAvailable => throw _privateConstructorUsedError;
-  String get price => throw _privateConstructorUsedError;
+  int get quantityAvailable => throw _privateConstructorUsedError;
+  String get currencyCode => throw _privateConstructorUsedError;
+  double get currencyValue => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,8 +44,9 @@ abstract class $ProductModelCopyWith<$Res> {
       String name,
       String description,
       String imageUrl,
-      String quantityAvailable,
-      String price});
+      int quantityAvailable,
+      String currencyCode,
+      double currencyValue});
 }
 
 /// @nodoc
@@ -62,7 +64,8 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? quantityAvailable = freezed,
-    Object? price = freezed,
+    Object? currencyCode = freezed,
+    Object? currencyValue = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -84,11 +87,15 @@ class _$ProductModelCopyWithImpl<$Res> implements $ProductModelCopyWith<$Res> {
       quantityAvailable: quantityAvailable == freezed
           ? _value.quantityAvailable
           : quantityAvailable // ignore: cast_nullable_to_non_nullable
+              as int,
+      currencyCode: currencyCode == freezed
+          ? _value.currencyCode
+          : currencyCode // ignore: cast_nullable_to_non_nullable
               as String,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String,
+      currencyValue: currencyValue == freezed
+          ? _value.currencyValue
+          : currencyValue // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -105,8 +112,9 @@ abstract class _$$_ProductModelCopyWith<$Res>
       String name,
       String description,
       String imageUrl,
-      String quantityAvailable,
-      String price});
+      int quantityAvailable,
+      String currencyCode,
+      double currencyValue});
 }
 
 /// @nodoc
@@ -127,7 +135,8 @@ class __$$_ProductModelCopyWithImpl<$Res>
     Object? description = freezed,
     Object? imageUrl = freezed,
     Object? quantityAvailable = freezed,
-    Object? price = freezed,
+    Object? currencyCode = freezed,
+    Object? currencyValue = freezed,
   }) {
     return _then(_$_ProductModel(
       id: id == freezed
@@ -149,25 +158,31 @@ class __$$_ProductModelCopyWithImpl<$Res>
       quantityAvailable: quantityAvailable == freezed
           ? _value.quantityAvailable
           : quantityAvailable // ignore: cast_nullable_to_non_nullable
+              as int,
+      currencyCode: currencyCode == freezed
+          ? _value.currencyCode
+          : currencyCode // ignore: cast_nullable_to_non_nullable
               as String,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as String,
+      currencyValue: currencyValue == freezed
+          ? _value.currencyValue
+          : currencyValue // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProductModel implements _ProductModel {
+class _$_ProductModel extends _ProductModel {
   _$_ProductModel(
       {required this.id,
       required this.name,
       required this.description,
       required this.imageUrl,
       required this.quantityAvailable,
-      required this.price});
+      required this.currencyCode,
+      required this.currencyValue})
+      : super._();
 
   factory _$_ProductModel.fromJson(Map<String, dynamic> json) =>
       _$$_ProductModelFromJson(json);
@@ -181,13 +196,15 @@ class _$_ProductModel implements _ProductModel {
   @override
   final String imageUrl;
   @override
-  final String quantityAvailable;
+  final int quantityAvailable;
   @override
-  final String price;
+  final String currencyCode;
+  @override
+  final double currencyValue;
 
   @override
   String toString() {
-    return 'ProductModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, quantityAvailable: $quantityAvailable, price: $price)';
+    return 'ProductModel(id: $id, name: $name, description: $description, imageUrl: $imageUrl, quantityAvailable: $quantityAvailable, currencyCode: $currencyCode, currencyValue: $currencyValue)';
   }
 
   @override
@@ -202,7 +219,10 @@ class _$_ProductModel implements _ProductModel {
             const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
             const DeepCollectionEquality()
                 .equals(other.quantityAvailable, quantityAvailable) &&
-            const DeepCollectionEquality().equals(other.price, price));
+            const DeepCollectionEquality()
+                .equals(other.currencyCode, currencyCode) &&
+            const DeepCollectionEquality()
+                .equals(other.currencyValue, currencyValue));
   }
 
   @JsonKey(ignore: true)
@@ -214,7 +234,8 @@ class _$_ProductModel implements _ProductModel {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(imageUrl),
       const DeepCollectionEquality().hash(quantityAvailable),
-      const DeepCollectionEquality().hash(price));
+      const DeepCollectionEquality().hash(currencyCode),
+      const DeepCollectionEquality().hash(currencyValue));
 
   @JsonKey(ignore: true)
   @override
@@ -229,14 +250,16 @@ class _$_ProductModel implements _ProductModel {
   }
 }
 
-abstract class _ProductModel implements ProductModel {
+abstract class _ProductModel extends ProductModel {
   factory _ProductModel(
       {required final String id,
       required final String name,
       required final String description,
       required final String imageUrl,
-      required final String quantityAvailable,
-      required final String price}) = _$_ProductModel;
+      required final int quantityAvailable,
+      required final String currencyCode,
+      required final double currencyValue}) = _$_ProductModel;
+  _ProductModel._() : super._();
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$_ProductModel.fromJson;
@@ -250,9 +273,11 @@ abstract class _ProductModel implements ProductModel {
   @override
   String get imageUrl;
   @override
-  String get quantityAvailable;
+  int get quantityAvailable;
   @override
-  String get price;
+  String get currencyCode;
+  @override
+  double get currencyValue;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelCopyWith<_$_ProductModel> get copyWith =>
