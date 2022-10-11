@@ -62,7 +62,7 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpPost]
-        [Route("password-reset:request")]
+        [Route("password-reset.request")]
         public IActionResult RequestPasswordReset([FromBody] RequestPasswordResetDto requestPasswordResetDto)
         {
             _passwordResetService.RequestPasswordReset(requestPasswordResetDto.Username);
@@ -70,7 +70,7 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpPost]
-        [Route("password-reset:confirm")]
+        [Route("password-reset.confirm")]
         public IActionResult ConfirmPasswordReset([FromBody] ConfirmPasswordResetDto confirmPasswordResetDto)
         {
             var result = _passwordResetService.ConfirmPasswordReset(
