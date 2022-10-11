@@ -10,19 +10,18 @@ class F {
 
   static String get title {
     switch (appFlavor) {
-      case Flavor.DEVELOPMENT:
-        return 'eShopCoffe.Dev';
       case Flavor.PRODUCTION:
         return 'eShopCoffe';
+      case Flavor.DEVELOPMENT:
       default:
-        return 'title';
+        return 'eShopCoffe.Dev';
     }
   }
 
   static String get apiUrl {
     switch (appFlavor) {
       case Flavor.PRODUCTION:
-        return 'http://20.226.216.12';
+        return 'http://191.253.111.175:8881';
       case Flavor.DEVELOPMENT:
       default:
         return 'http://10.0.2.2:5003';

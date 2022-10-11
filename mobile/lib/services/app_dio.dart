@@ -24,7 +24,7 @@ class AppDio with DioMixin implements Dio {
 
     if (kDebugMode) {
       // Local Log
-      //interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
+      interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
     }
 
     httpClientAdapter = DefaultHttpClientAdapter();

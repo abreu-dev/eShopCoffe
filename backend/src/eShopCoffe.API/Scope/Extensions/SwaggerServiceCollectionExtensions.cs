@@ -11,7 +11,7 @@ namespace eShopCoffe.API.Scope.Extensions
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Identity"
+                    Title = "eShopCoffe"
                 });
 
                 var folder = AppContext.BaseDirectory;
