@@ -1,19 +1,23 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: "eshopcoffe-15a9"
+  name: "eshopcoffe-prod"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "eshopcoffe-15a9"
+      app: "eshopcoffe-prod"
   template:
     metadata:
       labels:
-        app: "eshopcoffe-15a9"
+        app: "eshopcoffe-prod"
     spec:
       containers:
-        - name: "eshopcoffe-15a9"
-          image: "eshopcoffe.azurecr.io/eshopcoffe"
+        - name: "eshopcoffe-prod"
+          image: "abreuzooka/eshopcoffe:latest"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
           ports:
           - containerPort: 80
