@@ -6,14 +6,14 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: "eshopcoffe-prod"
+      app: eshopcoffe-prod
   template:
     metadata:
       labels:
-        app: "eshopcoffe-prod"
+        app: eshopcoffe-prod
     spec:
       containers:
-        - name: "eshopcoffe-prod"
+        - name: eshopcoffe-prod
           image: "abreuzooka/eshopcoffe:latest"
           resources:
             limits:

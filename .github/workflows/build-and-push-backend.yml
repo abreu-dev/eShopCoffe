@@ -1,21 +1,6 @@
 name: Backend - Build & Push
 
-on:
-  push:
-    branches:
-      - main
-
-env:
-  DATABASE_SERVER: ${{ secrets.DATABASE_SERVER }}
-  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-  DATABASE_USER: ${{ secrets.DATABASE_USER }}
-  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-  JWT_SECRET: ${{ secrets.JWT_SECRET }}
-  JWT_EXPIRES: ${{ secrets.JWT_EXPIRES }}
-  EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
-  EMAIL_PORT: ${{ secrets.EMAIL_PORT }}
-  EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
-  EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+on: workflow_dispatch
 
 jobs:
   build-container:
@@ -32,17 +17,18 @@ jobs:
       - name: Build and push to Docker Hub
         uses: docker/build-push-action@v2
         with:
-          context: backend/Dockerfile
+          context: .
+          file: backend/Dockerfile
           push: true
           tags: abreuzooka/eshopcoffe:latest, abreuzooka/eshopcoffe:${{ github.run_number }}
           build-args: |
-            DATABASE_SERVER=$DATABASE_SERVER
-            DATABASE_NAME=$DATABASE_NAME
-            DATABASE_USER=$DATABASE_USER
-            DATABASE_PASSWORD=$DATABASE_PASSWORD
-            JWT_SECRET=$JWT_SECRET
-            JWT_EXPIRES=$JWT_EXPIRES
-            EMAIL_HOST=$EMAIL_HOST
-            EMAIL_PORT=$EMAIL_PORT
-            EMAIL_ADDRESS=$EMAIL_ADDRESS
-            EMAIL_PASSWORD=$EMAIL_PASSWORD
+            DATABASE_SERVER=${{ secrets.DATABASE_SERVER }}
+            DATABASE_NAME=${{ secrets.DATABASE_NAME }}
+            DATABASE_USER=${{ secrets.DATABASE_USER }}
+            DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            JWT_EXPIRES=${{ secrets.JWT_EXPIRES }}
+            EMAIL_HOST=${{ secrets.EMAIL_HOST }}
+            EMAIL_PORT=${{ secrets.EMAIL_PORT }}
+            EMAIL_ADDRESS=${{ secrets.EMAIL_ADDRESS }}
+            EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
