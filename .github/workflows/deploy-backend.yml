@@ -31,13 +31,30 @@ jobs:
         username: ${{ secrets.acr_eshopcoffe_username }}
         password: ${{ secrets.acr_eshopcoffe_password }}
     
-    - name: Build and push image to ACR
+    - name: Build image
       id: build-image
       run: |
-        docker build --build-arg DATABASE_SERVER=$DATABASE_SERVER --build-arg DATABASE_NAME=$DATABASE_NAME --build-arg DATABASE_USER=$DATABASE_USER --build-arg DATABASE_PASSWORD=$DATABASE_PASSWORD --build-arg JWT_SECRET=$JWT_SECRET --build-arg JWT_EXPIRES=$JWT_EXPIRES --build-arg EMAIL_HOST=$EMAIL_HOST --build-arg EMAIL_PORT=$EMAIL_PORT --build-arg EMAIL_ADDRESS=$EMAIL_ADDRESS --build-arg EMAIL_PASSWORD=$EMAIL_PASSWORD
- "$GITHUB_WORKSPACE/" -f  "backend/Dockerfile" -t eshopcoffe.azurecr.io/eshopcoffe:${{ github.sha }} --label dockerfile-path=src/eShopCoffe.API/Dockerfile
+        docker build \
+        --build-arg DATABASE_SERVER=$DATABASE_SERVER \
+        --build-arg DATABASE_NAME=$DATABASE_NAME \
+        --build-arg DATABASE_USER=$DATABASE_USER \
+        --build-arg DATABASE_PASSWORD=$DATABASE_PASSWORD \
+        --build-arg JWT_SECRET=$JWT_SECRET \
+        --build-arg JWT_EXPIRES=$JWT_EXPIRES \
+        --build-arg EMAIL_HOST=$EMAIL_HOST \
+        --build-arg EMAIL_PORT=$EMAIL_PORT \
+        --build-arg EMAIL_ADDRESS=$EMAIL_ADDRESS \
+        --build-arg EMAIL_PASSWORD=$EMAIL_PASSWORD \
+        "$GITHUB_WORKSPACE/" \
+        -f "backend/Dockerfile" \
+        -t eshopcoffe.azurecr.io/eshopcoffe:${{ github.sha }} \
+        --label dockerfile-path=src/eShopCoffe.API/Dockerfile
+
+    - name: Push image to ACR
+      id: push-image
+      run: |
         docker push eshopcoffe.azurecr.io/eshopcoffe:${{ github.sha }}
-    
+        
     - uses: azure/k8s-set-context@v1
       with:
          kubeconfig: ${{ secrets.aks_eshopcoffe_kubeConfig }}
