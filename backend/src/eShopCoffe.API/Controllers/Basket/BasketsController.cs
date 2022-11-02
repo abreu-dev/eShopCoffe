@@ -27,7 +27,7 @@ namespace eShopCoffe.API.Controllers.Basket
         [Route("baskets")]
         public async Task<IActionResult> Post([FromBody] BasketItemCreationDto creationDto)
         {
-            var command = new AddOrUpdateBasketItemCommand(creationDto.ProductId, creationDto.Amount);
+            var command = new AddOrUpdateBasketItemCommand(creationDto.ProductId, creationDto.Amount, creationDto.Increase);
             await _bus.Command(command);
             return NoContent();
         }

@@ -1,5 +1,10 @@
+import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
+import 'package:eshopcoffe/screens/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:eshopcoffe/models/product/product_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../utils/snack_bar_helper.dart';
 
 class ProductGridWidget extends StatelessWidget {
   final ProductModel product;
@@ -11,7 +16,16 @@ class ProductGridWidget extends StatelessWidget {
     var isAvailable = product.isAvailable();
 
     return InkWell(
-      onTap: () { },
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProductDetailScreen(
+                    product.id,
+                    isAvailable)
+            )
+        );
+      },
       child: Container(
         padding: const EdgeInsets.only(top: 5),
         child: Card(

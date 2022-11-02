@@ -20,7 +20,7 @@ namespace eShopCoffe.Basket.Domain.Entities
             Items = items;
         }
 
-        public void AddOrUpdateItem(Guid productId, int amount)
+        public void AddOrUpdateItem(Guid productId, int amount, bool increase = false)
         {
             var item = FindItemByProductId(productId);
 
@@ -31,7 +31,7 @@ namespace eShopCoffe.Basket.Domain.Entities
             }
             else
             {
-                item.SetAmount(amount);
+                item.SetAmount(increase ? item.Amount + amount : amount);
             }
         }
 

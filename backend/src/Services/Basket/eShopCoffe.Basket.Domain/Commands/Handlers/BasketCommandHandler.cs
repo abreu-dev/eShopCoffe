@@ -45,7 +45,7 @@ namespace eShopCoffe.Basket.Domain.Commands.Handlers
             }
             else
             {
-                existingBasket.AddOrUpdateItem(command.ProductId, command.Amount);
+                existingBasket.AddOrUpdateItem(command.ProductId, command.Amount, command.Increase);
                 _basketRepository.Update(existingBasket);
             }
 

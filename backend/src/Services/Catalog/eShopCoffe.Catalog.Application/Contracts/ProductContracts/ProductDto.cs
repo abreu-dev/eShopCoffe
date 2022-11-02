@@ -1,6 +1,8 @@
-﻿namespace eShopCoffe.Catalog.Application.Contracts.ProductContracts
+﻿using eShopCoffe.Core.Messaging.Requests.Interfaces;
+
+namespace eShopCoffe.Catalog.Application.Contracts.ProductContracts
 {
-    public class ProductDto
+    public class ProductDto : IQueryResult
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
