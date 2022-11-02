@@ -1,15 +1,12 @@
-import 'package:eshopcoffe/services/baskets_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eshopcoffe/models/product/product_model.dart';
+import 'package:eshopcoffe/services/baskets_service.dart';
 import 'package:eshopcoffe/services/products_service.dart';
 import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
 import 'package:eshopcoffe/widgets/app_bar_widget.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../blocs/authentication/authentication_cubit.dart';
-import '../components/sign_in_page.dart';
-import '../utils/snack_bar_helper.dart';
-import '../widgets/not_found_widget.dart';
+import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
+import 'package:eshopcoffe/utils/snack_bar_helper.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final String productId;
@@ -58,7 +55,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    onAddToCartButtonPressed() async {
+    onAddToBasketButtonPressed() async {
       var needToSignIn = context.read<AuthenticationCubit>().state == null;
       if (needToSignIn) {
         SnackBarHelper.failure(context, 'Please, sign in first.');
@@ -66,7 +63,7 @@ class BottomNavBar extends StatelessWidget {
       }
 
       await BasketsService()
-        .addToCart(productId, 1)
+        .addToBasket(productId, 1)
         .then((response) async
       {
         SnackBarHelper.success(context, 'Product was successfully added to your cart.');
@@ -98,7 +95,7 @@ class BottomNavBar extends StatelessWidget {
                     side: BorderSide(color: Color(0xFFfef2f2))
                 )
               ),
-              onPressed: () async => onAddToCartButtonPressed(),
+              onPressed: () async => onAddToBasketButtonPressed(),
               child: Text(
                 'Add to cart'.toUpperCase(),
                 style: const TextStyle(

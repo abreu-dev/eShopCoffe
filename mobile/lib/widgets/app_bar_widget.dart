@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:eshopcoffe/services/health_service.dart';
-import 'package:eshopcoffe/utils/snack_bar_helper.dart';
+import 'package:eshopcoffe/screens/basket_screen.dart';
 
-AppBar appBarWidget(context) {
-  final HealthService healthService = HealthService();
+AppBar appBarWidget(context, {showBasket = true}) {
 
+  print(showBasket);
   onHealthButtonPressed() async {
-    await healthService.health().then((response) async {
-      SnackBarHelper.success(context, 'Health OK! ${response.statusCode}');
-    },
-    onError: (error) {
-      SnackBarHelper.failure(context, 'Health NOK! ${error.toString()}');
-    });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const BasketScreen()
+        )
+    );
+  }
+
+  var actions = <Widget>[];
+
+  if (showBasket) {
+    actions.add(
+      IconButton(
+        onPressed: onHealthButtonPressed,
+        icon: const Icon(FontAwesomeIcons.basketShopping),
+        color: const Color(0xFF323232),
+      )
+    );
   }
 
   return AppBar(
@@ -24,12 +35,6 @@ AppBar appBarWidget(context) {
       height: 50,
     ),
     iconTheme: const IconThemeData(color: Color(0xFF323232)),
-    actions: <Widget>[
-      IconButton(
-        onPressed: onHealthButtonPressed,
-        icon: const Icon(FontAwesomeIcons.heartPulse),
-        color: const Color(0xFF323232),
-      )
-    ],
+    actions: actions
   );
 }
