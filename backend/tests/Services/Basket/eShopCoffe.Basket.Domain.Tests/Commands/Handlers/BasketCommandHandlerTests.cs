@@ -12,6 +12,7 @@ namespace eShopCoffe.Basket.Domain.Tests.Commands.Handlers
     {
         private static readonly Guid ValidProductId = Guid.NewGuid();
         private static readonly int ValidAmount = 1;
+        private static readonly bool ValidIncrease = true;
 
         private readonly IBus _bus;
         private readonly IBasketRepository _basketRepository;
@@ -30,7 +31,7 @@ namespace eShopCoffe.Basket.Domain.Tests.Commands.Handlers
         public void Handle_AddOrUpdateBasketItemCommand_WhenValidCommandAndBasketNotExists_ShouldAdd()
         {
             // Arrange
-            var command = new AddOrUpdateBasketItemCommand(ValidProductId, ValidAmount);
+            var command = new AddOrUpdateBasketItemCommand(ValidProductId, ValidAmount, ValidIncrease);
 
             var userId = Guid.NewGuid();
             _sessionAccessor.UserId.Returns(userId);
@@ -54,7 +55,7 @@ namespace eShopCoffe.Basket.Domain.Tests.Commands.Handlers
         public void Handle_AddOrUpdateBasketItemCommand_WhenValidCommandAndBasketExists_ShouldUpdate()
         {
             // Arrange
-            var command = new AddOrUpdateBasketItemCommand(ValidProductId, ValidAmount);
+            var command = new AddOrUpdateBasketItemCommand(ValidProductId, ValidAmount, ValidIncrease);
 
             var userId = Guid.NewGuid();
             _sessionAccessor.UserId.Returns(userId);
@@ -79,7 +80,7 @@ namespace eShopCoffe.Basket.Domain.Tests.Commands.Handlers
         public void Handle_AddOrUpdateBasketItemCommand_WhenInvalidCommand_ShouldNotificate()
         {
             // Arrange
-            var command = new AddOrUpdateBasketItemCommand(Guid.Empty, ValidAmount);
+            var command = new AddOrUpdateBasketItemCommand(Guid.Empty, ValidAmount, ValidIncrease);
 
             // Act
             _basketCommandHandler.Handle(command).Wait();
