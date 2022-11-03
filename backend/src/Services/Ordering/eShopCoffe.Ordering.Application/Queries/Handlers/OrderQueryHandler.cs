@@ -59,7 +59,7 @@ namespace eShopCoffe.Ordering.Application.Queries.Handlers
                             Items = order.Items.Select(item => new OrderItemDto()
                             {
                                 Name = item.Product.Name,
-                                ImageUrl= item.Product.ImageUrl,
+                                ImageUrl = item.Product.ImageUrl,
                                 Amount = item.Amount,
                                 CurrencyCode = item.CurrencyCode,
                                 CurrencyValue = item.CurrencyValue

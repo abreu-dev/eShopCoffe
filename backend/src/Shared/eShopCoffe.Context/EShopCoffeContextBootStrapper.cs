@@ -14,7 +14,7 @@ namespace eShopCoffe.Context
 
         private static void Context(IServiceCollection services)
         {
-            services.AddDbContext<EShopCoffeContext>(options => 
+            services.AddDbContext<EShopCoffeContext>(options =>
                 options.UseNpgsql(EShopCoffeContext.CreateConnectionString()));
 
             services.AddScoped<IEShopCoffeContext, EShopCoffeContext>();

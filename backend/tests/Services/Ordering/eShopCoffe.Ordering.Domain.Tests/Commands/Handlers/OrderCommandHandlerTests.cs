@@ -1,8 +1,4 @@
-﻿using eShopCoffe.Basket.Domain.Commands.BasketCommands;
-using eShopCoffe.Basket.Domain.Commands.Handlers;
-using eShopCoffe.Basket.Domain.Entities;
-using eShopCoffe.Basket.Domain.Events.BasketEvents;
-using eShopCoffe.Basket.Domain.Repositories;
+﻿using eShopCoffe.Basket.Domain.Events.BasketEvents;
 using eShopCoffe.Catalog.Domain.Entities;
 using eShopCoffe.Catalog.Domain.Repositories;
 using eShopCoffe.Core.Domain.Entities;

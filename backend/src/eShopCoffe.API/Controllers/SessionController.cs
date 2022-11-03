@@ -1,5 +1,4 @@
-﻿using eShopCoffe.API.Controllers.Client;
-using eShopCoffe.API.Scope.Handlers;
+﻿using eShopCoffe.API.Scope.Handlers;
 using eShopCoffe.API.Scope.Responses;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Core.Validators.Interfaces;

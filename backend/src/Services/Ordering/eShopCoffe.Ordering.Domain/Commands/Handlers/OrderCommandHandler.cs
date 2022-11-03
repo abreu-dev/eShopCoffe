@@ -47,7 +47,7 @@ namespace eShopCoffe.Ordering.Domain.Commands.Handlers
                 _sessionAccessor.UserId,
                 new AddressDomain(command.Cep, command.Number),
                 EnumExtensions.GetEnumValueFromName<PaymentMethod>(command.PaymentMethod));
-            
+
             foreach (var item in command.Items)
             {
                 var product = _productRepository.GetById(item.ProductId);

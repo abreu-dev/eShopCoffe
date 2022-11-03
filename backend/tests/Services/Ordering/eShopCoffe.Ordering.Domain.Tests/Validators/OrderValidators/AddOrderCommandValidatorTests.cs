@@ -1,5 +1,4 @@
-﻿using eShopCoffe.Basket.Domain.Commands.BasketCommands;
-using eShopCoffe.Ordering.Domain.Commands.OrderCommands;
+﻿using eShopCoffe.Ordering.Domain.Commands.OrderCommands;
 using eShopCoffe.Ordering.Domain.Validators.OrderValidators;
 using FluentValidation.TestHelper;
 

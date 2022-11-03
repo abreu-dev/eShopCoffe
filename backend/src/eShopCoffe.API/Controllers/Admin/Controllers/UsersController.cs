@@ -1,5 +1,4 @@
-﻿using eShopCoffe.API.Scope.Handlers;
-using eShopCoffe.Core.Data.Pagination.Interfaces;
+﻿using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Identity.Application.Contracts.UserContracts;
 using eShopCoffe.Identity.Application.Parameters;

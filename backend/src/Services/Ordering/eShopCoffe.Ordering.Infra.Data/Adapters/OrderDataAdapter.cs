@@ -26,7 +26,7 @@ namespace eShopCoffe.Ordering.Infra.Data.Adapters
             var currency = new CurrencyDomain(data.CurrencyValue, data.CurrencyCode);
             var events = _orderEventDataAdapter.Transform(data.Events).ToList();
             var items = _orderItemDataAdapter.Transform(data.Items).ToList();
-            
+
             return new OrderDomain(data.Id,
                                    data.UserId,
                                    address,

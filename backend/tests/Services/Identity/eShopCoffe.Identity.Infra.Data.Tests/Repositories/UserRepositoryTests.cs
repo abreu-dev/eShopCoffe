@@ -15,7 +15,7 @@ namespace eShopCoffe.Identity.Infra.Data.Tests.Repositories
         private readonly UserRepository _userRepository;
 
         public UserRepositoryTests()
-        { 
+        {
             _context = Substitute.For<IBaseContext>();
             _adapter = Substitute.For<IUserDataAdapter>();
             _passwordHash = Substitute.For<IPasswordHash>();

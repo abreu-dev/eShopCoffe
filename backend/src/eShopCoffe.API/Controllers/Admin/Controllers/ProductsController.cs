@@ -1,6 +1,4 @@
-﻿using eShopCoffe.API.Controllers.Client;
-using eShopCoffe.API.Scope.Handlers;
-using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
+﻿using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
 using eShopCoffe.Catalog.Domain.Commands.ProductCommands;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using Microsoft.AspNetCore.Mvc;

@@ -55,7 +55,7 @@ namespace eShopCoffe.Ordering.Domain.Tests.Entities
             var amount = 2;
             var currency = new CurrencyDomain(15, string.Empty);
             var orderItemDomain = new OrderItemDomain(id, orderId, productId, amount, currency);
-            
+
             // Act
             var value = orderItemDomain.GetValue();
 

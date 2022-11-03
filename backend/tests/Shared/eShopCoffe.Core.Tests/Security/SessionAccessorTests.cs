@@ -1,7 +1,6 @@
 ﻿using eShopCoffe.Core.Exceptions;
 using eShopCoffe.Core.Security;
 using eShopCoffe.Core.Security.Interfaces;
-using eShopCoffe.Core.Tests.Utils;
 
 namespace eShopCoffe.Core.Tests.Security
 {

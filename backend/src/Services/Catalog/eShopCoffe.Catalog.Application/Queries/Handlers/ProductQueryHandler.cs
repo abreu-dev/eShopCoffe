@@ -50,7 +50,7 @@ namespace eShopCoffe.Catalog.Application.Queries.Handlers
         {
             var product = _context.Query<ProductData>().FirstOrDefault(p => p.Id == query.ProductId);
 
-            if (product == null) 
+            if (product == null)
                 return Task.FromResult(new ProductDto());
 
             var productDto = new ProductDto()

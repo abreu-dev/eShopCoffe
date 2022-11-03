@@ -66,7 +66,7 @@ namespace eShopCoffe.Catalog.Infra.Data.Tests.Seed
 
             // Assert
             repository.Received(1).Query<ProductData>();
-            
+
             repository.Received(1).Add(Arg.Any<ProductData>());
             repository.Received(1).Add(Arg.Is<ProductData>(x => x.Id == ProductSeed.ProductIdList.ElementAt(9)
                                                                 && x.Name == ProductSeed.ProductNameList.ElementAt(9)
