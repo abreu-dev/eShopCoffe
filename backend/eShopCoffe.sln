@@ -67,17 +67,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Catalog.Domain.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Catalog.Infra.Data.Tests", "tests\Services\Catalog\eShopCoffe.Catalog.Infra.Data.Tests\eShopCoffe.Catalog.Infra.Data.Tests.csproj", "{243B6B6E-926D-4444-8370-162DB6D760BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Domain", "src\Services\Basket\eShopCoffe.Basket.Domain\eShopCoffe.Basket.Domain.csproj", "{1EBA85BB-49C7-44A8-AF25-65D69DE5FCA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Basket.Domain", "src\Services\Basket\eShopCoffe.Basket.Domain\eShopCoffe.Basket.Domain.csproj", "{1EBA85BB-49C7-44A8-AF25-65D69DE5FCA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Application", "src\Services\Basket\eShopCoffe.Basket.Application\eShopCoffe.Basket.Application.csproj", "{A4900D06-CB29-4901-9A7A-60D5018FFE21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Basket.Application", "src\Services\Basket\eShopCoffe.Basket.Application\eShopCoffe.Basket.Application.csproj", "{A4900D06-CB29-4901-9A7A-60D5018FFE21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Infra.Data", "src\Services\Basket\eShopCoffe.Basket.Infra.Data\eShopCoffe.Basket.Infra.Data.csproj", "{B075938C-C797-4770-8E0C-3AAC64CEA8D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Basket.Infra.Data", "src\Services\Basket\eShopCoffe.Basket.Infra.Data\eShopCoffe.Basket.Infra.Data.csproj", "{B075938C-C797-4770-8E0C-3AAC64CEA8D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Application.Tests", "tests\Services\Basket\eShopCoffe.Basket.Application.Tests\eShopCoffe.Basket.Application.Tests.csproj", "{54FCE8E9-E524-4130-8862-AF2169E0A66E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Basket.Application.Tests", "tests\Services\Basket\eShopCoffe.Basket.Application.Tests\eShopCoffe.Basket.Application.Tests.csproj", "{54FCE8E9-E524-4130-8862-AF2169E0A66E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Domain.Tests", "tests\Services\Basket\eShopCoffe.Basket.Domain.Tests\eShopCoffe.Basket.Domain.Tests.csproj", "{7621E11D-017C-432C-BA39-A526368A70D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Basket.Domain.Tests", "tests\Services\Basket\eShopCoffe.Basket.Domain.Tests\eShopCoffe.Basket.Domain.Tests.csproj", "{7621E11D-017C-432C-BA39-A526368A70D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Basket.Infra.Data.Tests", "tests\Services\Basket\eShopCoffe.Basket.Infra.Data.Tests\eShopCoffe.Basket.Infra.Data.Tests.csproj", "{00D87077-E881-44A4-A014-453E926866C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopCoffe.Basket.Infra.Data.Tests", "tests\Services\Basket\eShopCoffe.Basket.Infra.Data.Tests\eShopCoffe.Basket.Infra.Data.Tests.csproj", "{00D87077-E881-44A4-A014-453E926866C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Ordering.Domain", "src\Services\Ordering\eShopCoffe.Ordering.Domain\eShopCoffe.Ordering.Domain.csproj", "{F15E0BB3-87C4-4AC6-89D1-B6EDA9B152D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Ordering.Application", "src\Services\Ordering\eShopCoffe.Ordering.Application\eShopCoffe.Ordering.Application.csproj", "{1ADC75A0-53A8-4563-BDA0-6D18DD29B7A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopCoffe.Ordering.Infra.Data", "src\Services\Ordering\eShopCoffe.Ordering.Infra.Data\eShopCoffe.Ordering.Infra.Data.csproj", "{4538CFE2-655B-488B-88B5-DAD334AD14D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -173,6 +179,18 @@ Global
 		{00D87077-E881-44A4-A014-453E926866C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00D87077-E881-44A4-A014-453E926866C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00D87077-E881-44A4-A014-453E926866C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15E0BB3-87C4-4AC6-89D1-B6EDA9B152D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15E0BB3-87C4-4AC6-89D1-B6EDA9B152D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15E0BB3-87C4-4AC6-89D1-B6EDA9B152D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15E0BB3-87C4-4AC6-89D1-B6EDA9B152D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ADC75A0-53A8-4563-BDA0-6D18DD29B7A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ADC75A0-53A8-4563-BDA0-6D18DD29B7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ADC75A0-53A8-4563-BDA0-6D18DD29B7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ADC75A0-53A8-4563-BDA0-6D18DD29B7A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4538CFE2-655B-488B-88B5-DAD334AD14D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4538CFE2-655B-488B-88B5-DAD334AD14D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4538CFE2-655B-488B-88B5-DAD334AD14D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4538CFE2-655B-488B-88B5-DAD334AD14D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -214,6 +232,9 @@ Global
 		{54FCE8E9-E524-4130-8862-AF2169E0A66E} = {E5CA07E8-BA7C-406A-8136-E152C6466A21}
 		{7621E11D-017C-432C-BA39-A526368A70D0} = {E5CA07E8-BA7C-406A-8136-E152C6466A21}
 		{00D87077-E881-44A4-A014-453E926866C5} = {E5CA07E8-BA7C-406A-8136-E152C6466A21}
+		{F15E0BB3-87C4-4AC6-89D1-B6EDA9B152D3} = {F44E9CB8-4B4F-48F2-AF0A-CCF0BCFE4FE4}
+		{1ADC75A0-53A8-4563-BDA0-6D18DD29B7A7} = {F44E9CB8-4B4F-48F2-AF0A-CCF0BCFE4FE4}
+		{4538CFE2-655B-488B-88B5-DAD334AD14D6} = {F44E9CB8-4B4F-48F2-AF0A-CCF0BCFE4FE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CC42A90-A343-46A4-8CA0-00A7004F1437}

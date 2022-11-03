@@ -4,9 +4,10 @@ using eShopCoffe.Basket.Domain.Commands.BasketCommands;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eShopCoffe.API.Controllers.Basket
+namespace eShopCoffe.API.Controllers.Client.Controllers
 {
-    public class BasketsController : BaseController
+    [Route("baskets")]
+    public class BasketsController : ClientsController
     {
         private readonly IBus _bus;
 
@@ -16,7 +17,6 @@ namespace eShopCoffe.API.Controllers.Basket
         }
 
         [HttpGet]
-        [Route("baskets")]
         public async Task<IActionResult> Get()
         {
             var query = new BasketQuery();
@@ -24,7 +24,6 @@ namespace eShopCoffe.API.Controllers.Basket
         }
 
         [HttpPost]
-        [Route("baskets")]
         public async Task<IActionResult> Post([FromBody] BasketItemCreationDto creationDto)
         {
             var command = new AddOrUpdateBasketItemCommand(creationDto.ProductId, creationDto.Amount, creationDto.Increase);
@@ -33,7 +32,7 @@ namespace eShopCoffe.API.Controllers.Basket
         }
 
         [HttpDelete]
-        [Route("baskets/{productId}")]
+        [Route("{productId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid productId)
         {
             var command = new RemoveBasketItemCommand(productId);

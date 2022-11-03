@@ -1,4 +1,5 @@
-﻿using eShopCoffe.API.Scope.Handlers;
+﻿using eShopCoffe.API.Controllers.Client;
+using eShopCoffe.API.Scope.Handlers;
 using eShopCoffe.API.Scope.Responses;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Core.Validators.Interfaces;
@@ -8,10 +9,11 @@ using eShopCoffe.Identity.Domain.Entities;
 using eShopCoffe.Identity.Domain.Events.UserEvents;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eShopCoffe.API.Controllers.Identity
+namespace eShopCoffe.API.Controllers
 {
+    [Route("session")]
     [IgnoreAuthenticationTokenFilter]
-    public class SessionController : IdentityController
+    public class SessionController : BaseController
     {
         private readonly ISignInService _signInService;
         private readonly ISignUpService _signUpService;

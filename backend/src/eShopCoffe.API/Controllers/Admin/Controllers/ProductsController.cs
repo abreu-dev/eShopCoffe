@@ -1,15 +1,14 @@
-﻿using eShopCoffe.API.Scope.Handlers;
+﻿using eShopCoffe.API.Controllers.Client;
+using eShopCoffe.API.Scope.Handlers;
 using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
-using eShopCoffe.Catalog.Application.Parameters;
-using eShopCoffe.Catalog.Application.Queries.ProductQueries;
 using eShopCoffe.Catalog.Domain.Commands.ProductCommands;
-using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eShopCoffe.API.Controllers.Catalog
+namespace eShopCoffe.API.Controllers.Admin.Controllers
 {
-    public class ProductsController : CatalogController
+    [Route("admin/products")]
+    public class ProductsController : AdminsController
     {
         private readonly IBus _bus;
 
@@ -18,27 +17,7 @@ namespace eShopCoffe.API.Controllers.Catalog
             _bus = bus;
         }
 
-        [HttpGet]
-        [Route("products")]
-        [IgnoreAuthenticationTokenFilter]
-        public async Task<IActionResult> Get([FromQuery] ProductParameters parameters)
-        {
-            var query = new PagedProductsQuery(parameters);
-            return Ok(await _bus.Query<PagedProductsQuery, IPagedList<ProductDto>>(query));
-        }
-
-        [HttpGet]
-        [Route("products/{id}")]
-        [IgnoreAuthenticationTokenFilter]
-        public async Task<IActionResult> Get(Guid id)
-        {
-            var query = new ProductDetailQuery(id);
-            return Ok(await _bus.Query<ProductDetailQuery, ProductDto>(query));
-        }
-
         [HttpPost]
-        [Route("products")]
-        [AdminAuthenticationTokenFilter]
         public async Task<IActionResult> Post([FromBody] ProductCreationDto creationDto)
         {
             var command = new AddProductCommand(
@@ -53,8 +32,7 @@ namespace eShopCoffe.API.Controllers.Catalog
         }
 
         [HttpPut]
-        [Route("products/{id}")]
-        [AdminAuthenticationTokenFilter]
+        [Route("{id}")]
         public async Task<IActionResult> Put([FromRoute] Guid id, [FromBody] ProductCreationDto creationDto)
         {
             var command = new UpdateProductCommand(
@@ -70,8 +48,7 @@ namespace eShopCoffe.API.Controllers.Catalog
         }
 
         [HttpDelete]
-        [Route("products/{id}")]
-        [AdminAuthenticationTokenFilter]
+        [Route("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var command = new RemoveProductCommand(id);

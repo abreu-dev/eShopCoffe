@@ -1,6 +1,7 @@
 ﻿using eShopCoffe.Catalog.Domain.Entities;
 using eShopCoffe.Catalog.Infra.Data.Adapters;
 using eShopCoffe.Catalog.Infra.Data.Entities;
+using eShopCoffe.Core.Domain.Entities;
 
 namespace eShopCoffe.Catalog.Infra.Data.Tests.Adapters
 {

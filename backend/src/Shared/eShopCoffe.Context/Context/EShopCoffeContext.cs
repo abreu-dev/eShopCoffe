@@ -3,6 +3,7 @@ using eShopCoffe.Catalog.Infra.Data;
 using eShopCoffe.Core.Data.Entities;
 using eShopCoffe.Core.Security.Interfaces;
 using eShopCoffe.Identity.Infra.Data;
+using eShopCoffe.Ordering.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -23,6 +24,7 @@ namespace eShopCoffe.Context.Context
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDataBootStrapper).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogDataBootStrapper).Assembly);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(BasketDataBootStrapper).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderingDataBootStrapper).Assembly);
         }
 
         public bool IsAvailable()

@@ -2,6 +2,7 @@
 using eShopCoffe.Catalog.Infra.Data.Adapters.Interfaces;
 using eShopCoffe.Catalog.Infra.Data.Entities;
 using eShopCoffe.Core.Data.Adapters;
+using eShopCoffe.Core.Domain.Entities;
 
 namespace eShopCoffe.Catalog.Infra.Data.Adapters
 {

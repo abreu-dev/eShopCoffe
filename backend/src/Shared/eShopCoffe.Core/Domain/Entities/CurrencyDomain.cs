@@ -1,4 +1,4 @@
-﻿namespace eShopCoffe.Catalog.Domain.Entities
+﻿namespace eShopCoffe.Core.Domain.Entities
 {
     public class CurrencyDomain
     {
@@ -9,6 +9,16 @@
         {
             Value = value;
             Code = code;
+        }
+
+        public void SetCode(string code)
+        {
+            Code = code;
+        }
+
+        public void SetValue(decimal value)
+        {
+            Value = value;
         }
     }
 }

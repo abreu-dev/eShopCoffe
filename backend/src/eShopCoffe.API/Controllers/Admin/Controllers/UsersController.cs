@@ -6,10 +6,10 @@ using eShopCoffe.Identity.Application.Parameters;
 using eShopCoffe.Identity.Application.Queries.UserQueries;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eShopCoffe.API.Controllers.Identity
+namespace eShopCoffe.API.Controllers.Admin.Controllers
 {
-    [AdminAuthenticationTokenFilter]
-    public class UsersController : IdentityController
+    [Route("admin/users")]
+    public class UsersController : AdminsController
     {
         private readonly IBus _bus;
 
@@ -19,7 +19,6 @@ namespace eShopCoffe.API.Controllers.Identity
         }
 
         [HttpGet]
-        [Route("users")]
         public async Task<IActionResult> Get([FromQuery] UserParameters parameters)
         {
             var query = new PagedUsersQuery(parameters);
