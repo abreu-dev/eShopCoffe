@@ -27,6 +27,15 @@ namespace eShopCoffe.API.Controllers.Catalog
             return Ok(await _bus.Query<PagedProductsQuery, IPagedList<ProductDto>>(query));
         }
 
+        [HttpGet]
+        [Route("products/{id}")]
+        [IgnoreAuthenticationTokenFilter]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var query = new ProductDetailQuery(id);
+            return Ok(await _bus.Query<ProductDetailQuery, ProductDto>(query));
+        }
+
         [HttpPost]
         [Route("products")]
         [AdminAuthenticationTokenFilter]

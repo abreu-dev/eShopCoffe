@@ -8,11 +8,13 @@ namespace eShopCoffe.Basket.Domain.Commands.BasketCommands
     {
         public Guid ProductId { get; private set; }
         public int Amount { get; private set; }
+        public bool Increase { get; private set; }
 
-        public AddOrUpdateBasketItemCommand(Guid productId, int amount)
+        public AddOrUpdateBasketItemCommand(Guid productId, int amount, bool increase)
         {
             ProductId = productId;
             Amount = amount;
+            Increase = increase;
         }
 
         protected override CommandValidator<AddOrUpdateBasketItemCommand> GetValidator()

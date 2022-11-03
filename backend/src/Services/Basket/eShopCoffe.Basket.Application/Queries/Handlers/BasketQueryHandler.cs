@@ -43,7 +43,10 @@ namespace eShopCoffe.Basket.Application.Queries.Handlers
                              Product = new BasketItemProductDto()
                              {
                                  Id = basketItem.ProductId,
-                                 Name = basketItem.Product.Name
+                                 Name = basketItem.Product.Name,
+                                 ImageUrl = basketItem.Product.ImageUrl,
+                                 CurrencyCode = basketItem.Product.CurrencyCode,
+                                 CurrencyValue = basketItem.Product.CurrencyValue
                              },
                              Amount = basketItem.Amount
                          }).ToList();

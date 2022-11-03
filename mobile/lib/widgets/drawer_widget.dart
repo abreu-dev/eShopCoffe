@@ -70,16 +70,6 @@ class DrawerWidgetState extends State<DrawerWidget> {
           ),
         )
     );
-
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.65,
-      child: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: widgets
-        )
-      )
-    );
   }
 }
 
