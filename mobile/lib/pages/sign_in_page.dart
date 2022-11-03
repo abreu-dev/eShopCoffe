@@ -1,3 +1,4 @@
+import 'package:eshopcoffe/pages/request_password_reset_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,18 +7,17 @@ import 'package:eshopcoffe/main.dart';
 import 'package:eshopcoffe/models/authenticated_user/authenticated_user_model.dart';
 import 'package:eshopcoffe/services/session_service.dart';
 import 'package:eshopcoffe/utils/snack_bar_helper.dart';
-import 'package:eshopcoffe/components/sign_in_page.dart';
+import 'package:eshopcoffe/pages/sign_up_page.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  SignUpPageState createState() => SignUpPageState();
+  SignInPageState createState() => SignInPageState();
 }
 
-class SignUpPageState extends State<SignUpPage> {
+class SignInPageState extends State<SignInPage> {
   final _usernameController = TextEditingController();
-  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   var _passwordVisible = false;
 
@@ -30,13 +30,18 @@ class SignUpPageState extends State<SignUpPage> {
   }
 
   Widget buildView() {
-    onSignUpButtonPressed() async {
-      await SessionService().signUp(
+    onSignInButtonPressed() async {
+      await SessionService().signIn(
           _usernameController.text,
-          _emailController.text,
           _passwordController.text)
-          .then((response) async {
+      .then((response) async {
         var model = AuthenticatedUserModel.fromJson(response.data);
+
+        if (model.user.isAdmin) {
+          SnackBarHelper.failure(context, 'This account have no permission to sign in for mobile app.');
+          return;
+        }
+
         context.read<AuthenticationCubit>().signIn(model);
         Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
       },
@@ -62,9 +67,8 @@ class SignUpPageState extends State<SignUpPage> {
               child: const Align(
                 alignment: Alignment.topLeft,
                 child: Icon(Icons.close),
-
               ),
-              onTap: (){
+              onTap: () {
                 Navigator.pop(context);
               },
             ),
@@ -112,34 +116,6 @@ class SignUpPageState extends State<SignUpPage> {
                   height: 15,
                 ),
                 TextField(
-                  controller: _emailController,
-                  showCursor: true,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(
-                        width: 0,
-                        style: BorderStyle.none,
-                      ),
-                    ),
-                    filled: true,
-                    prefixIcon: Icon(
-                      FontAwesomeIcons.envelope,
-                      color: const Color(0xFF666666),
-                      size: defaultIconSize,
-                    ),
-                    fillColor: const Color(0xFFF2F3F5),
-                    hintStyle: TextStyle(
-                        color: const Color(0xFF666666),
-                        fontFamily: defaultFontFamily,
-                        fontSize: defaultFontSize),
-                    hintText: "Email",
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextField(
                   controller: _passwordController,
                   obscureText: !_passwordVisible,
                   showCursor: true,
@@ -158,16 +134,16 @@ class SignUpPageState extends State<SignUpPage> {
                       size: defaultIconSize,
                     ),
                     suffixIcon: IconButton(
-                        icon: Icon(
-                          _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                          color: const Color(0xFF666666),
-                          size: defaultIconSize,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _passwordVisible = !_passwordVisible;
-                          });
-                        }
+                      icon: Icon(
+                        _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                        color: const Color(0xFF666666),
+                        size: defaultIconSize,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _passwordVisible = !_passwordVisible;
+                        });
+                      }
                     ),
                     fillColor: const Color(0xFFF2F3F5),
                     hintStyle: TextStyle(
@@ -181,19 +157,45 @@ class SignUpPageState extends State<SignUpPage> {
                 const SizedBox(
                   height: 15,
                 ),
+                SizedBox(
+                  width: double.infinity,
+                  child: InkWell(
+                    onTap: () => {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const RequestPassswordResetPage()),
+                      )
+                    },
+                    child: Text(
+                      "Forgot your password?",
+                      style: TextStyle(
+                        color: const Color(0xFF666666),
+                        fontFamily: defaultFontFamily,
+                        fontSize: defaultFontSize,
+                        fontStyle: FontStyle.normal,
+                      ),
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Container(
                   width: double.infinity,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: Color(0xFFF2F3F7)),
+                      shape: BoxShape.circle, color: Color(0xFFF2F3F7)
+                  ),
                   child: MaterialButton(
                     padding: const EdgeInsets.all(17.0),
-                    onPressed: () async => onSignUpButtonPressed(),
+                    onPressed: () async => onSignInButtonPressed(),
                     color: const Color(0xFF74AA50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
-                        side: const BorderSide(color: Color(0xFF74AA50))),
+                        side: const BorderSide(color: Color(0xFF74AA50))
+                    ),
                     child: const Text(
-                      "Sign Up",
+                      "Sign In",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -218,7 +220,7 @@ class SignUpPageState extends State<SignUpPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Already have an account? ",
+                    "Don't have an account? ",
                     style: TextStyle(
                       color: const Color(0xFF666666),
                       fontFamily: defaultFontFamily,
@@ -227,14 +229,14 @@ class SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {
+                    onTap: () => {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const SignInPage()),
-                      );
+                        MaterialPageRoute(builder: (context) => const SignUpPage()),
+                      )
                     },
                     child: Text(
-                      "Sign In",
+                      "Sign Up",
                       style: TextStyle(
                         color: const Color(0xFF74AA50),
                         fontFamily: defaultFontFamily,

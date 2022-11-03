@@ -1,12 +1,12 @@
-import 'package:eshopcoffe/services/products_service.dart';
-import 'package:eshopcoffe/widgets/product_grid_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../blocs/products/product_list_cubit.dart';
-import '../blocs/products/product_list_wrapper_model.dart';
-import '../models/product/product_model.dart';
-import '../utils/snack_bar_helper.dart';
-import '../widgets/circular_progress_widget.dart';
+import 'package:eshopcoffe/services/catalog_service.dart';
+import 'package:eshopcoffe/widgets/product_grid_widget.dart';
+import 'package:eshopcoffe/blocs/products/product_list_cubit.dart';
+import 'package:eshopcoffe/blocs/products/product_list_wrapper_model.dart';
+import 'package:eshopcoffe/models/product/product_model.dart';
+import 'package:eshopcoffe/utils/snack_bar_helper.dart';
+import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
 
 class ProductListPage extends StatefulWidget {
   final String slug;
@@ -28,7 +28,7 @@ class ProductListPageState extends State<ProductListPage> {
 
       if (currentWrapper.products.length == currentWrapper.totalItems) return;
 
-      await ProductsService().get(currentWrapper.currentPage + 1).then((response) async {
+      await CatalogService().getPaged(currentWrapper.currentPage + 1).then((response) async {
         context.read<CatalogCubit>().setProductList(response);
       },
       onError: (error) {
@@ -52,7 +52,7 @@ class ProductListPageState extends State<ProductListPage> {
   @override
   Widget build(BuildContext context) {
     onLoadProductList() async {
-      await ProductsService().get(0).then((response) async {
+      await CatalogService().getPaged(0).then((response) async {
         context.read<CatalogCubit>().setProductList(response);
       },
       onError: (error) {

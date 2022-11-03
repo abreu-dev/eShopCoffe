@@ -52,7 +52,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   Widget buildView() {
     return Scaffold(
-        appBar: appBarWidget(context),
+        appBar: appBarWidget(context, 'MyHomePage'),
         drawer: const DrawerWidget(),
         body: const HomeScreen()
     );

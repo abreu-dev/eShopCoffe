@@ -29,14 +29,14 @@ class BasketScreenState extends State<BasketScreen> {
     if (needToSignIn) {
       return Scaffold(
           backgroundColor: const Color(0xFFfafafa),
-          appBar: appBarWidget(context, showBasket: false),
+          appBar: appBarWidget(context, 'BasketScreen'),
           body: const NotSignInBasketScreen()
       );
     }
 
     return Scaffold(
       backgroundColor: const Color(0xFFfafafa),
-      appBar: appBarWidget(context, showBasket: false),
+      appBar: appBarWidget(context, 'BasketScreen'),
       body: FutureBuilder(
           future: getBasketData(),
           builder: (context, AsyncSnapshot snapshot) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eshopcoffe/models/product/product_model.dart';
 import 'package:eshopcoffe/services/baskets_service.dart';
-import 'package:eshopcoffe/services/products_service.dart';
+import 'package:eshopcoffe/services/catalog_service.dart';
 import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
 import 'package:eshopcoffe/widgets/app_bar_widget.dart';
 import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
@@ -24,7 +24,7 @@ class ProductDetailScreenState extends State<ProductDetailScreen> {
 
     return Scaffold(
       backgroundColor: const Color(0xFFfafafa),
-      appBar: appBarWidget(context),
+      appBar: appBarWidget(context, 'ProductDetailScreen'),
       body: FutureBuilder(
         future: getDetailData(widget.productId),
         builder: (context, AsyncSnapshot snapshot) {
@@ -185,13 +185,34 @@ class DetailScreenState extends State<DetailScreen> {
                     fontWeight: FontWeight.w700,
                     color: Color(0xFF74AA50)
                   )
-                ),
-                const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Color(0xFF999999),
                 )
               ],
             )
+          ),
+          Container(
+              padding: const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
+              color: const Color(0xFFFFFFFF),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                      "Name".toUpperCase(),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF656565)
+                      )
+                  ),
+                  Text(
+                      widget.product.name,
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF74AA50)
+                      )
+                  )
+                ],
+              )
           ),
           const SizedBox(
             height: 10,
@@ -266,5 +287,5 @@ class DetailScreenState extends State<DetailScreen> {
 }
 
 Future<ProductModel> getDetailData(String productId) async {
-  return await ProductsService().getById(productId);
+  return await CatalogService().getDetails(productId);
 }

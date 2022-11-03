@@ -3,16 +3,16 @@ import 'package:eshopcoffe/models/product_paged_list/product_paged_list_model.da
 import 'package:eshopcoffe/services/app_dio.dart';
 import 'package:eshopcoffe/models/product/product_model.dart';
 
-class ProductsService {
+class CatalogService {
   final Dio _dio = AppDio.getInstance();
 
-  Future<ProductPagedListModel> get(int page) async {
+  Future<ProductPagedListModel> getPaged(int page) async {
     try {
       var queryParameters = {
         "page": page.toString(),
-        "size": 4
+        "size": 6
       };
-      Response response = await _dio.get('/catalog/products', queryParameters: queryParameters);
+      Response response = await _dio.get('/catalog', queryParameters: queryParameters);
       return ProductPagedListModel.fromJson(response.data);
     }
     on DioError catch (error) {
@@ -20,9 +20,9 @@ class ProductsService {
     }
   }
 
-  Future<ProductModel> getById(String productId) async {
+  Future<ProductModel> getDetails(String productId) async {
     try {
-      Response response = await _dio.get('/catalog/products/$productId');
+      Response response = await _dio.get('/catalog/$productId');
       return ProductModel.fromJson(response.data);
     }
     on DioError catch (error) {

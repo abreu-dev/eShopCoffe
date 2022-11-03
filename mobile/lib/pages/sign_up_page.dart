@@ -1,20 +1,25 @@
-import 'package:eshopcoffe/components/sign_in_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
+import 'package:eshopcoffe/main.dart';
+import 'package:eshopcoffe/models/authenticated_user/authenticated_user_model.dart';
+import 'package:eshopcoffe/services/session_service.dart';
+import 'package:eshopcoffe/utils/snack_bar_helper.dart';
+import 'package:eshopcoffe/pages/sign_in_page.dart';
 
-import '../services/session_service.dart';
-import '../utils/snack_bar_helper.dart';
-import 'confirm_password_reset.dart';
-
-class RequestPassswordResetPage extends StatefulWidget {
-  const RequestPassswordResetPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  RequestPassswordResetPageState createState() => RequestPassswordResetPageState();
+  SignUpPageState createState() => SignUpPageState();
 }
 
-class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
+class SignUpPageState extends State<SignUpPage> {
   final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  var _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +30,15 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
   }
 
   Widget buildView() {
-    onRequestPasswordResetButtonPressed() async {
-      final String username = _usernameController.text;
-      await SessionService().requestPasswordReset(
-          username)
+    onSignUpButtonPressed() async {
+      await SessionService().signUp(
+          _usernameController.text,
+          _emailController.text,
+          _passwordController.text)
           .then((response) async {
-        SnackBarHelper.success(context, 'Please, check your email for the password reset code.');
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmPasswordResetPage(username)));
+        var model = AuthenticatedUserModel.fromJson(response.data);
+        context.read<AuthenticationCubit>().signIn(model);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()));
       },
       onError: (error) {
         SnackBarHelper.failure(context, error.toString());
@@ -55,8 +62,9 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
               child: const Align(
                 alignment: Alignment.topLeft,
                 child: Icon(Icons.close),
+
               ),
-              onTap: () {
+              onTap: (){
                 Navigator.pop(context);
               },
             ),
@@ -103,21 +111,89 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
                 const SizedBox(
                   height: 15,
                 ),
+                TextField(
+                  controller: _emailController,
+                  showCursor: true,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
+                    ),
+                    filled: true,
+                    prefixIcon: Icon(
+                      FontAwesomeIcons.envelope,
+                      color: const Color(0xFF666666),
+                      size: defaultIconSize,
+                    ),
+                    fillColor: const Color(0xFFF2F3F5),
+                    hintStyle: TextStyle(
+                        color: const Color(0xFF666666),
+                        fontFamily: defaultFontFamily,
+                        fontSize: defaultFontSize),
+                    hintText: "Email",
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextField(
+                  controller: _passwordController,
+                  obscureText: !_passwordVisible,
+                  showCursor: true,
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(
+                        width: 0,
+                        style: BorderStyle.none,
+                      ),
+                    ),
+                    filled: true,
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      color: const Color(0xFF666666),
+                      size: defaultIconSize,
+                    ),
+                    suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                          color: const Color(0xFF666666),
+                          size: defaultIconSize,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        }
+                    ),
+                    fillColor: const Color(0xFFF2F3F5),
+                    hintStyle: TextStyle(
+                      color: const Color(0xFF666666),
+                      fontFamily: defaultFontFamily,
+                      fontSize: defaultFontSize,
+                    ),
+                    hintText: "Password",
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
                 Container(
                   width: double.infinity,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: Color(0xFFF2F3F7)
-                  ),
+                      shape: BoxShape.circle, color: Color(0xFFF2F3F7)),
                   child: MaterialButton(
                     padding: const EdgeInsets.all(17.0),
-                    onPressed: () async => onRequestPasswordResetButtonPressed(),
+                    onPressed: () async => onSignUpButtonPressed(),
                     color: const Color(0xFF74AA50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15.0),
-                        side: const BorderSide(color: Color(0xFF74AA50))
-                    ),
+                        side: const BorderSide(color: Color(0xFF74AA50))),
                     child: const Text(
-                      "Reset my password",
+                      "Sign Up",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -142,7 +218,7 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Remembered your account? ",
+                    "Already have an account? ",
                     style: TextStyle(
                       color: const Color(0xFF666666),
                       fontFamily: defaultFontFamily,
