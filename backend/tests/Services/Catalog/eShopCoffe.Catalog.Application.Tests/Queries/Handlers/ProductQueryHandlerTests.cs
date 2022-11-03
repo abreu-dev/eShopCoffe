@@ -25,7 +25,7 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
             var productParameters = Substitute.For<IProductParameters>();
             productParameters.Page.Returns(0);
             productParameters.Size.Returns(2);
-            var pagedUsersQuery = new PagedProductsQuery(productParameters);
+            var pagedProductsQuery = new PagedProductsQuery(productParameters);
 
             var productDataList = new List<ProductData>()
             {
@@ -83,7 +83,7 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
             _context.Query<ProductData>().Returns(productDataList.AsQueryable());
 
             // Act
-            var result = _productQueryHandler.Handle(pagedUsersQuery).Result;
+            var result = _productQueryHandler.Handle(pagedProductsQuery).Result;
 
             // Assert
             result.TotalItems.Should().Be(5);
@@ -110,7 +110,7 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
         public void Handle_ProductDetailQuery_WhenProductFound_ShouldReturnSingleObject()
         {
             // Arrange
-            var pagedUsersQuery = new ProductDetailQuery(Guid.NewGuid());
+            var productDetailQuery = new ProductDetailQuery(Guid.NewGuid());
 
             var productDataList = new List<ProductData>()
             {
@@ -126,7 +126,7 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
                 },
                 new ProductData()
                 {
-                    Id = pagedUsersQuery.ProductId,
+                    Id = productDetailQuery.ProductId,
                     Name = "5 - Name",
                     Description = "5 - Description",
                     ImageUrl = "5 - ImageUrl",
@@ -168,7 +168,7 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
             _context.Query<ProductData>().Returns(productDataList.AsQueryable());
 
             // Act
-            var result = _productQueryHandler.Handle(pagedUsersQuery).Result;
+            var result = _productQueryHandler.Handle(productDetailQuery).Result;
 
             // Assert
             result.Id.Should().Be(productDataList.ElementAt(1).Id);
@@ -184,7 +184,7 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
         public void Handle_ProductDetailQuery_WhenProductNotFound_ShouldReturnEmpty()
         {
             // Arrange
-            var pagedUsersQuery = new ProductDetailQuery(Guid.NewGuid());
+            var productDetailQuery = new ProductDetailQuery(Guid.NewGuid());
 
             var productDataList = new List<ProductData>()
             {
@@ -244,7 +244,7 @@ namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
             var empty = new ProductDto();
 
             // Act
-            var result = _productQueryHandler.Handle(pagedUsersQuery).Result;
+            var result = _productQueryHandler.Handle(productDetailQuery).Result;
 
             // Assert
             result.Id.Should().Be(empty.Id);

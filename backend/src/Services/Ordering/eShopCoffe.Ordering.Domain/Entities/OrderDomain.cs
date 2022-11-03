@@ -58,7 +58,7 @@ namespace eShopCoffe.Ordering.Domain.Entities
             RecalculateCurrency();
         }
 
-        public void RecalculateCurrency()
+        private void RecalculateCurrency()
         {
             Currency.SetCode(Items.FirstOrDefault()?.Currency.Code ?? string.Empty);
             Currency.SetValue(Items.Sum(item => item.GetValue()));
