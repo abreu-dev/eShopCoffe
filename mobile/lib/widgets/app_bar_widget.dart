@@ -15,7 +15,8 @@ AppBar appBarWidget(context, currentRoute) {
   var screenTitles = {
     'BasketScreen': 'My basket',
     'OrdersScreen': 'My orders',
-    'ProductDetailScreen': 'Details'
+    'ProductDetailScreen': 'Details',
+    'OrderDetailScreen': 'Details'
   };
 
   var actions = <Widget>[];

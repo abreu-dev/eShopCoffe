@@ -51,7 +51,7 @@ namespace eShopCoffe.Ordering.Application.Queries.Handlers
                             CurrencyCode = order.CurrencyCode,
                             Status = order.Status.GetEnumDisplayName(),
                             CreatedDate = order.CreatedDate,
-                            Events = order.Events.Select(@event => new OrderEventDto
+                            Events = order.Events.OrderBy(x => x.Date).Select(@event => new OrderEventDto
                             {
                                 Status = @event.Status.GetEnumDisplayName(),
                                 Date = @event.Date
@@ -97,7 +97,7 @@ namespace eShopCoffe.Ordering.Application.Queries.Handlers
                 CurrencyCode = order.CurrencyCode,
                 Status = order.Status.GetEnumDisplayName(),
                 CreatedDate = order.CreatedDate,
-                Events = order.Events.Select(@event => new OrderEventDto
+                Events = order.Events.OrderBy(x => x.Date).Select(@event => new OrderEventDto
                 {
                     Status = @event.Status.GetEnumDisplayName(),
                     Date = @event.Date

@@ -32,4 +32,8 @@ class OrderModel with _$OrderModel {
       name: currencyCode, //currencyCode
     ).format(currencyValue);
   }
+
+  String formattedDate() {
+    return DateFormat('dd/MM/yyyy HH:mm').format(createdDate.toLocal());
+  }
 }

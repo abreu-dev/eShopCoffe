@@ -107,8 +107,8 @@ class __$$_AddressModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AddressModel implements _AddressModel {
-  _$_AddressModel({required this.cep, required this.number});
+class _$_AddressModel extends _AddressModel {
+  _$_AddressModel({required this.cep, required this.number}) : super._();
 
   factory _$_AddressModel.fromJson(Map<String, dynamic> json) =>
       _$$_AddressModelFromJson(json);
@@ -150,10 +150,11 @@ class _$_AddressModel implements _AddressModel {
   }
 }
 
-abstract class _AddressModel implements AddressModel {
+abstract class _AddressModel extends AddressModel {
   factory _AddressModel(
       {required final String cep,
       required final String number}) = _$_AddressModel;
+  _AddressModel._() : super._();
 
   factory _AddressModel.fromJson(Map<String, dynamic> json) =
       _$_AddressModel.fromJson;

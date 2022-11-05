@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:eshopcoffe/models/order/order_model.dart';
 import 'package:intl/intl.dart';
+import 'package:eshopcoffe/screens/order_detail_screen.dart';
 
 class OrderGridWidget extends StatelessWidget {
   final OrderModel order;
@@ -9,7 +10,16 @@ class OrderGridWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => OrderDetailScreen(order.id)
+            )
+        );
+      },
+      child: Container(
         padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
         height: 220,
         width: double.maxFinite,
@@ -52,6 +62,7 @@ class OrderGridWidget extends StatelessWidget {
             ),
           ),
         )
+      )
     );
   }
 }
