@@ -58,7 +58,7 @@ class BottomNavBar extends StatelessWidget {
     onAddToBasketButtonPressed() async {
       var needToSignIn = context.read<AuthenticationCubit>().state == null;
       if (needToSignIn) {
-        SnackBarHelper.failure(context, 'Please, sign in first.');
+        SnackBarHelper.failure(context, 'Por favor, realize login primeiro.');
         return;
       }
 
@@ -66,7 +66,7 @@ class BottomNavBar extends StatelessWidget {
         .addToBasket(productId, 1)
         .then((response) async
       {
-        SnackBarHelper.success(context, 'Product was successfully added to your cart.');
+        SnackBarHelper.success(context, 'Produto adicionado ao seu carrinho com sucesso.');
       },
       onError: (error) {
         SnackBarHelper.failure(context, error.toString());
@@ -97,7 +97,7 @@ class BottomNavBar extends StatelessWidget {
               ),
               onPressed: () async => onAddToBasketButtonPressed(),
               child: Text(
-                'Add to cart'.toUpperCase(),
+                'Adicionar ao carrinho'.toUpperCase(),
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -196,7 +196,7 @@ class DetailScreenState extends State<DetailScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                      "Name".toUpperCase(),
+                      "Nome".toUpperCase(),
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -226,7 +226,7 @@ class DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Price".toUpperCase(),
+                  "Preço".toUpperCase(),
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
@@ -234,7 +234,7 @@ class DetailScreenState extends State<DetailScreen> {
                   )
                 ),
                 Text(
-                  isAvailable ? widget.product.currencyText() : 'Unavailable',
+                  isAvailable ? widget.product.currencyText() : 'Indisponível',
                   style: TextStyle(
                       color: (isAvailable)
                           ? const Color(0xFF77AF4D)
@@ -259,7 +259,7 @@ class DetailScreenState extends State<DetailScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Description",
+                  "Descrição",
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 16,

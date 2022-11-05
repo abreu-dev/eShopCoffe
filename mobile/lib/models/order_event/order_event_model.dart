@@ -26,4 +26,13 @@ class OrderEventModel with _$OrderEventModel {
   Color color() {
     return Colors.black;
   }
+
+  String statusText() {
+    if (status == 'Pending') return 'Pendente';
+    if (status == 'Confirmed') return 'Confirmado';
+    if (status == 'In Production') return 'Em produção';
+    if (status == 'In DeliveryRoute') return 'Em rota de entrega';
+    if (status == 'Delivered') return 'Entregue';
+    else return '';
+  }
 }

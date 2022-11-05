@@ -21,7 +21,7 @@ namespace eShopCoffe.Identity.Application.Services
 
             if (user == null)
             {
-                return Result<UserDomain>.Failure("SignInFailed", "Incorrect username or password.");
+                return Result<UserDomain>.Failure("SignInFailed", "Nome de usuário ou senha incorretos.");
             }
 
             return Result<UserDomain>.Success(user);

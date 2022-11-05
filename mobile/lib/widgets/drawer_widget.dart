@@ -31,14 +31,14 @@ class DrawerWidgetState extends State<DrawerWidget> {
 
     var homeWidget = _createDrawerItem(
         icon: Icons.home,
-        text: 'Home',
+        text: 'Vitrine',
         onTap: () =>
             Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()))
     );
 
     var ordersWidget = _createDrawerItem(
       icon: Icons.shopping_cart,
-      text: 'Orders',
+      text: 'Pedidos',
       onTap: () =>
           Navigator.push(context, MaterialPageRoute(builder: (context) => const OrdersScreen(0)))
     );
@@ -49,7 +49,7 @@ class DrawerWidgetState extends State<DrawerWidget> {
       widgets.add(ordersWidget);
       widgets.add(_createDrawerItem(
         icon: FontAwesomeIcons.user,
-        text: 'Sign Out',
+        text: 'Sair',
         onTap: () => {
           context.read<AuthenticationCubit>().signOut(),
           Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()))
@@ -59,7 +59,7 @@ class DrawerWidgetState extends State<DrawerWidget> {
       widgets.add(homeWidget);
       widgets.add(_createDrawerItem(
         icon: FontAwesomeIcons.user,
-        text: 'Sign In',
+        text: 'Entrar',
         onTap: () =>
           Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()))));
     }

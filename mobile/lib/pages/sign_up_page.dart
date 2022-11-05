@@ -105,7 +105,7 @@ class SignUpPageState extends State<SignUpPage> {
                         color: const Color(0xFF666666),
                         fontFamily: defaultFontFamily,
                         fontSize: defaultFontSize),
-                    hintText: "Username",
+                    hintText: "Nome de usuário",
                   ),
                 ),
                 const SizedBox(
@@ -175,7 +175,7 @@ class SignUpPageState extends State<SignUpPage> {
                       fontFamily: defaultFontFamily,
                       fontSize: defaultFontSize,
                     ),
-                    hintText: "Password",
+                    hintText: "Senha",
                   ),
                 ),
                 const SizedBox(
@@ -193,7 +193,7 @@ class SignUpPageState extends State<SignUpPage> {
                         borderRadius: BorderRadius.circular(15.0),
                         side: const BorderSide(color: Color(0xFF74AA50))),
                     child: const Text(
-                      "Sign Up",
+                      "Criar conta",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -218,7 +218,7 @@ class SignUpPageState extends State<SignUpPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Already have an account? ",
+                    "Já possui uma conta? ",
                     style: TextStyle(
                       color: const Color(0xFF666666),
                       fontFamily: defaultFontFamily,
@@ -234,7 +234,7 @@ class SignUpPageState extends State<SignUpPage> {
                       );
                     },
                     child: Text(
-                      "Sign In",
+                      "Login",
                       style: TextStyle(
                         color: const Color(0xFF74AA50),
                         fontFamily: defaultFontFamily,

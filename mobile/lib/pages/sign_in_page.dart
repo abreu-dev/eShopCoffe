@@ -38,7 +38,7 @@ class SignInPageState extends State<SignInPage> {
         var model = AuthenticatedUserModel.fromJson(response.data);
 
         if (model.user.isAdmin) {
-          SnackBarHelper.failure(context, 'This account have no permission to sign in for mobile app.');
+          SnackBarHelper.failure(context, 'Essa conta não tem permissão para realizar login.');
           return;
         }
 
@@ -109,7 +109,7 @@ class SignInPageState extends State<SignInPage> {
                         color: const Color(0xFF666666),
                         fontFamily: defaultFontFamily,
                         fontSize: defaultFontSize),
-                    hintText: "Username",
+                    hintText: "Nome de usuário",
                   ),
                 ),
                 const SizedBox(
@@ -151,7 +151,7 @@ class SignInPageState extends State<SignInPage> {
                       fontFamily: defaultFontFamily,
                       fontSize: defaultFontSize,
                     ),
-                    hintText: "Password",
+                    hintText: "Senha",
                   ),
                 ),
                 const SizedBox(
@@ -167,7 +167,7 @@ class SignInPageState extends State<SignInPage> {
                       )
                     },
                     child: Text(
-                      "Forgot your password?",
+                      "Esqueceu sua senha?",
                       style: TextStyle(
                         color: const Color(0xFF666666),
                         fontFamily: defaultFontFamily,
@@ -195,7 +195,7 @@ class SignInPageState extends State<SignInPage> {
                         side: const BorderSide(color: Color(0xFF74AA50))
                     ),
                     child: const Text(
-                      "Sign In",
+                      "Login",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -220,7 +220,7 @@ class SignInPageState extends State<SignInPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Don't have an account? ",
+                    "Não tem uma conta? ",
                     style: TextStyle(
                       color: const Color(0xFF666666),
                       fontFamily: defaultFontFamily,
@@ -236,7 +236,7 @@ class SignInPageState extends State<SignInPage> {
                       )
                     },
                     child: Text(
-                      "Sign Up",
+                      "Cadastre-se",
                       style: TextStyle(
                         color: const Color(0xFF74AA50),
                         fontFamily: defaultFontFamily,

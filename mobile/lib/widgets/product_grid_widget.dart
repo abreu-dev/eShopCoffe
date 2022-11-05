@@ -55,7 +55,7 @@ class ProductGridWidget extends StatelessWidget {
                   Container(
                     alignment: Alignment.bottomLeft,
                     padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Text((isAvailable) ? product.currencyText() : 'Unavailable',
+                    child: Text((isAvailable) ? product.currencyText() : 'Indisponível',
                         style: TextStyle(
                             color: (isAvailable)
                                 ? const Color(0xFF77AF4D)

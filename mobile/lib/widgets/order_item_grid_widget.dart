@@ -43,7 +43,7 @@ class OrderGridWidget extends StatelessWidget {
                                 const SizedBox(
                                     height: 10
                                 ),
-                                orderDescription(order.status, order.events.last.date)
+                                orderDescription(order.statusText(),  order.events.last.date)
                               ],
                             ),
                             Row(
@@ -97,7 +97,7 @@ Widget orderDescription(String status, DateTime date) {
         ),
         children: <TextSpan>[
           TextSpan(
-              text: '\nLast update: $formattedDate',
+              text: '\nÚltima atualização: $formattedDate',
               style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 15,
