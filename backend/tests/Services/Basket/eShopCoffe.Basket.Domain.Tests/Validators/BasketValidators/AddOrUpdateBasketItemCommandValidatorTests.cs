@@ -7,6 +7,7 @@ namespace eShopCoffe.Basket.Domain.Tests.Validators.BasketValidators
     {
         private static readonly Guid ValidProductId = Guid.NewGuid();
         private static readonly int ValidAmount = 1;
+        private static readonly bool ValidIncrease = true;
 
         private readonly AddOrUpdateBasketItemCommandValidator _validator;
 
@@ -19,7 +20,7 @@ namespace eShopCoffe.Basket.Domain.Tests.Validators.BasketValidators
         public void Validate_ShouldBeValid()
         {
             // Arrange
-            var command = new AddOrUpdateBasketItemCommand(ValidProductId, ValidAmount);
+            var command = new AddOrUpdateBasketItemCommand(ValidProductId, ValidAmount, ValidIncrease);
 
             // Act
             var result = _validator.TestValidate(command);
@@ -32,7 +33,7 @@ namespace eShopCoffe.Basket.Domain.Tests.Validators.BasketValidators
         public void Validate_ShouldBeInvalid_WhenEmptyId()
         {
             // Arrange
-            var command = new AddOrUpdateBasketItemCommand(Guid.Empty, ValidAmount);
+            var command = new AddOrUpdateBasketItemCommand(Guid.Empty, ValidAmount, ValidIncrease);
 
             // Act
             var result = _validator.TestValidate(command);
@@ -47,7 +48,7 @@ namespace eShopCoffe.Basket.Domain.Tests.Validators.BasketValidators
         public void Validate_ShouldBeInvalid_WhenQuantityAvailableLessThanOne()
         {
             // Arrange
-            var command = new AddOrUpdateBasketItemCommand(ValidProductId, 0);
+            var command = new AddOrUpdateBasketItemCommand(ValidProductId, 0, ValidIncrease);
 
             // Act
             var result = _validator.TestValidate(command);

@@ -17,6 +17,7 @@ namespace eShopCoffe.Catalog.Application
         private static void Queries(IServiceCollection services)
         {
             services.AddScoped<IQueryHandler<PagedProductsQuery, IPagedList<ProductDto>>, ProductQueryHandler>();
+            services.AddScoped<IQueryHandler<ProductDetailQuery, ProductDto>, ProductQueryHandler>();
         }
     }
 }

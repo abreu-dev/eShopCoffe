@@ -184,6 +184,134 @@ namespace eShopCoffe.Context.Migrations
                     b.ToTable("User", (string)null);
                 });
 
+            modelBuilder.Entity("eShopCoffe.Ordering.Infra.Data.Entities.OrderData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Cep")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CurrencyCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("CurrencyValue")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Order", (string)null);
+                });
+
+            modelBuilder.Entity("eShopCoffe.Ordering.Infra.Data.Entities.OrderEventData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderEvent", (string)null);
+                });
+
+            modelBuilder.Entity("eShopCoffe.Ordering.Infra.Data.Entities.OrderItemData", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CurrencyCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("CurrencyValue")
+                        .HasColumnType("numeric");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItem", (string)null);
+                });
+
             modelBuilder.Entity("eShopCoffe.Basket.Infra.Data.Entities.BasketData", b =>
                 {
                     b.HasOne("eShopCoffe.Identity.Infra.Data.Entities.UserData", "User")
@@ -214,8 +342,56 @@ namespace eShopCoffe.Context.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("eShopCoffe.Ordering.Infra.Data.Entities.OrderData", b =>
+                {
+                    b.HasOne("eShopCoffe.Identity.Infra.Data.Entities.UserData", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("eShopCoffe.Ordering.Infra.Data.Entities.OrderEventData", b =>
+                {
+                    b.HasOne("eShopCoffe.Ordering.Infra.Data.Entities.OrderData", "Order")
+                        .WithMany("Events")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("eShopCoffe.Ordering.Infra.Data.Entities.OrderItemData", b =>
+                {
+                    b.HasOne("eShopCoffe.Ordering.Infra.Data.Entities.OrderData", "Order")
+                        .WithMany("Items")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("eShopCoffe.Catalog.Infra.Data.Entities.ProductData", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("eShopCoffe.Basket.Infra.Data.Entities.BasketData", b =>
                 {
+                    b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("eShopCoffe.Ordering.Infra.Data.Entities.OrderData", b =>
+                {
+                    b.Navigation("Events");
+
                     b.Navigation("Items");
                 });
 #pragma warning restore 612, 618

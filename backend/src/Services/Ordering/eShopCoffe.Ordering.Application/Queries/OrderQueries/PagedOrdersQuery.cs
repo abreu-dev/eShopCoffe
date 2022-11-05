@@ -1,0 +1,17 @@
+﻿using eShopCoffe.Core.Data.Pagination.Interfaces;
+using eShopCoffe.Core.Messaging.Requests.Interfaces;
+using eShopCoffe.Ordering.Application.Contracts;
+using eShopCoffe.Ordering.Application.Parameters.Interfaces;
+
+namespace eShopCoffe.Ordering.Application.Queries.OrderQueries
+{
+    public class PagedOrdersQuery : IQuery<IPagedList<OrderDto>>
+    {
+        public IOrderParameters Parameters { get; private set; }
+
+        public PagedOrdersQuery(IOrderParameters parameters)
+        {
+            Parameters = parameters;
+        }
+    }
+}

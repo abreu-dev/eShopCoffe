@@ -43,7 +43,10 @@ namespace eShopCoffe.Basket.Application.Tests.Queries.Handlers
                             ProductId = Guid.NewGuid(),
                             Product = new ProductData()
                             {
-                                Name = "ProductName"
+                                Name = "ProductName",
+                                ImageUrl = "ProductImageUrl",
+                                CurrencyCode = "ProductCurrencyCode",
+                                CurrencyValue = 1
                             },
                             Amount = 10
                         }
@@ -61,7 +64,10 @@ namespace eShopCoffe.Basket.Application.Tests.Queries.Handlers
                             ProductId = Guid.NewGuid(),
                             Product = new ProductData()
                             {
-                                Name = "ProductName"
+                                Name = "ProductName",
+                                ImageUrl = "ProductImageUrl",
+                                CurrencyCode = "ProductCurrencyCode",
+                                CurrencyValue = 2
                             },
                             Amount = 15
                         }
@@ -81,6 +87,9 @@ namespace eShopCoffe.Basket.Application.Tests.Queries.Handlers
             result.Items.ElementAt(0).Id.Should().Be(basketDataList.ElementAt(1).Items.ElementAt(0).Id);
             result.Items.ElementAt(0).Product.Id.Should().Be(basketDataList.ElementAt(1).Items.ElementAt(0).ProductId);
             result.Items.ElementAt(0).Product.Name.Should().Be(basketDataList.ElementAt(1).Items.ElementAt(0).Product.Name);
+            result.Items.ElementAt(0).Product.ImageUrl.Should().Be(basketDataList.ElementAt(1).Items.ElementAt(0).Product.ImageUrl);
+            result.Items.ElementAt(0).Product.CurrencyCode.Should().Be(basketDataList.ElementAt(1).Items.ElementAt(0).Product.CurrencyCode);
+            result.Items.ElementAt(0).Product.CurrencyValue.Should().Be(basketDataList.ElementAt(1).Items.ElementAt(0).Product.CurrencyValue);
             result.Items.ElementAt(0).Amount.Should().Be(basketDataList.ElementAt(1).Items.ElementAt(0).Amount);
         }
 

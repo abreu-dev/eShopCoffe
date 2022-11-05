@@ -1,3 +1,4 @@
+import 'package:eshopcoffe/screens/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:eshopcoffe/models/product/product_model.dart';
 
@@ -11,7 +12,16 @@ class ProductGridWidget extends StatelessWidget {
     var isAvailable = product.isAvailable();
 
     return InkWell(
-      onTap: () { },
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ProductDetailScreen(
+                    product.id,
+                    isAvailable)
+            )
+        );
+    },
       child: Container(
         padding: const EdgeInsets.only(top: 5),
         child: Card(
@@ -45,7 +55,7 @@ class ProductGridWidget extends StatelessWidget {
                   Container(
                     alignment: Alignment.bottomLeft,
                     padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                    child: Text((isAvailable) ? product.currencyText() : 'Unavailable',
+                    child: Text((isAvailable) ? product.currencyText() : 'Indisponível',
                         style: TextStyle(
                             color: (isAvailable)
                                 ? const Color(0xFF77AF4D)

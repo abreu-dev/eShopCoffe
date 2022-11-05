@@ -13,12 +13,12 @@ namespace eShopCoffe.Identity.Domain.Validators
         public IResult Validate(string password)
         {
             var regex = new Regex(MinimumEightCaractersAtLeastOneUpperCaseAndOneLowerCaseLetterAndOneDigitAndOneSpecialCharacter);
-            
+
             if (!string.IsNullOrEmpty(password) && regex.IsMatch(password)) return Result.Success();
 
             return Result.Failure(
                 "PasswordValidatorFailed",
-                "Password must have minimum eight characters, at least one upper case letter, one lower case letter, one digit and one special character.");
+                "Senha deve conter no mínimo 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.");
         }
     }
 }

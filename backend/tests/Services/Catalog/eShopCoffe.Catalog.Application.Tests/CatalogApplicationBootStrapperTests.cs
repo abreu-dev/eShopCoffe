@@ -23,8 +23,9 @@ namespace eShopCoffe.Catalog.Application.Tests
             CatalogApplicationBootStrapper.ConfigureServices(_serviceCollection);
 
             // Assert
-            _serviceCollection.Received(1).Add(Arg.Any<ServiceDescriptor>());
+            _serviceCollection.Received(2).Add(Arg.Any<ServiceDescriptor>());
             ValidateService(typeof(IQueryHandler<PagedProductsQuery, IPagedList<ProductDto>>), typeof(ProductQueryHandler));
+            ValidateService(typeof(IQueryHandler<ProductDetailQuery, ProductDto>), typeof(ProductQueryHandler));
         }
 
         private void ValidateService(Type interfaceType, Type objectType)

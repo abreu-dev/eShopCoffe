@@ -30,7 +30,14 @@ namespace eShopCoffe.API.Scope.Handlers
             if (authenticatedUser != null)
             {
                 var hasAdminFilter = HasFilter(context, typeof(AdminAuthenticationTokenFilterAttribute));
-                if (!hasAdminFilter || authenticatedUser.IsAdmin)
+                if (hasAdminFilter && authenticatedUser.IsAdmin)
+                {
+                    _sessionAccessor.Authenticate(authenticatedUser);
+                    return;
+                }
+
+                var hasClientFilter = HasFilter(context, typeof(ClientAuthenticationTokenFilterAttribute));
+                if (hasClientFilter && authenticatedUser.IsClient)
                 {
                     _sessionAccessor.Authenticate(authenticatedUser);
                     return;

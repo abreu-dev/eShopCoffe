@@ -1,4 +1,4 @@
-﻿using eShopCoffe.Catalog.Domain.Entities;
+﻿using eShopCoffe.Core.Domain.Entities;
 
 namespace eShopCoffe.Catalog.Domain.Tests.Entities
 {

@@ -27,7 +27,7 @@ namespace eShopCoffe.Identity.Domain.Tests.Validators
             // Assert
             result.HasSucceed.Should().BeFalse();
             result.ErrorCode.Should().Be("PasswordValidatorFailed");
-            result.ErrorMessage.Should().Be("Password must have minimum eight characters, at least one upper case letter, one lower case letter, one digit and one special character.");
+            result.ErrorMessage.Should().Be("Senha deve conter no mínimo 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.");
         }
 
         [Fact]

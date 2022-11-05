@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
-import 'package:eshopcoffe/components/sign_in_page.dart';
+import 'package:eshopcoffe/pages/sign_in_page.dart';
 import 'package:eshopcoffe/main.dart';
 import 'package:eshopcoffe/models/authenticated_user/authenticated_user_model.dart';
+import 'package:eshopcoffe/screens/orders_screen.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key});
@@ -30,17 +31,25 @@ class DrawerWidgetState extends State<DrawerWidget> {
 
     var homeWidget = _createDrawerItem(
         icon: Icons.home,
-        text: 'Home',
+        text: 'Vitrine',
         onTap: () =>
             Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()))
+    );
+
+    var ordersWidget = _createDrawerItem(
+      icon: Icons.shopping_cart,
+      text: 'Pedidos',
+      onTap: () =>
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const OrdersScreen(0)))
     );
 
     if (isLoggedIn) {
       widgets.add(_createDrawerHeaderForAuthenticated(user));
       widgets.add(homeWidget);
+      widgets.add(ordersWidget);
       widgets.add(_createDrawerItem(
         icon: FontAwesomeIcons.user,
-        text: 'Sign Out',
+        text: 'Sair',
         onTap: () => {
           context.read<AuthenticationCubit>().signOut(),
           Navigator.push(context, MaterialPageRoute(builder: (context) => const MyHomePage()))
@@ -50,7 +59,7 @@ class DrawerWidgetState extends State<DrawerWidget> {
       widgets.add(homeWidget);
       widgets.add(_createDrawerItem(
         icon: FontAwesomeIcons.user,
-        text: 'Sign In',
+        text: 'Entrar',
         onTap: () =>
           Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()))));
     }
@@ -69,16 +78,6 @@ class DrawerWidgetState extends State<DrawerWidget> {
             ]
           ),
         )
-    );
-
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.65,
-      child: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: widgets
-        )
-      )
     );
   }
 }

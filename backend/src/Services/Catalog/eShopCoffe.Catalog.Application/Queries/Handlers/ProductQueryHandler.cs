@@ -9,7 +9,8 @@ using eShopCoffe.Core.Messaging.Handlers.Interfaces;
 namespace eShopCoffe.Catalog.Application.Queries.Handlers
 {
     public class ProductQueryHandler :
-        IQueryHandler<PagedProductsQuery, IPagedList<ProductDto>>
+        IQueryHandler<PagedProductsQuery, IPagedList<ProductDto>>,
+        IQueryHandler<ProductDetailQuery, ProductDto>
     {
         private readonly IBaseContext _context;
 
@@ -43,6 +44,26 @@ namespace eShopCoffe.Catalog.Application.Queries.Handlers
 
             IPagedList<ProductDto> pagedList = new PagedList<ProductDto>(dtos, totalItems, query.Parameters.Page, query.Parameters.Size);
             return Task.FromResult(pagedList);
+        }
+
+        public Task<ProductDto> Handle(ProductDetailQuery query, CancellationToken cancellationToken = default)
+        {
+            var product = _context.Query<ProductData>().FirstOrDefault(p => p.Id == query.ProductId);
+
+            if (product == null)
+                return Task.FromResult(new ProductDto());
+
+            var productDto = new ProductDto()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                QuantityAvailable = product.QuantityAvailable,
+                CurrencyCode = product.CurrencyCode,
+                CurrencyValue = product.CurrencyValue
+            };
+            return Task.FromResult(productDto);
         }
     }
 }

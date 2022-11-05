@@ -5,7 +5,9 @@ import 'package:eshopcoffe/models/authenticated_user/authenticated_user_model.da
 import 'package:eshopcoffe/utils/local_storage.dart';
 
 class AuthenticationCubit extends Cubit<AuthenticatedUserModel?> {
-  AuthenticationCubit(): super(null);
+  AuthenticationCubit(): super(null) {
+    tryLoadFromLocalStorage();
+  }
 
   Future<void> tryLoadFromLocalStorage() async {
     try {

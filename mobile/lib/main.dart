@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationCubit>(
-            create: (BuildContext context) => AuthenticationCubit()..tryLoadFromLocalStorage()
+            create: (BuildContext context) => AuthenticationCubit()
         ),
         BlocProvider<CatalogCubit>(
             create: (BuildContext context) => CatalogCubit()
@@ -45,50 +45,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
-  int selectedIndex = 0;
-  final List<Widget> tabs = [
-    const HomeScreen(),
-    const BasketScreen()
-  ];
-
-  void onItemTapped(int index) {
-    setState(() {
-      selectedIndex = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return buildView();
   }
 
   Widget buildView() {
-    return DefaultTabController(
-        length: tabs.length,
-        child: Scaffold(
-            appBar: appBarWidget(context),
-            drawer: const DrawerWidget(),
-            body: IndexedStack(
-              index: selectedIndex,
-              children: tabs,
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.home),
-                    label: 'Home'
-                ),
-                BottomNavigationBarItem(
-                    icon: Icon(FontAwesomeIcons.bagShopping),
-                    label: 'Basket'
-                )
-              ],
-              currentIndex: selectedIndex,
-              selectedItemColor: const Color(0xFF77AF4D),
-              onTap: onItemTapped,
-            )
-        )
+    return Scaffold(
+        appBar: appBarWidget(context, 'MyHomePage'),
+        drawer: const DrawerWidget(),
+        body: const HomeScreen()
     );
   }
 }

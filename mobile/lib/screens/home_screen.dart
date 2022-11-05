@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:eshopcoffe/components/product_list_page.dart';
+import 'package:eshopcoffe/pages/product_list_page.dart';
 import 'package:eshopcoffe/widgets/search_widget.dart';
-import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,26 +15,12 @@ class HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Column(
         children: <Widget>[
-          const SearchWidget(),
+          //const SearchWidget(),
           SizedBox(
             height: 10,
             child: Container(
               color: const Color(0xFFF5F6F7)
             )
-          ),
-          const PreferredSize(
-            preferredSize: Size.fromHeight(50.0),
-            child: TabBar(
-                labelColor: Colors.black,
-                tabs: [
-                  Tab(
-                    text: 'Products'
-                  ),
-                  Tab(
-                    text: 'Nothing'
-                  )
-                ]
-            ),
           ),
           SizedBox(
               height: 10,
@@ -43,19 +28,8 @@ class HomeScreenState extends State<HomeScreen> {
                   color: const Color(0xFFF5F6F7)
               )
           ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                Container(
-                  color: Colors.white24,
-                  child: const ProductListPage('products/'),
-                ),
-                Container(
-                  color: Colors.white24,
-                  child: const CircularProgressWidget(),
-                )
-              ],
-            ),
+          const Expanded(
+            child: ProductListPage('products/')
           ),
         ]
       )

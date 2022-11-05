@@ -1,5 +1,4 @@
-﻿using eShopCoffe.Core.Cryptography.Interfaces;
-using eShopCoffe.Identity.Domain.Entities;
+﻿using eShopCoffe.Identity.Domain.Entities;
 
 namespace eShopCoffe.Identity.Domain.Tests.Entities
 {
