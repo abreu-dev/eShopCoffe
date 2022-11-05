@@ -18,7 +18,7 @@ class BasketItemGridWidget extends StatelessWidget {
           .removeFromBasket(basketItem.product.id)
           .then((response) async
       {
-        SnackBarHelper.success(context, 'Product was successfully removed from your cart.');
+        SnackBarHelper.success(context, 'Produto removido do seu carrinho com sucesso.');
         reloadMainScreen!();
       },
       onError: (error) {
@@ -156,7 +156,7 @@ Widget removeFromBasketButton(Function onButtonPressed) {
     child: InkWell(
       onTap: () async => onButtonPressed(),
       child: const Text(
-        "Remove",
+        "Remover",
         style: TextStyle(
           color: Color(0xFF454A3E),
           fontFamily: 'Roboto-Light.ttf',

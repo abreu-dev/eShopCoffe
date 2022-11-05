@@ -93,7 +93,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
 
             result.HasSucceed.Should().BeFalse();
             result.ErrorCode.Should().Be("ConfirmPasswordResetFailed");
-            result.ErrorMessage.Should().Be("User not found.");
+            result.ErrorMessage.Should().Be("Usuário não encontrado.");
         }
 
         [Fact]
@@ -124,7 +124,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
 
             result.HasSucceed.Should().BeFalse();
             result.ErrorCode.Should().Be("ConfirmPasswordResetFailed");
-            result.ErrorMessage.Should().Be("Invalid password reset code.");
+            result.ErrorMessage.Should().Be("Código de confirmação inválido.");
         }
 
         [Fact]

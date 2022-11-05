@@ -35,7 +35,7 @@ class ConfirmPasswordResetPageState extends State<ConfirmPasswordResetPage> {
           _newPasswordController.text,
           _passwordResetCodeController.text)
       .then((response) async {
-        SnackBarHelper.success(context, 'Password reset succeed! Please, try to sign in.');
+        SnackBarHelper.success(context, 'Senha alterada com sucesso! Por favor, realize o login.');
         Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()));
       },
       onError: (error) {
@@ -108,7 +108,7 @@ class ConfirmPasswordResetPageState extends State<ConfirmPasswordResetPage> {
                         color: const Color(0xFF666666),
                         fontFamily: defaultFontFamily,
                         fontSize: defaultFontSize),
-                    hintText: "Password reset code",
+                    hintText: "Código de confirmação",
                   ),
                 ),
                 const SizedBox(
@@ -150,7 +150,7 @@ class ConfirmPasswordResetPageState extends State<ConfirmPasswordResetPage> {
                       fontFamily: defaultFontFamily,
                       fontSize: defaultFontSize,
                     ),
-                    hintText: "New password",
+                    hintText: "Senha nova",
                   ),
                 ),
                 const SizedBox(
@@ -170,7 +170,7 @@ class ConfirmPasswordResetPageState extends State<ConfirmPasswordResetPage> {
                         side: const BorderSide(color: Color(0xFF74AA50))
                     ),
                     child: const Text(
-                      "Confirm password reset",
+                      "Confirmar alteração de senha",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -195,7 +195,7 @@ class ConfirmPasswordResetPageState extends State<ConfirmPasswordResetPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Remembered your account? ",
+                    "Lembrou sua conta? ",
                     style: TextStyle(
                       color: const Color(0xFF666666),
                       fontFamily: defaultFontFamily,
@@ -211,7 +211,7 @@ class ConfirmPasswordResetPageState extends State<ConfirmPasswordResetPage> {
                       );
                     },
                     child: Text(
-                      "Sign In",
+                      "Login",
                       style: TextStyle(
                         color: const Color(0xFF74AA50),
                         fontFamily: defaultFontFamily,

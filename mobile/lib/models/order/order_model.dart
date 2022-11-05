@@ -36,4 +36,21 @@ class OrderModel with _$OrderModel {
   String formattedDate() {
     return DateFormat('dd/MM/yyyy HH:mm').format(createdDate.toLocal());
   }
+
+  String statusText() {
+    if (status == 'Pending') return 'Pendente';
+    if (status == 'Confirmed') return 'Confirmado';
+    if (status == 'In Production') return 'Em produção';
+    if (status == 'In DeliveryRoute') return 'Em rota de entrega';
+    if (status == 'Delivered') return 'Entregue';
+    else return status;
+  }
+
+  String paymentMethodText() {
+    if (paymentMethod == 'Cash') return 'Dinheiro';
+    if (paymentMethod == 'Credit Card') return 'Cartão de crédito';
+    if (paymentMethod == 'Debit Card') return 'Cartão de débito';
+    if (paymentMethod == 'Pix') return 'Pix';
+    else return paymentMethod;
+  }
 }

@@ -4,8 +4,7 @@ import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
 import 'package:eshopcoffe/widgets/app_bar_widget.dart';
 import 'package:eshopcoffe/models/order/order_model.dart';
 import 'package:eshopcoffe/services/orders_service.dart';
-
-import '../widgets/order_item_detail_grid_widget.dart';
+import 'package:eshopcoffe/widgets/order_item_detail_grid_widget.dart';
 
 class OrderDetailScreen extends StatefulWidget {
   final String orderId;
@@ -80,7 +79,7 @@ class DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Order".toUpperCase(),
+                  "Pedido".toUpperCase(),
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -105,7 +104,7 @@ class DetailScreenState extends State<DetailScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                      "Created Date".toUpperCase(),
+                      "Data".toUpperCase(),
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -130,7 +129,7 @@ class DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Address".toUpperCase(),
+                  "Endereço".toUpperCase(),
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -155,7 +154,7 @@ class DetailScreenState extends State<DetailScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Payment".toUpperCase(),
+                    "Forma de pagamento".toUpperCase(),
                     style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -163,7 +162,7 @@ class DetailScreenState extends State<DetailScreen> {
                     )
                   ),
                   Text(
-                    widget.order.paymentMethod,
+                    widget.order.paymentMethodText(),
                     style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -180,7 +179,7 @@ class DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Total value".toUpperCase(),
+                  "Valor total".toUpperCase(),
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -213,7 +212,7 @@ class DetailScreenState extends State<DetailScreen> {
                     )
                   ),
                   Text(
-                    widget.order.status,
+                    widget.order.statusText(),
                     style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -230,7 +229,7 @@ class DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Items".toUpperCase(),
+                  "Itens".toUpperCase(),
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -248,7 +247,7 @@ class DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Timeline".toUpperCase(),
+                  "Linha do tempo".toUpperCase(),
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -285,9 +284,9 @@ Widget createTimelineEvent(OrderEventModel event, Size size) {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(event.status),
+                    Text(event.statusText()),
                     Text(
-                      event.status,
+                      event.statusText(),
                       style: const TextStyle(color: Colors.grey, fontSize: 12),
                     )
                   ]

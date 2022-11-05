@@ -6,8 +6,7 @@ import 'package:eshopcoffe/services/baskets_service.dart';
 import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
 import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
 import 'package:eshopcoffe/widgets/app_bar_widget.dart';
-
-import '../pages/create_order_page.dart';
+import 'package:eshopcoffe/pages/create_order_page.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -90,7 +89,7 @@ class BottomNavBar extends StatelessWidget {
               );
             },
             child: Text(
-              'Create order'.toUpperCase(),
+              'Criar pedido'.toUpperCase(),
               style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
@@ -143,7 +142,7 @@ class EmptyBasketScreenState extends State<EmptyBasketScreen> {
             const SizedBox(
               width: double.infinity,
               child: Text(
-                "You haven't anything in your basket!",
+                "Seu carrinho está vazio!",
                 style: TextStyle(
                   color: Color(0xFF67778E),
                   fontFamily: 'Roboto-Light.ttf',
@@ -199,7 +198,7 @@ class NotSignInBasketScreenState extends State<NotSignInBasketScreen> {
             const SizedBox(
               width: double.infinity,
               child: Text(
-                "You need to sign in to see your basket!",
+                "Você precisa realizar login para ver seu carrinho!",
                 style: TextStyle(
                   color: Color(0xFF67778E),
                   fontFamily: 'Roboto-Light.ttf',

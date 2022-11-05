@@ -54,7 +54,7 @@ namespace eShopCoffe.Ordering.Domain.Commands.Handlers
 
                 if (product == null)
                 {
-                    await _bus.Notification(new Notification("ProductNotFound", "Product was not found."), cancellationToken);
+                    await _bus.Notification(new Notification("ProductNotFound", "Produto não encontrado."), cancellationToken);
                     return;
                 }
 

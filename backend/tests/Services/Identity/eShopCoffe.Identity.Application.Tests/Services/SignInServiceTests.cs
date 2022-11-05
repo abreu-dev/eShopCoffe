@@ -45,7 +45,7 @@ namespace eShopCoffe.Identity.Application.Tests.Services
             // Assert
             result.HasSucceed.Should().BeFalse();
             result.ErrorCode.Should().Be("SignInFailed");
-            result.ErrorMessage.Should().Be("Incorrect username or password.");
+            result.ErrorMessage.Should().Be("Nome de usuário ou senha incorretos.");
         }
     }
 }

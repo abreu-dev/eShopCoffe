@@ -30,7 +30,7 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
       await SessionService().requestPasswordReset(
           username)
           .then((response) async {
-        SnackBarHelper.success(context, 'Please, check your email for the password reset code.');
+        SnackBarHelper.success(context, 'Por favor, verifique o email com o código de confirmação.');
         Navigator.push(context, MaterialPageRoute(builder: (context) => ConfirmPasswordResetPage(username)));
       },
       onError: (error) {
@@ -97,7 +97,7 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
                         color: const Color(0xFF666666),
                         fontFamily: defaultFontFamily,
                         fontSize: defaultFontSize),
-                    hintText: "Username",
+                    hintText: "Nome de usuário",
                   ),
                 ),
                 const SizedBox(
@@ -117,7 +117,7 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
                         side: const BorderSide(color: Color(0xFF74AA50))
                     ),
                     child: const Text(
-                      "Reset my password",
+                      "Recuperar minha senha",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -142,7 +142,7 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "Remembered your account? ",
+                    "Lembrou sua conta? ",
                     style: TextStyle(
                       color: const Color(0xFF666666),
                       fontFamily: defaultFontFamily,
@@ -158,7 +158,7 @@ class RequestPassswordResetPageState extends State<RequestPassswordResetPage> {
                       );
                     },
                     child: Text(
-                      "Sign In",
+                      "Login",
                       style: TextStyle(
                         color: const Color(0xFF74AA50),
                         fontFamily: defaultFontFamily,

@@ -13,11 +13,11 @@ AppBar appBarWidget(context, currentRoute) {
   }
 
   var screenTitles = {
-    'BasketScreen': 'My basket',
-    'OrdersScreen': 'My orders',
-    'ProductDetailScreen': 'Details',
-    'OrderDetailScreen': 'Details',
-    'CreateOrderPage': 'Create order'
+    'BasketScreen': 'Meu carrinho',
+    'OrdersScreen': 'Meus pedidos',
+    'ProductDetailScreen': 'Detalhes',
+    'OrderDetailScreen': 'Detalhes',
+    'CreateOrderPage': 'Criar pedido'
   };
 
   var actions = <Widget>[];
@@ -49,7 +49,7 @@ AppBar appBarWidget(context, currentRoute) {
     centerTitle: true,
     backgroundColor: Colors.white,
     title: Text(
-        screenTitles[currentRoute] ?? 'Screen',
+        screenTitles[currentRoute] ?? 'Tela',
         style: const TextStyle(
           color: Colors.black,
           fontSize: 18,

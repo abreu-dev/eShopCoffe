@@ -39,10 +39,10 @@ namespace eShopCoffe.Identity.Application.Services
         public IResult ConfirmPasswordReset(string username, string newPassword, string passwordResetCode)
         {
             if (!_userRepository.ExistsByUsername(username))
-                return Result.Failure("ConfirmPasswordResetFailed", "User not found.");
+                return Result.Failure("ConfirmPasswordResetFailed", "Usuário não encontrado.");
 
             if (!_userRepository.ValidateTemporaryPasswordResetCode(username, passwordResetCode))
-                return Result.Failure("ConfirmPasswordResetFailed", "Invalid password reset code.");
+                return Result.Failure("ConfirmPasswordResetFailed", "Código de confirmação inválido.");
 
             var passwordValidator = _passwordValidator.Validate(newPassword);
 

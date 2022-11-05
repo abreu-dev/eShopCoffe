@@ -44,7 +44,7 @@ namespace eShopCoffe.Identity.Domain.Tests.Validators
 
             result.HasSucceed.Should().BeFalse();
             result.ErrorCode.Should().Be("SignUpValidatorFailed");
-            result.ErrorMessage.Should().Be("Username must have minimum six and maximum twelve characters and be formed only by lower case letters.");
+            result.ErrorMessage.Should().Be("Nome de usuário deve possuir no mínimo seis e no máximo doze caracteres e formado apenas por letras minúsculas.");
         }
 
         [Theory]
@@ -71,7 +71,7 @@ namespace eShopCoffe.Identity.Domain.Tests.Validators
 
             result.HasSucceed.Should().BeFalse();
             result.ErrorCode.Should().Be("SignUpValidatorFailed");
-            result.ErrorMessage.Should().Be("Email must be valid.");
+            result.ErrorMessage.Should().Be("Email deve ser válido.");
         }
 
         [Fact]
@@ -126,7 +126,7 @@ namespace eShopCoffe.Identity.Domain.Tests.Validators
 
             result.HasSucceed.Should().BeFalse();
             result.ErrorCode.Should().Be("SignUpValidatorFailed");
-            result.ErrorMessage.Should().Be("Username already in use.");
+            result.ErrorMessage.Should().Be("Nome de usuário já utilizado.");
         }
 
         [Fact]
@@ -158,7 +158,7 @@ namespace eShopCoffe.Identity.Domain.Tests.Validators
 
             result.HasSucceed.Should().BeFalse();
             result.ErrorCode.Should().Be("SignUpValidatorFailed");
-            result.ErrorMessage.Should().Be("Email already in use.");
+            result.ErrorMessage.Should().Be("Email já utilizado.");
         }
 
         [Fact]

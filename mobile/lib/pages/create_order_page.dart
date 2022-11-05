@@ -1,15 +1,13 @@
-import 'package:eshopcoffe/main.dart';
 import 'package:eshopcoffe/models/basket/basket_model.dart';
 import 'package:eshopcoffe/screens/orders_screen.dart';
 import 'package:eshopcoffe/services/orders_service.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:eshopcoffe/widgets/app_bar_widget.dart';
-
-import '../models/create_order_item/create_order_item_model.dart';
-import '../models/payment_method/payment_method_enum.dart';
-import '../utils/snack_bar_helper.dart';
-import '../widgets/basket_item_grid_widget.dart';
+import 'package:eshopcoffe/models/create_order_item/create_order_item_model.dart';
+import 'package:eshopcoffe/models/payment_method/payment_method_enum.dart';
+import 'package:eshopcoffe/utils/snack_bar_helper.dart';
+import 'package:eshopcoffe/widgets/basket_item_grid_widget.dart';
 
 class CreateOrderPage extends StatefulWidget {
   final BasketModel basket;
@@ -45,7 +43,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
           items.toList())
           .then((response) async {
 
-        SnackBarHelper.success(context, 'Order successfully created!');
+        SnackBarHelper.success(context, 'Pedido criado com sucesso!');
 
         Navigator.of(context).pop();
         Navigator.of(context).pop();
@@ -80,7 +78,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Address".toUpperCase(),
+                  "Endereço".toUpperCase(),
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -147,7 +145,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
                     color: const Color(0xFF666666),
                     fontFamily: defaultFontFamily,
                     fontSize: defaultFontSize),
-                hintText: "Number",
+                hintText: "Número",
               ),
             )
           ),
@@ -161,7 +159,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                      "Payment Method".toUpperCase(),
+                      "Forma de pagamento".toUpperCase(),
                       style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -177,7 +175,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
                 Column(
                   children: [
                     ListTile(
-                      title: Text(getEnumDesc(PaymentMethodEnum.cash)),
+                      title: const Text('Dinheiro'),
                       leading: Radio<PaymentMethodEnum>(
                         value: PaymentMethodEnum.cash,
                         groupValue: _paymentMethodController,
@@ -189,7 +187,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
                       ),
                     ),
                     ListTile(
-                      title: Text(getEnumDesc(PaymentMethodEnum.creditCard)),
+                      title: const Text('Cartão de crédito'),
                       leading: Radio<PaymentMethodEnum>(
                         value: PaymentMethodEnum.creditCard,
                         groupValue: _paymentMethodController,
@@ -201,7 +199,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
                       ),
                     ),
                     ListTile(
-                      title: Text(getEnumDesc(PaymentMethodEnum.debitCard)),
+                      title: const Text('Cartão de débito'),
                       leading: Radio<PaymentMethodEnum>(
                         value: PaymentMethodEnum.debitCard,
                         groupValue: _paymentMethodController,
@@ -213,7 +211,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
                       ),
                     ),
                     ListTile(
-                      title: Text(getEnumDesc(PaymentMethodEnum.pix)),
+                      title: const Text('Pix'),
                       leading: Radio<PaymentMethodEnum>(
                         value: PaymentMethodEnum.pix,
                         groupValue: _paymentMethodController,
@@ -237,7 +235,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Items".toUpperCase(),
+                  "Itens".toUpperCase(),
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -260,7 +258,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Total value".toUpperCase(),
+                  "Valor total".toUpperCase(),
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
@@ -304,7 +302,7 @@ class CreateOrderPageState extends State<CreateOrderPage> {
                     ),
                     onPressed: onCreateOrderButtonPressed,
                     child: Text(
-                      'Confirm'.toUpperCase(),
+                      'Confirmar'.toUpperCase(),
                       style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,

@@ -30,7 +30,7 @@ class OrdersScreenState extends State<OrdersScreen> {
                 return const CircularProgressWidget();
               default:
                 if (snapshot.hasError) {
-                  return const Text('Nothing to see here.');
+                  return const Text('Nada aqui.');
                 }
                 else {
                   return createOrdersView(context, snapshot);
@@ -81,7 +81,7 @@ class EmptyOrdersScreenState extends State<EmptyOrdersScreen> {
             const SizedBox(
               width: double.infinity,
               child: Text(
-                "You haven't anything in your order history!",
+                "Você não tem nada em seu histórico de pedidos!",
                 style: TextStyle(
                   color: Color(0xFF67778E),
                   fontFamily: 'Roboto-Light.ttf',
