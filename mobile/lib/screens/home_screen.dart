@@ -15,7 +15,7 @@ class HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Column(
         children: <Widget>[
-          const SearchWidget(),
+          //const SearchWidget(),
           SizedBox(
             height: 10,
             child: Container(

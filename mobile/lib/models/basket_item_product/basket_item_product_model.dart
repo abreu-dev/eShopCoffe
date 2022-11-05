@@ -19,9 +19,9 @@ class BasketItemProductModel with _$BasketItemProductModel {
   factory BasketItemProductModel.fromJson(Map<String, dynamic> json) =>
       _$BasketItemProductModelFromJson(json);
 
-  String currencyText() {
+  String currencyText(int amount) {
     return NumberFormat.simpleCurrency(
       name: currencyCode, //currencyCode
-    ).format(currencyValue);
+    ).format(currencyValue * amount);
   }
 }

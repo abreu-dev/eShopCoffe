@@ -5,8 +5,9 @@ import 'package:eshopcoffe/models/basket/basket_model.dart';
 import 'package:eshopcoffe/services/baskets_service.dart';
 import 'package:eshopcoffe/blocs/authentication/authentication_cubit.dart';
 import 'package:eshopcoffe/widgets/circular_progress_widget.dart';
+import 'package:eshopcoffe/widgets/app_bar_widget.dart';
 
-import '../widgets/app_bar_widget.dart';
+import '../pages/create_order_page.dart';
 
 class BasketScreen extends StatefulWidget {
   const BasketScreen({super.key});
@@ -19,13 +20,10 @@ class BasketScreenState extends State<BasketScreen> {
   @override
   Widget build(BuildContext context) {
     void reload() {
-      setState(() {
-
-      });
+      setState(() {});
     }
 
     var needToSignIn = context.read<AuthenticationCubit>().state == null;
-
     if (needToSignIn) {
       return Scaffold(
           backgroundColor: const Color(0xFFfafafa),
@@ -53,6 +51,54 @@ class BasketScreenState extends State<BasketScreen> {
                 }
             }
           }
+      )
+    );
+  }
+}
+
+class BottomNavBar extends StatelessWidget {
+  final BasketModel basket;
+  const BottomNavBar(this.basket, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 20, right: 10),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.favorite_border,
+            color: Color(0x0ffe5e5e)
+          ),
+          const Spacer(),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF74AA50),
+              elevation: 0,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    bottomLeft: Radius.circular(10)
+                ),
+                side: BorderSide(color: Color(0xFFfef2f2))
+              )
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreateOrderPage(basket))
+              );
+            },
+            child: Text(
+              'Create order'.toUpperCase(),
+              style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white
+              )
+            ),
+          )
+        ],
       )
     );
   }
@@ -183,19 +229,27 @@ class FilledBasketScreen extends StatefulWidget {
 class FilledBasketScreenState extends State<FilledBasketScreen> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: GridView.count(
-        crossAxisCount: 1,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        padding: const EdgeInsets.all(1.0),
-        childAspectRatio: 3.0 / 1.1,
-        children: List<Widget>.generate(widget.basket.items.length, (index) {
-          return GridTile(
-              child: BasketItemGridWidget(widget.basket.items[index], widget.reload)
-          );
-        }),
-      )
+    var scrollBasket = SingleChildScrollView(
+        child: GridView.count(
+          crossAxisCount: 1,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(1.0),
+          childAspectRatio: 3.0 / 1.1,
+          children: List<Widget>.generate(widget.basket.items.length, (index) {
+            return GridTile(
+                child: BasketItemGridWidget(widget.basket.items[index], widget.reload, true)
+            );
+          }),
+        )
+    );
+
+    return Column(
+      children: [
+        scrollBasket,
+        const Spacer(),
+        BottomNavBar(widget.basket)
+      ],
     );
   }
 }

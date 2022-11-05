@@ -203,12 +203,14 @@ class DetailScreenState extends State<DetailScreen> {
                           color: Color(0xFF656565)
                       )
                   ),
-                  Text(
-                      widget.product.name,
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFF74AA50)
+                  Flexible(
+                      child: Text(
+                          widget.product.name,
+                          style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xFF74AA50)
+                          )
                       )
                   )
                 ],

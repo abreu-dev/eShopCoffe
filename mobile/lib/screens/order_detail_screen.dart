@@ -174,6 +174,31 @@ class DetailScreenState extends State<DetailScreen> {
               )
           ),
           Container(
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
+            color: const Color(0xFFFFFFFF),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Total value".toUpperCase(),
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF656565)
+                  )
+                ),
+                Text(
+                  widget.order.currencyText(),
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF74AA50)
+                  )
+                )
+              ],
+            )
+          ),
+          Container(
               padding: const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
               color: const Color(0xFFFFFFFF),
               child: Row(

@@ -107,9 +107,10 @@ class __$$_BasketModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BasketModel implements _BasketModel {
+class _$_BasketModel extends _BasketModel {
   _$_BasketModel({required this.id, required final List<BasketItemModel> items})
-      : _items = items;
+      : _items = items,
+        super._();
 
   factory _$_BasketModel.fromJson(Map<String, dynamic> json) =>
       _$$_BasketModelFromJson(json);
@@ -156,10 +157,11 @@ class _$_BasketModel implements _BasketModel {
   }
 }
 
-abstract class _BasketModel implements BasketModel {
+abstract class _BasketModel extends BasketModel {
   factory _BasketModel(
       {required final String id,
       required final List<BasketItemModel> items}) = _$_BasketModel;
+  _BasketModel._() : super._();
 
   factory _BasketModel.fromJson(Map<String, dynamic> json) =
       _$_BasketModel.fromJson;

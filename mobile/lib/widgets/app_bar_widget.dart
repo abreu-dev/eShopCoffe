@@ -16,7 +16,8 @@ AppBar appBarWidget(context, currentRoute) {
     'BasketScreen': 'My basket',
     'OrdersScreen': 'My orders',
     'ProductDetailScreen': 'Details',
-    'OrderDetailScreen': 'Details'
+    'OrderDetailScreen': 'Details',
+    'CreateOrderPage': 'Create order'
   };
 
   var actions = <Widget>[];

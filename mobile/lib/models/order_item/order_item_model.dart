@@ -22,6 +22,6 @@ class OrderItemModel with _$OrderItemModel {
   String currencyText() {
     return NumberFormat.simpleCurrency(
       name: currencyCode, //currencyCode
-    ).format(currencyValue);
+    ).format(currencyValue * amount);
   }
 }
