@@ -5,5 +5,6 @@
         Guid Id { get; }
         string Username { get; }
         bool IsAdmin { get; }
+        bool IsClient { get; }
     }
 }

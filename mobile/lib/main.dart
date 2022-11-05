@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationCubit>(
-            create: (BuildContext context) => AuthenticationCubit()..tryLoadFromLocalStorage()
+            create: (BuildContext context) => AuthenticationCubit()
         ),
         BlocProvider<CatalogCubit>(
             create: (BuildContext context) => CatalogCubit()
@@ -52,7 +52,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   Widget buildView() {
     return Scaffold(
-        appBar: appBarWidget(context),
+        appBar: appBarWidget(context, 'MyHomePage'),
         drawer: const DrawerWidget(),
         body: const HomeScreen()
     );

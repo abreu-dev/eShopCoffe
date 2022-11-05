@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eShopCoffe.API.Controllers
 {
-    //[IgnoreAuthenticationTokenFilter]
+    [Route("health")]
+    [IgnoreAuthenticationTokenFilter]
     public class HealthController : BaseController
     {
         private readonly IHealthService _healthService;
@@ -15,7 +16,6 @@ namespace eShopCoffe.API.Controllers
         }
 
         [HttpGet]
-        [Route("health")]
         public IActionResult Get()
         {
             if (_healthService.IsHealthy())

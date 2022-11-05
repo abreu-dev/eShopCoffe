@@ -14,7 +14,7 @@ namespace eShopCoffe.Core.Domain.Repositories
         protected readonly IBaseContext _context;
         protected readonly IDataAdapter<TEntityDomain, TEntityData> _adapter;
 
-        private readonly DbSet<TEntityData> _dbSet;
+        protected readonly DbSet<TEntityData> _dbSet;
 
         protected Repository(IBaseContext context,
                              IDataAdapter<TEntityDomain, TEntityData> adapter)
@@ -32,7 +32,7 @@ namespace eShopCoffe.Core.Domain.Repositories
             return _adapter.Transform(_dbSet.AsNoTracking());
         }
 
-        public TEntityDomain? GetById(Guid id)
+        public virtual TEntityDomain? GetById(Guid id)
         {
             var data = _dbSet.AsNoTracking()
                 .FirstOrDefault(x => x.Id == id);

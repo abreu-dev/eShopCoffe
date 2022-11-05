@@ -35,7 +35,7 @@ namespace eShopCoffe.Identity.Domain.Validators
                     "Email must be valid.");
 
             var passwordValidatorResult = _passwordValidator.Validate(password);
-            if (!passwordValidatorResult.HasSucceed) 
+            if (!passwordValidatorResult.HasSucceed)
                 return passwordValidatorResult;
 
             if (_userRepository.ExistsByUsername(username))

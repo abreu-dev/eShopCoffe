@@ -6,9 +6,10 @@ import 'package:eshopcoffe/utils/snack_bar_helper.dart';
 
 class BasketItemGridWidget extends StatelessWidget {
   final BasketItemModel basketItem;
-  final Function reloadMainScreen;
+  final Function? reloadMainScreen;
+  final bool showRemove;
 
-  const BasketItemGridWidget(this.basketItem, this.reloadMainScreen, {super.key});
+  const BasketItemGridWidget(this.basketItem, this.reloadMainScreen, this.showRemove, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +19,21 @@ class BasketItemGridWidget extends StatelessWidget {
           .then((response) async
       {
         SnackBarHelper.success(context, 'Product was successfully removed from your cart.');
-        reloadMainScreen();
+        reloadMainScreen!();
       },
       onError: (error) {
         SnackBarHelper.failure(context, error.toString());
       });
     }
 
+    var buttonsWidgets = [];
+    if (showRemove) {
+      buttonsWidgets.add(removeFromBasketButton(onRemoveFromBasketButtonPressed));
+    }
+
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-      height: 220,
+      height: showRemove ? 220 : 130,
       width: double.maxFinite,
       child: Card(
         elevation: 1,
@@ -55,13 +61,13 @@ class BasketItemGridWidget extends StatelessWidget {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                basketItemCurrency(basketItem.product.currencyText())
+                                basketItemCurrency(basketItem.product.currencyText(basketItem.amount))
                               ]
                           ),
                           const Divider(),
                           Row(
                             children: [
-                              removeFromBasketButton(onRemoveFromBasketButtonPressed)
+                              ...buttonsWidgets
                             ],
                           )
                         ],

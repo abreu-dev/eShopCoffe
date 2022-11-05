@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:eshopcoffe/screens/basket_screen.dart';
 
-AppBar appBarWidget(context, {showBasket = true}) {
-
-  print(showBasket);
+AppBar appBarWidget(context, currentRoute) {
   onHealthButtonPressed() async {
     Navigator.push(
         context,
@@ -14,15 +12,35 @@ AppBar appBarWidget(context, {showBasket = true}) {
     );
   }
 
+  var screenTitles = {
+    'BasketScreen': 'My basket',
+    'OrdersScreen': 'My orders',
+    'ProductDetailScreen': 'Details',
+    'OrderDetailScreen': 'Details',
+    'CreateOrderPage': 'Create order'
+  };
+
   var actions = <Widget>[];
 
-  if (showBasket) {
+  if (currentRoute == 'MyHomePage') {
     actions.add(
-      IconButton(
-        onPressed: onHealthButtonPressed,
-        icon: const Icon(FontAwesomeIcons.basketShopping),
-        color: const Color(0xFF323232),
-      )
+        IconButton(
+          onPressed: onHealthButtonPressed,
+          icon: const Icon(FontAwesomeIcons.basketShopping),
+          color: const Color(0xFF323232),
+        )
+    );
+
+    return AppBar(
+        elevation: 0.0,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        title: Image.asset(
+          'assets/images/app_icon_1.png',
+          height: 50,
+        ),
+        iconTheme: const IconThemeData(color: Color(0xFF323232)),
+        actions: actions
     );
   }
 
@@ -30,9 +48,13 @@ AppBar appBarWidget(context, {showBasket = true}) {
     elevation: 0.0,
     centerTitle: true,
     backgroundColor: Colors.white,
-    title: Image.asset(
-      'assets/images/app_icon_1.png',
-      height: 50,
+    title: Text(
+        screenTitles[currentRoute] ?? 'Screen',
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.w700
+        )
     ),
     iconTheme: const IconThemeData(color: Color(0xFF323232)),
     actions: actions

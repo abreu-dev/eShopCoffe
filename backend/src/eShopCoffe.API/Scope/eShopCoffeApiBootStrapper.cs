@@ -9,6 +9,9 @@ using eShopCoffe.Core;
 using eShopCoffe.Identity.Application;
 using eShopCoffe.Identity.Domain;
 using eShopCoffe.Identity.Infra.Data;
+using eShopCoffe.Ordering.Application;
+using eShopCoffe.Ordering.Domain;
+using eShopCoffe.Ordering.Infra.Data;
 
 namespace eShopCoffe.API.Scope
 {
@@ -20,6 +23,7 @@ namespace eShopCoffe.API.Scope
             Identity(services);
             Catalog(services);
             Basket(services);
+            Ordering(services);
         }
 
         private static void Shared(IServiceCollection services)
@@ -47,6 +51,13 @@ namespace eShopCoffe.API.Scope
             BasketDomainBootStrapper.ConfigureServices(services);
             BasketDataBootStrapper.ConfigureServices(services);
             BasketApplicationBootStrapper.ConfigureServices(services);
+        }
+
+        private static void Ordering(IServiceCollection services)
+        {
+            OrderingDomainBootStrapper.ConfigureServices(services);
+            OrderingDataBootStrapper.ConfigureServices(services);
+            OrderingApplicationBootStrapper.ConfigureServices(services);
         }
     }
 }

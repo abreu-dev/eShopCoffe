@@ -11,7 +11,7 @@ class SessionService {
     };
 
     try {
-      Response response = await _dio.post('/identity/sign-in', data: body);
+      Response response = await _dio.post('/session/sign-in', data: body);
       return response;
     }
     on DioError catch (error) {
@@ -27,7 +27,7 @@ class SessionService {
     };
 
     try {
-      Response response = await _dio.post('/identity/sign-up', data: body);
+      Response response = await _dio.post('/session/sign-up', data: body);
       return response;
     }
     on DioError catch (error) {
@@ -41,7 +41,7 @@ class SessionService {
     };
 
     try {
-      Response response = await _dio.post('/identity/password-reset.request', data: body);
+      Response response = await _dio.post('/session/password-reset.request', data: body);
       return response;
     }
     on DioError catch (error) {
@@ -57,7 +57,7 @@ class SessionService {
     };
 
     try {
-      Response response = await _dio.post('/identity/password-reset.confirm', data: body);
+      Response response = await _dio.post('/session/password-reset.confirm', data: body);
       return response;
     }
     on DioError catch (error) {

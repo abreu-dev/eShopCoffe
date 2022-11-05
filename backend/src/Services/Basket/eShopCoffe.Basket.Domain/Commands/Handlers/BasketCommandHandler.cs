@@ -8,7 +8,7 @@ using eShopCoffe.Core.Security.Interfaces;
 
 namespace eShopCoffe.Basket.Domain.Commands.Handlers
 {
-    public class BasketCommandHandler : 
+    public class BasketCommandHandler :
         ICommandHandler<AddOrUpdateBasketItemCommand>,
         ICommandHandler<RemoveBasketItemCommand>
     {

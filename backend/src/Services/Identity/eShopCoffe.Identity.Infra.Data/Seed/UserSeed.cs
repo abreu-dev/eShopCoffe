@@ -1,6 +1,4 @@
-﻿using eShopCoffe.Core.Cryptography;
-using eShopCoffe.Core.Cryptography.Interfaces;
-using eShopCoffe.Core.Domain.Repositories.Interfaces;
+﻿using eShopCoffe.Core.Domain.Repositories.Interfaces;
 using eShopCoffe.Identity.Infra.Data.Entities;
 
 namespace eShopCoffe.Identity.Infra.Data.Seed

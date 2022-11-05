@@ -13,7 +13,7 @@ namespace eShopCoffe.Identity.Domain.Validators
         public IResult Validate(string password)
         {
             var regex = new Regex(MinimumEightCaractersAtLeastOneUpperCaseAndOneLowerCaseLetterAndOneDigitAndOneSpecialCharacter);
-            
+
             if (!string.IsNullOrEmpty(password) && regex.IsMatch(password)) return Result.Success();
 
             return Result.Failure(

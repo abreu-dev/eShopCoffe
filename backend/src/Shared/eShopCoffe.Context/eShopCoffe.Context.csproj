@@ -19,6 +19,7 @@
     <ProjectReference Include="..\..\Services\Basket\eShopCoffe.Basket.Infra.Data\eShopCoffe.Basket.Infra.Data.csproj" />
     <ProjectReference Include="..\..\Services\Catalog\eShopCoffe.Catalog.Infra.Data\eShopCoffe.Catalog.Infra.Data.csproj" />
     <ProjectReference Include="..\..\Services\Identity\eShopCoffe.Identity.Infra.Data\eShopCoffe.Identity.Infra.Data.csproj" />
+    <ProjectReference Include="..\..\Services\Ordering\eShopCoffe.Ordering.Infra.Data\eShopCoffe.Ordering.Infra.Data.csproj" />
     <ProjectReference Include="..\eShopCoffe.Core\eShopCoffe.Core.csproj" />
   </ItemGroup>
 

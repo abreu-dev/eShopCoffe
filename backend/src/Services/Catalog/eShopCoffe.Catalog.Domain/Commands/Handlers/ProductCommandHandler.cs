@@ -1,6 +1,7 @@
 ﻿using eShopCoffe.Catalog.Domain.Commands.ProductCommands;
 using eShopCoffe.Catalog.Domain.Entities;
 using eShopCoffe.Catalog.Domain.Repositories;
+using eShopCoffe.Core.Domain.Entities;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Core.Messaging.Handlers.Interfaces;
 using eShopCoffe.Core.Messaging.Requests;

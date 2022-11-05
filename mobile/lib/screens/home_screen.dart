@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:eshopcoffe/components/product_list_page.dart';
+import 'package:eshopcoffe/pages/product_list_page.dart';
 import 'package:eshopcoffe/widgets/search_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Column(
         children: <Widget>[
-          const SearchWidget(),
+          //const SearchWidget(),
           SizedBox(
             height: 10,
             child: Container(
