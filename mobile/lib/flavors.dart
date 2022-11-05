@@ -21,7 +21,7 @@ class F {
   static String get apiUrl {
     switch (appFlavor) {
       case Flavor.PRODUCTION:
-        return 'http://191.253.111.175:8881';
+        return 'http://177.101.110.164:8881';
       case Flavor.DEVELOPMENT:
       default:
         return 'http://10.0.2.2:5003';
