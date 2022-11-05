@@ -23,7 +23,8 @@ namespace eShopCoffe.Ordering.Application.Tests
             OrderingApplicationBootStrapper.ConfigureServices(_serviceCollection);
 
             // Assert
-            _serviceCollection.Received(2).Add(Arg.Any<ServiceDescriptor>());
+            _serviceCollection.Received(3).Add(Arg.Any<ServiceDescriptor>());
+            ValidateService(typeof(IQueryHandler<AdminPagedOrdersQuery, IPagedList<OrderDto>>), typeof(OrderQueryHandler));
             ValidateService(typeof(IQueryHandler<PagedOrdersQuery, IPagedList<OrderDto>>), typeof(OrderQueryHandler));
             ValidateService(typeof(IQueryHandler<OrderDetailQuery, OrderDto>), typeof(OrderQueryHandler));
         }

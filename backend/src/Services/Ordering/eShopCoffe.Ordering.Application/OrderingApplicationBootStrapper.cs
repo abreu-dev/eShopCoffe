@@ -16,6 +16,7 @@ namespace eShopCoffe.Ordering.Application
 
         private static void Queries(IServiceCollection services)
         {
+            services.AddScoped<IQueryHandler<AdminPagedOrdersQuery, IPagedList<OrderDto>>, OrderQueryHandler>();
             services.AddScoped<IQueryHandler<PagedOrdersQuery, IPagedList<OrderDto>>, OrderQueryHandler>();
             services.AddScoped<IQueryHandler<OrderDetailQuery, OrderDto>, OrderQueryHandler>();
         }

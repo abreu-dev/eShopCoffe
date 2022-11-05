@@ -63,5 +63,20 @@ namespace eShopCoffe.Ordering.Domain.Entities
             Currency.SetCode(Items.FirstOrDefault()?.Currency.Code ?? string.Empty);
             Currency.SetValue(Items.Sum(item => item.GetValue()));
         }
+
+        public void ToNextStatus()
+        {
+            if (Status is OrderStatus.Pending)
+                SetStatus(OrderStatus.Confirmed);
+
+            else if (Status is OrderStatus.Confirmed)
+                SetStatus(OrderStatus.InProduction);
+
+            else if (Status is OrderStatus.InProduction)
+                SetStatus(OrderStatus.InDeliveryRoute);
+
+            else if (Status is OrderStatus.InDeliveryRoute)
+                SetStatus(OrderStatus.Delivered);
+        }
     }
 }

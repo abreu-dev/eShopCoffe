@@ -13,6 +13,7 @@ using System.Linq.Dynamic.Core;
 namespace eShopCoffe.Ordering.Application.Queries.Handlers
 {
     public class OrderQueryHandler :
+        IQueryHandler<AdminPagedOrdersQuery, IPagedList<OrderDto>>,
         IQueryHandler<PagedOrdersQuery, IPagedList<OrderDto>>,
         IQueryHandler<OrderDetailQuery, OrderDto>
     {
@@ -23,6 +24,52 @@ namespace eShopCoffe.Ordering.Application.Queries.Handlers
         {
             _context = context;
             _sessionAccessor = sessionAccessor;
+        }
+
+        public Task<IPagedList<OrderDto>> Handle(AdminPagedOrdersQuery query, CancellationToken cancellationToken = default)
+        {
+            var source = _context.Query<OrderData>()
+                .Include(x => x.Events)
+                .Include(x => x.Items)
+                .ThenInclude(x => x.Product)
+                .OrderByDescending(p => p.CreatedDate);
+
+            var totalItems = source.Count();
+
+            var dtos = (from order in source
+                        select new OrderDto()
+                        {
+                            Id = order.Id,
+                            Address = new OrderAddressDto()
+                            {
+                                Cep = order.Cep,
+                                Number = order.Number
+                            },
+                            PaymentMethod = order.PaymentMethod.GetEnumDisplayName(),
+                            CurrencyValue = order.CurrencyValue,
+                            CurrencyCode = order.CurrencyCode,
+                            Status = order.Status.GetEnumDisplayName(),
+                            CreatedDate = order.CreatedDate,
+                            Events = order.Events.OrderBy(x => x.Date).Select(@event => new OrderEventDto
+                            {
+                                Status = @event.Status.GetEnumDisplayName(),
+                                Date = @event.Date
+                            }),
+                            Items = order.Items.Select(item => new OrderItemDto()
+                            {
+                                Name = item.Product.Name,
+                                ImageUrl = item.Product.ImageUrl,
+                                Amount = item.Amount,
+                                CurrencyCode = item.CurrencyCode,
+                                CurrencyValue = item.CurrencyValue
+                            })
+                        })
+                        .Skip(query.Parameters.Page * query.Parameters.Size)
+                        .Take(query.Parameters.Size)
+                        .ToList();
+
+            IPagedList<OrderDto> pagedList = new PagedList<OrderDto>(dtos, totalItems, query.Parameters.Page, query.Parameters.Size);
+            return Task.FromResult(pagedList);
         }
 
         public Task<IPagedList<OrderDto>> Handle(PagedOrdersQuery query, CancellationToken cancellationToken = default)
