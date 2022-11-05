@@ -16,14 +16,14 @@ namespace eShopCoffe.Core.Email
         public async Task<bool> SendRequestPasswordResetEmail(string email, string username, string passwordResetCode)
         {
             var emailBody = new StringBuilder()
-                .Append("<h1>Reset your eShopCoffe password</h1><br>")
-                .Append("<p>We heard that you forgot your eShopCoffe password. <b>Don't worry about that!<br><p></b><br>")
-                .Append("<p>You can use the following code to reset it on our app:<p><br><br>")
+                .Append("<h1>Altere sua senha do eShopCoffe</h1><br>")
+                .Append("<p>Nós ouvimos que você esqueceu sua senha do eShopCoffe. <b>Não se preocupe!<br><p></b><br>")
+                .Append("<p>Você deve usar o seguinte código para alterá-la em nosso aplicativo:<p><br><br>")
                 .Append($"<p>{passwordResetCode}<p><br>")
-                .Append("<p>It will expire in 15 minutes.<p>")
+                .Append("<p>O código irá expirar em 15 minutos.<p>")
                 .ToString();
 
-            var emailSubject = "[eShopCoffe] Please reset your password";
+            var emailSubject = "[eShopCoffe] Altere sua senha";
 
             return await SendMail(email, emailSubject, emailBody, true);
         }
