@@ -1,6 +1,6 @@
 ﻿using eShopCoffe.Core.Messaging.Requests.Interfaces;
 
-namespace eShopCoffe.Ordering.Application.Contracts
+namespace eShopCoffe.Contracts.Contracts.OrderingContracts
 {
     public class OrderDto : IQueryResult
     {

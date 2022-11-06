@@ -1,4 +1,4 @@
-﻿using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
+﻿using eShopCoffe.Contracts.Contracts.ProductContracts;
 using eShopCoffe.Core.Messaging.Requests.Interfaces;
 
 namespace eShopCoffe.Catalog.Application.Queries.ProductQueries

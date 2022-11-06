@@ -1,6 +1,6 @@
-﻿using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
-using eShopCoffe.Catalog.Application.Queries.ProductQueries;
+﻿using eShopCoffe.Catalog.Application.Queries.ProductQueries;
 using eShopCoffe.Catalog.Infra.Data.Entities;
+using eShopCoffe.Contracts.Contracts.ProductContracts;
 using eShopCoffe.Core.Data;
 using eShopCoffe.Core.Data.Pagination;
 using eShopCoffe.Core.Data.Pagination.Interfaces;

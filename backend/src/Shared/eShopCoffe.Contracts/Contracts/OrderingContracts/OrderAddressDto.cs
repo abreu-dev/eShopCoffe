@@ -1,4 +1,4 @@
-﻿namespace eShopCoffe.Ordering.Application.Contracts
+﻿namespace eShopCoffe.Contracts.Contracts.OrderingContracts
 {
     public class OrderAddressDto
     {

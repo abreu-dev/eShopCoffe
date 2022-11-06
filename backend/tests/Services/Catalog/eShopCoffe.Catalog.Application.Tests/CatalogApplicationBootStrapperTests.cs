@@ -1,6 +1,6 @@
-﻿using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
-using eShopCoffe.Catalog.Application.Queries.Handlers;
+﻿using eShopCoffe.Catalog.Application.Queries.Handlers;
 using eShopCoffe.Catalog.Application.Queries.ProductQueries;
+using eShopCoffe.Contracts.Contracts.ProductContracts;
 using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Messaging.Handlers.Interfaces;
 using Microsoft.Extensions.DependencyInjection;

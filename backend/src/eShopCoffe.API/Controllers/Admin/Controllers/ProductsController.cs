@@ -1,5 +1,5 @@
-﻿using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
-using eShopCoffe.Catalog.Domain.Commands.ProductCommands;
+﻿using eShopCoffe.Catalog.Domain.Commands.ProductCommands;
+using eShopCoffe.Contracts.Contracts.ProductContracts;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

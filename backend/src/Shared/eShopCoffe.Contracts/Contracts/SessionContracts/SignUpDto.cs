@@ -1,4 +1,4 @@
-﻿namespace eShopCoffe.Identity.Application.Contracts.SessionContracts
+﻿namespace eShopCoffe.Contracts.Contracts.SessionContracts
 {
     public class SignUpDto
     {

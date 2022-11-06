@@ -1,6 +1,6 @@
 ﻿using eShopCoffe.Core.Messaging.Requests.Interfaces;
 
-namespace eShopCoffe.Basket.Application.Contracts.BasketContracts
+namespace eShopCoffe.Contracts.Contracts.BasketContracts
 {
     public class BasketDto : IQueryResult
     {

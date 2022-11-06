@@ -1,5 +1,5 @@
-﻿using eShopCoffe.Core.Messaging.Requests.Interfaces;
-using eShopCoffe.Ordering.Application.Contracts;
+﻿using eShopCoffe.Contracts.Contracts.OrderingContracts;
+using eShopCoffe.Core.Messaging.Requests.Interfaces;
 
 namespace eShopCoffe.Ordering.Application.Queries.OrderQueries
 {
