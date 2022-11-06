@@ -1,8 +1,5 @@
 ﻿using eShopCoffe.Core.Data;
-using eShopCoffe.Core.Domain.Entities;
 using eShopCoffe.Core.Domain.Repositories;
-using eShopCoffe.Identity.Domain.Entities;
-using eShopCoffe.Identity.Infra.Data.Entities;
 using eShopCoffe.Ordering.Domain.Entities;
 using eShopCoffe.Ordering.Domain.Repositories;
 using eShopCoffe.Ordering.Infra.Data.Adapters.Interfaces;
@@ -44,44 +41,53 @@ namespace eShopCoffe.Ordering.Infra.Data.Repositories
             {
                 _context.UpdateData(data);
 
-                foreach (var existingChild in existingParent.Items.ToList())
+                UpdateOrderItems(existingParent.Items, data.Items);
+                UpdateOrderEvents(existingParent.Events, data.Events);
+            }
+        }
+
+        private void UpdateOrderItems(ICollection<OrderItemData> existingItems, ICollection<OrderItemData> items)
+        {
+            foreach (var existingItem in existingItems)
+            {
+                if (!items.Any(c => c.Id == existingItem.Id))
+                    _context.GetDbSet<OrderItemData>().Remove(existingItem);
+            }
+
+            foreach (var item in items)
+            {
+                var existingItem = existingItems
+                    .SingleOrDefault(c => c.Id == item.Id && c.Id != Guid.Empty);
+
+                if (existingItem != null)
+                    _context.GetDbEntry(existingItem).CurrentValues.SetValues(item);
+                else
                 {
-                    if (!data.Items.Any(c => c.Id == existingChild.Id))
-                        _context.GetDbSet<OrderItemData>().Remove(existingChild);
+                    existingItems.Add(item);
+                    _context.GetDbEntry(item).State = EntityState.Added;
                 }
+            }
+        }
 
-                foreach (var existingChild in existingParent.Events.ToList())
+        private void UpdateOrderEvents(ICollection<OrderEventData> existingEvents, ICollection<OrderEventData> events)
+        {
+            foreach (var existingEvent in existingEvents)
+            {
+                if (!events.Any(c => c.Id == existingEvent.Id))
+                    _context.GetDbSet<OrderEventData>().Remove(existingEvent);
+            }
+
+            foreach (var @event in events)
+            {
+                var existingEvent = existingEvents
+                    .SingleOrDefault(c => c.Id == @event.Id && c.Id != Guid.Empty);
+
+                if (existingEvent != null)
+                    _context.GetDbEntry(existingEvent).CurrentValues.SetValues(@event);
+                else
                 {
-                    if (!data.Events.Any(c => c.Id == existingChild.Id))
-                        _context.GetDbSet<OrderEventData>().Remove(existingChild);
-                }
-
-                foreach (var childModel in data.Items)
-                {
-                    var existingChild = existingParent.Items
-                        .SingleOrDefault(c => c.Id == childModel.Id && c.Id != Guid.Empty);
-
-                    if (existingChild != null)
-                        _context.GetDbEntry(existingChild).CurrentValues.SetValues(childModel);
-                    else
-                    {
-                        existingParent.Items.Add(childModel);
-                        _context.GetDbEntry(childModel).State = EntityState.Added;
-                    }
-                }
-
-                foreach (var childModel in data.Events)
-                {
-                    var existingChild = existingParent.Events
-                        .SingleOrDefault(c => c.Id == childModel.Id && c.Id != Guid.Empty);
-
-                    if (existingChild != null)
-                        _context.GetDbEntry(existingChild).CurrentValues.SetValues(childModel);
-                    else
-                    {
-                        existingParent.Events.Add(childModel);
-                        _context.GetDbEntry(childModel).State = EntityState.Added;
-                    }
+                    existingEvents.Add(@event);
+                    _context.GetDbEntry(@event).State = EntityState.Added;
                 }
             }
         }

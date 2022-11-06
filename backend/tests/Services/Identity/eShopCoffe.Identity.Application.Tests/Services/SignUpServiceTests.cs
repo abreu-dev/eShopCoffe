@@ -1,4 +1,6 @@
-﻿using eShopCoffe.Core.Validators;
+﻿using eShopCoffe.Core.Email;
+using eShopCoffe.Core.Email.Interfaces;
+using eShopCoffe.Core.Validators;
 using eShopCoffe.Identity.Application.Services;
 using eShopCoffe.Identity.Domain.Entities;
 using eShopCoffe.Identity.Domain.Repositories;
@@ -10,13 +12,15 @@ namespace eShopCoffe.Identity.Application.Tests.Services
     {
         private readonly IUserRepository _userRepository;
         private readonly ISignUpValidator _signUpValidator;
+        private readonly IEmailService _emailService;
         private readonly SignUpService _signUpService;
 
         public SignUpServiceTests()
         {
             _userRepository = Substitute.For<IUserRepository>();
             _signUpValidator = Substitute.For<ISignUpValidator>();
-            _signUpService = new SignUpService(_userRepository, _signUpValidator);
+            _emailService = Substitute.For<IEmailService>();
+            _signUpService = new SignUpService(_userRepository, _signUpValidator, _emailService);
         }
 
         [Fact]
@@ -62,6 +66,8 @@ namespace eShopCoffe.Identity.Application.Tests.Services
                 password);
 
             _userRepository.UnitOfWork.Received(1).Complete();
+
+            _emailService.Received(1).SendAccountCreationEmail(email, username);
 
             result.HasSucceed.Should().BeTrue();
         }

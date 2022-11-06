@@ -33,6 +33,15 @@ class OrderEventModel with _$OrderEventModel {
     if (status == 'In Production') return 'Em produção';
     if (status == 'In DeliveryRoute') return 'Em rota de entrega';
     if (status == 'Delivered') return 'Entregue';
-    else return '';
+    else return status;
+  }
+
+  String statusDescText() {
+    if (status == 'Pending') return 'O pedido está pendente.';
+    if (status == 'Confirmed') return 'O pedido foi aceito.';
+    if (status == 'In Production') return 'O pedido está em produção';
+    if (status == 'In DeliveryRoute') return 'O pedido está em rota de entrega';
+    if (status == 'Delivered') return 'O pedido foi entregue';
+    else return status;
   }
 }
