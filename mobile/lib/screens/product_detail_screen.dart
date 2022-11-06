@@ -258,13 +258,13 @@ class DetailScreenState extends State<DetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Descrição",
+                Text(
+                  "Descrição".toUpperCase(),
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: Color(0x0ff65656)
+                    color: Color(0xFF656565)
                   ),
                 ),
                 const SizedBox(
