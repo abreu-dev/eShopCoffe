@@ -26,7 +26,7 @@ namespace eShopCoffe.Ordering.Application.Queries.Handlers
             _sessionAccessor = sessionAccessor;
         }
 
-        private Task<IPagedList<OrderDto>> GetPagedOrders(IQueryable<OrderData> source, int page, int size)
+        private static Task<IPagedList<OrderDto>> GetPagedOrders(IQueryable<OrderData> source, int page, int size)
         {
             var totalItems = source.Count();
 
