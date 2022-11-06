@@ -7,8 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\eShopCoffe.Contracts\eShopCoffe.Contracts.csproj" />
     <ProjectReference Include="..\eShopCoffe.Catalog.Domain\eShopCoffe.Catalog.Domain.csproj" />
     <ProjectReference Include="..\eShopCoffe.Catalog.Infra.Data\eShopCoffe.Catalog.Infra.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\" />
   </ItemGroup>
 
 </Project>

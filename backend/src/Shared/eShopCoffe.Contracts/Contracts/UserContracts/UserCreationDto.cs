@@ -1,4 +1,4 @@
-﻿namespace eShopCoffe.Identity.Application.Contracts.UserContracts
+﻿namespace eShopCoffe.Contracts.Contracts.UserContracts
 {
     public class UserCreationDto
     {

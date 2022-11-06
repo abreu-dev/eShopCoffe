@@ -1,6 +1,6 @@
-﻿using eShopCoffe.Core.Data.Pagination.Interfaces;
+﻿using eShopCoffe.Contracts.Contracts.UserContracts;
+using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
-using eShopCoffe.Identity.Application.Contracts.UserContracts;
 using eShopCoffe.Identity.Application.Parameters;
 using eShopCoffe.Identity.Application.Queries.UserQueries;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,5 @@
-﻿using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
-using eShopCoffe.Catalog.Application.Parameters.Interfaces;
+﻿using eShopCoffe.Catalog.Application.Parameters.Interfaces;
+using eShopCoffe.Contracts.Contracts.ProductContracts;
 using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Messaging.Requests.Interfaces;
 

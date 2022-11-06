@@ -1,6 +1,6 @@
 ﻿using eShopCoffe.Core.Security;
 
-namespace eShopCoffe.Core.Tests.Email
+namespace eShopCoffe.Core.Tests.Security
 {
     public class JwtSettingsTests
     {

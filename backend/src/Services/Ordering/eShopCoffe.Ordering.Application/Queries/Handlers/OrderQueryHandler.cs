@@ -1,10 +1,10 @@
-﻿using eShopCoffe.Core.Data;
+﻿using eShopCoffe.Contracts.Contracts.OrderingContracts;
+using eShopCoffe.Core.Data;
 using eShopCoffe.Core.Data.Pagination;
 using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Extensions;
 using eShopCoffe.Core.Messaging.Handlers.Interfaces;
 using eShopCoffe.Core.Security.Interfaces;
-using eShopCoffe.Ordering.Application.Contracts;
 using eShopCoffe.Ordering.Application.Queries.OrderQueries;
 using eShopCoffe.Ordering.Infra.Data.Entities;
 using Microsoft.EntityFrameworkCore;

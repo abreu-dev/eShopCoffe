@@ -1,6 +1,6 @@
-﻿using eShopCoffe.Basket.Application.Contracts.BasketContracts;
-using eShopCoffe.Basket.Application.Queries.BasketQueries;
+﻿using eShopCoffe.Basket.Application.Queries.BasketQueries;
 using eShopCoffe.Basket.Domain.Commands.BasketCommands;
+using eShopCoffe.Contracts.Contracts.BasketContracts;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,4 +1,4 @@
-﻿namespace eShopCoffe.Basket.Application.Contracts.BasketContracts
+﻿namespace eShopCoffe.Contracts.Contracts.BasketContracts
 {
     public class BasketItemDto
     {

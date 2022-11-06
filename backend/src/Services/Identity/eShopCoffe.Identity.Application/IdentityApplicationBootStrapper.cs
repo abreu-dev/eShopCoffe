@@ -1,6 +1,6 @@
-﻿using eShopCoffe.Core.Data.Pagination.Interfaces;
+﻿using eShopCoffe.Contracts.Contracts.UserContracts;
+using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Messaging.Handlers.Interfaces;
-using eShopCoffe.Identity.Application.Contracts.UserContracts;
 using eShopCoffe.Identity.Application.Queries.Handlers;
 using eShopCoffe.Identity.Application.Queries.UserQueries;
 using eShopCoffe.Identity.Application.Services;

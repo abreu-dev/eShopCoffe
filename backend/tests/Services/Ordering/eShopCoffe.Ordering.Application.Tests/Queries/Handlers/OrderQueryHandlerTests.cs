@@ -1,8 +1,8 @@
 ﻿using eShopCoffe.Catalog.Infra.Data.Entities;
+using eShopCoffe.Contracts.Contracts.OrderingContracts;
 using eShopCoffe.Core.Data;
 using eShopCoffe.Core.Extensions;
 using eShopCoffe.Core.Security.Interfaces;
-using eShopCoffe.Ordering.Application.Contracts;
 using eShopCoffe.Ordering.Application.Parameters.Interfaces;
 using eShopCoffe.Ordering.Application.Queries.Handlers;
 using eShopCoffe.Ordering.Application.Queries.OrderQueries;

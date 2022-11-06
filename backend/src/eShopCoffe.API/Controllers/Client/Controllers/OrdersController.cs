@@ -1,6 +1,6 @@
-﻿using eShopCoffe.Core.Data.Pagination.Interfaces;
+﻿using eShopCoffe.Contracts.Contracts.OrderingContracts;
+using eShopCoffe.Core.Data.Pagination.Interfaces;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
-using eShopCoffe.Ordering.Application.Contracts;
 using eShopCoffe.Ordering.Application.Parameters;
 using eShopCoffe.Ordering.Application.Queries.OrderQueries;
 using eShopCoffe.Ordering.Domain.Commands.OrderCommands;

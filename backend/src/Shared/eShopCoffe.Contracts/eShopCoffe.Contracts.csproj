@@ -4,11 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <SonarQubeExclude>true</SonarQubeExclude>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Shared\eShopCoffe.Contracts\eShopCoffe.Contracts.csproj" />
-    <ProjectReference Include="..\eShopCoffe.Basket.Infra.Data\eShopCoffe.Basket.Infra.Data.csproj" />
+    <ProjectReference Include="..\eShopCoffe.Core\eShopCoffe.Core.csproj" />
   </ItemGroup>
 
 </Project>

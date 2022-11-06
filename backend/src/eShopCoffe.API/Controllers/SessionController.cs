@@ -1,8 +1,8 @@
 ﻿using eShopCoffe.API.Scope.Handlers;
 using eShopCoffe.API.Scope.Responses;
+using eShopCoffe.Contracts.Contracts.SessionContracts;
 using eShopCoffe.Core.Messaging.Bus.Interfaces;
 using eShopCoffe.Core.Validators.Interfaces;
-using eShopCoffe.Identity.Application.Contracts.SessionContracts;
 using eShopCoffe.Identity.Application.Services.Interfaces;
 using eShopCoffe.Identity.Domain.Entities;
 using eShopCoffe.Identity.Domain.Events.UserEvents;

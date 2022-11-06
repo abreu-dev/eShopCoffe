@@ -1,8 +1,8 @@
-﻿using eShopCoffe.Catalog.Application.Contracts.ProductContracts;
-using eShopCoffe.Catalog.Application.Parameters.Interfaces;
+﻿using eShopCoffe.Catalog.Application.Parameters.Interfaces;
 using eShopCoffe.Catalog.Application.Queries.Handlers;
 using eShopCoffe.Catalog.Application.Queries.ProductQueries;
 using eShopCoffe.Catalog.Infra.Data.Entities;
+using eShopCoffe.Contracts.Contracts.ProductContracts;
 using eShopCoffe.Core.Data;
 
 namespace eShopCoffe.Catalog.Application.Tests.Queries.Handlers
