@@ -30,7 +30,7 @@ namespace eShopCoffe.API.Controllers.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] OrderManagementDto dto)
+        public IActionResult Post([FromBody] OrderManagementDto dto)
         {
             var order = _orderRepository.GetById(dto.OrderId);
 
