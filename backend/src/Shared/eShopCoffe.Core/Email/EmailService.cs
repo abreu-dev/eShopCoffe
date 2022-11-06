@@ -13,6 +13,19 @@ namespace eShopCoffe.Core.Email
             _emailSender = emailSender;
         }
 
+        public async Task<bool> SendAccountCreationEmail(string email, string username)
+        {
+            var emailBody = new StringBuilder()
+                .Append("<h1>Bem vindo a eShopCoffe</h1><br>")
+                .Append($"<p>Bem vindo {username}! Sua conta foi criada com sucesso.<p></b><br>")
+                .Append("<p>Acesse já em nosso aplicativo.<p><br><br>")
+                .ToString();
+
+            var emailSubject = "[eShopCoffe] Sua conta foi criada";
+
+            return await SendMail(email, emailSubject, emailBody, true);
+        }
+
         public async Task<bool> SendRequestPasswordResetEmail(string email, string username, string passwordResetCode)
         {
             var emailBody = new StringBuilder()
