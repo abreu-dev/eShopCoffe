@@ -286,7 +286,7 @@ Widget createTimelineEvent(OrderEventModel event, Size size) {
                   children: [
                     Text(event.statusText()),
                     Text(
-                      event.statusText(),
+                      event.statusDescText(),
                       style: const TextStyle(color: Colors.grey, fontSize: 12),
                     )
                   ]
