@@ -89,6 +89,8 @@ namespace eShopCoffe.API.Controllers
 
         private async Task<IActionResult> GetSignInResult(IResult<UserDomain> result)
         {
+            if (result.Item == null) return NoContent();
+
             var signInResultDto = new SignInResultDto()
             {
                 Token = _tokenService.GenerateAuthenticationToken(result.Item),
